@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { dateLocales, type Locale } from "./i18n";
 
-export const SECTIONS = ["blog", "projects"] as const;
+export const SECTIONS = ["blog"] as const;
 export type Section = (typeof SECTIONS)[number];
 
 export type Frontmatter = { title: string; date?: Date | string };
