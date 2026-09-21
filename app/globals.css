@@ -42,32 +42,54 @@ nav div > a {
   margin-left: 2rem;
 }
 
+/* The selectors below are prefixed on purpose: the base `.lang-switcher` and
+   `.project .gallery img` rules come later in this file and would win otherwise. */
 @media (max-width: 480px) {
   nav {
-    font-size: 1.1em;
-    gap: 0.5rem;
+    font-size: 0.95rem;
+    padding: 0.25rem 0;
+    gap: 0;
+  }
+  /* Keep the bar on one row and make the links comfortable to tap. */
+  nav a {
+    padding: 0.6rem 0.2rem;
   }
   nav div > a {
-    margin-left: 1rem;
+    margin-left: 0.5rem;
   }
-  .lang-switcher {
-    margin-left: 1rem;
+  nav .lang-switcher {
+    margin-left: 0.5rem;
+    font-size: 0.9em;
+    gap: 0;
   }
-  .project .gallery .thumb {
-  flex: none;
-  padding: 0;
-  background: none;
-  border: 0;
-  cursor: zoom-in;
-}
-
-.project .gallery .thumb:hover img,
-.project .gallery .thumb:focus-visible img {
-  border-color: var(--fg);
-}
-
-.project .gallery img {
+  nav .lang-switcher a,
+  nav .lang-switcher strong {
+    position: relative;
+    display: inline-block;
+    padding: 0.6rem 0.3rem;
+  }
+  /* Invisible extra hit area: the letters are narrow, the tap target is not. */
+  nav .lang-switcher a::before {
+    content: "";
+    position: absolute;
+    inset: -0.35rem -0.3rem;
+  }
+  .site-header .tld {
+    display: none;
+  }
+  .project .gallery .thumb img {
     height: 11rem;
+  }
+}
+
+/* Very narrow phones (320px): trim spacing so the bar stays on one row. */
+@media (max-width: 340px) {
+  nav {
+    font-size: 0.9rem;
+  }
+  nav div > a,
+  nav .lang-switcher {
+    margin-left: 0.4rem;
   }
 }
 
@@ -561,3 +583,4 @@ section > h2.sub {
 .cards-two {
   grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
 }
+

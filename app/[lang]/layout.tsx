@@ -44,7 +44,9 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
       <body>
         <header className="site-header">
           <nav className="container">
-            <Link href={`/${lang}`}>ludihan.xyz</Link>
+            <Link href={`/${lang}`}>
+              ludihan<span className="tld">.xyz</span>
+            </Link>
             <div>
               <Link href={`/${lang}/projects`}>{dict.nav.projects}</Link>
               <Link href={`/${lang}/blog`}>{dict.nav.blog}</Link>
