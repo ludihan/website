@@ -184,13 +184,13 @@ img {
   image-rendering: auto;
 }
 
-.project .tags {
+.tags {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
 
-.project .tags li {
+.tags li {
   border: 1px solid var(--fg);
   padding: 0 0.6rem;
   font-size: 0.85em;
@@ -203,4 +203,145 @@ img {
 
 .project .actions {
   margin-top: 1.5rem;
+}
+
+/* Home */
+section {
+  margin: 2.5rem 0;
+}
+
+section > h2 {
+  font-size: 1.5em;
+  margin: 0 0 1rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid #3a3a3a;
+}
+
+section h3 {
+  font-size: 1em;
+}
+
+.hero .title {
+  font-size: 2.5em;
+  font-weight: bold;
+  margin: 1.5rem 0 0;
+  line-height: 1.2;
+}
+
+.hero .role {
+  color: var(--fg);
+  font-size: 1.3em;
+  margin: 0 0 1rem;
+}
+
+.facts {
+  display: grid;
+  gap: 0.5rem 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  margin: 1.5rem 0;
+}
+
+.facts dt {
+  font-size: 0.8em;
+  opacity: 0.6;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.facts dd {
+  margin: 0;
+}
+
+.cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.btn-primary {
+  background-color: var(--fg);
+  color: var(--background);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  color: var(--background);
+  background-color: var(--selected);
+}
+
+.cards {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #3a3a3a;
+  color: var(--text);
+}
+
+.card:hover,
+.card:focus {
+  border-color: var(--fg);
+  color: var(--text);
+}
+
+.card strong {
+  color: var(--fg);
+  font-size: 1.15em;
+}
+
+.card small,
+.role-item header p,
+.muted {
+  opacity: 0.7;
+}
+
+.role-item {
+  margin-bottom: 1.5rem;
+}
+
+.role-item header h3 {
+  margin: 0;
+  font-size: 1.1em;
+}
+
+.role-item header h3 span {
+  font-weight: normal;
+  opacity: 0.85;
+}
+
+.role-item header p {
+  margin: 0 0 0.5rem;
+  font-size: 0.9em;
+}
+
+ul.plain li {
+  margin: 0.25rem 0;
+}
+
+.skill-group h3 {
+  margin: 1rem 0 0.25rem;
+  opacity: 0.7;
+}
+
+a:focus-visible,
+.btn-link:focus-visible {
+  outline: 2px solid var(--selected);
+  outline-offset: 2px;
+}
+
+section p {
+  margin: 0.75rem 0;
+}
+
+.role-item header {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0 1rem;
 }
