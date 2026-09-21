@@ -584,3 +584,26 @@ section > h2.sub {
   grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
 }
 
+/* Touch & small screens */
+.text-link {
+  display: inline-block;
+  padding: 0.5rem 0;
+}
+
+.btn-link {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.prose table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+@media (pointer: coarse) {
+  .lightbox-bar button {
+    min-width: 2.75rem;
+    height: 2.75rem;
+  }
+}
