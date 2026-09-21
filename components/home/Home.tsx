@@ -95,7 +95,9 @@ export function Home({ lang }: { lang: Locale }) {
           ))}
         </ul>
         <p>
-          <Link href={`/${lang}/about`}>{t.workAll} →</Link>
+          <Link href={`/${lang}/about`} className="text-link">
+            {t.workAll} →
+          </Link>
         </p>
       </section>
 

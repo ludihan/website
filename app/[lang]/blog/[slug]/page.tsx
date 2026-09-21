@@ -51,7 +51,9 @@ export default async function Post({ params }: PageProps<"/[lang]/blog/[slug]">)
     <article>
       <script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(jsonLd)} />
       <p>
-        <Link href={`/${lang}/blog`}>{dict.blog.back}</Link>
+        <Link href={`/${lang}/blog`} className="text-link">
+          {dict.blog.back}
+        </Link>
       </p>
       <h1 className="title">{frontmatter.title}</h1>
       <p className="post-meta">

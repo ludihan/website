@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
@@ -7,6 +7,8 @@ import { site } from "@/lib/profile";
 import "../globals.css";
 
 export const dynamicParams = false;
+
+export const viewport: Viewport = { themeColor: "#1a1a1a" };
 
 export const generateStaticParams = () => locales.map((lang) => ({ lang }));
 

@@ -52,7 +52,9 @@ export default async function BlogPage({ params }: PageProps<"/[lang]/blog">) {
         </ul>
       )}
       <p className="muted">
-        <a href={`/${lang}/blog/rss.xml`}>{dict.blog.rss}</a>
+        <a href={`/${lang}/blog/rss.xml`} className="text-link">
+          {dict.blog.rss}
+        </a>
       </p>
     </>
   );
