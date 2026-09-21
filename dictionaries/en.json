@@ -1,6 +1,20 @@
 {
   "description": "ludihan's personal website",
-  "nav": { "projects": "projects", "blog": "blog", "about": "about" },
-  "sections": { "blog": "Blog", "projects": "Projects" },
-  "language": "Language"
+  "nav": {
+    "projects": "projects",
+    "blog": "blog",
+    "about": "about"
+  },
+  "sections": {
+    "blog": "Blog",
+    "projects": "Projects"
+  },
+  "language": "Language",
+  "projects": {
+    "intro": "A few of the things I've built. Click through to the source on GitHub.",
+    "features": "Highlights",
+    "stack": "Built with",
+    "source": "Source code",
+    "license": "License"
+  }
 }
