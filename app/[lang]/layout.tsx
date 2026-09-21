@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { getDictionary, hasLocale, locales } from "@/lib/i18n";
+import { site } from "@/lib/profile";
 import "../globals.css";
 
 export const dynamicParams = false;
@@ -14,10 +15,14 @@ export async function generateMetadata({
 }: LayoutProps<"/[lang]">): Promise<Metadata> {
   const { lang } = await params;
   if (!hasLocale(lang)) return {};
+  const { meta } = getDictionary(lang);
   return {
-    metadataBase: new URL("https://ludihan.xyz"),
-    title: { default: "ludihan", template: "%s ~ ludihan" },
-    description: getDictionary(lang).description,
+    metadataBase: new URL(site.url),
+    title: { default: meta.homeTitle, template: `%s | ${site.name}` },
+    description: meta.homeDescription,
+    applicationName: site.name,
+    authors: [{ name: site.name, url: site.url }],
+    creator: site.name,
     manifest: "/site.webmanifest",
     icons: {
       icon: [
@@ -26,9 +31,6 @@ export async function generateMetadata({
       ],
       shortcut: "/favicon.ico",
       apple: { url: "/apple-touch-icon.png", sizes: "180x180" },
-    },
-    alternates: {
-      languages: Object.fromEntries(locales.map((l) => [l, `/${l}`])),
     },
   };
 }

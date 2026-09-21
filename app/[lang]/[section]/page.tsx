@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SECTIONS, formatDate, getPosts, isSection } from "@/lib/content";
 import { getDictionary, hasLocale, locales } from "@/lib/i18n";
+import { pageMetadata } from "@/lib/seo";
 
 export const dynamicParams = false;
 
@@ -14,7 +15,11 @@ export async function generateMetadata({
 }: PageProps<"/[lang]/[section]">): Promise<Metadata> {
   const { lang, section } = await params;
   if (!hasLocale(lang) || !isSection(section)) return {};
-  return { title: getDictionary(lang).sections[section] };
+  const dict = getDictionary(lang);
+  return pageMetadata(lang, `/${section}`, {
+    title: dict.sections[section],
+    description: dict.meta.blogDescription,
+  });
 }
 
 export default async function SectionPage({ params }: PageProps<"/[lang]/[section]">) {
