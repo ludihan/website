@@ -2,35 +2,36 @@ import fs from "node:fs";
 import path from "node:path";
 import { dateLocales, type Locale } from "./i18n";
 
-export const SECTIONS = ["blog"] as const;
-export type Section = (typeof SECTIONS)[number];
+export type Frontmatter = { title: string; date?: Date | string; description?: string };
 
-export type Frontmatter = { title: string; date?: Date | string };
+const blogDir = (lang: Locale) => path.join(process.cwd(), "content", lang, "blog");
 
-export function isSection(s: string): s is Section {
-  return (SECTIONS as readonly string[]).includes(s);
-}
-
-export function getSlugs(lang: Locale, section: Section): string[] {
+export function getSlugs(lang: Locale): string[] {
   return fs
-    .readdirSync(path.join(process.cwd(), "content", lang, section))
+    .readdirSync(blogDir(lang))
     .filter((f) => f.endsWith(".md"))
     .map((f) => f.replace(/\.md$/, ""));
 }
 
-export async function loadPost(lang: Locale, section: Section, slug: string) {
-  const mod = await import(`@/content/${lang}/${section}/${slug}.md`);
-  return { Content: mod.default, frontmatter: mod.frontmatter as Frontmatter };
+function readingMinutes(lang: Locale, slug: string) {
+  const source = fs.readFileSync(path.join(blogDir(lang), `${slug}.md`), "utf8");
+  const words = source.replace(/^---[\s\S]*?---/, "").split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.ceil(words / 200));
+}
+
+export async function loadPost(lang: Locale, slug: string) {
+  const mod = await import(`@/content/${lang}/blog/${slug}.md`);
+  return {
+    slug,
+    Content: mod.default,
+    frontmatter: mod.frontmatter as Frontmatter,
+    minutes: readingMinutes(lang, slug),
+  };
 }
 
 // Newest first, like Zola's `sort_by = "date"`.
-export async function getPosts(lang: Locale, section: Section) {
-  const posts = await Promise.all(
-    getSlugs(lang, section).map(async (slug) => ({
-      slug,
-      ...(await loadPost(lang, section, slug)),
-    })),
-  );
+export async function getPosts(lang: Locale) {
+  const posts = await Promise.all(getSlugs(lang).map((slug) => loadPost(lang, slug)));
   const time = (d?: Date | string) => (d ? new Date(d).getTime() : 0);
   return posts.sort((a, b) => time(b.frontmatter.date) - time(a.frontmatter.date));
 }

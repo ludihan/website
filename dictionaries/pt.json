@@ -23,5 +23,13 @@
     "projectsDescription": "Projetos selecionados de Lucca Han: um sistema de chamados em Next.js, um app de inventário local-first em React Native e um chat em tempo real com Elixir e Phoenix LiveView.",
     "blogDescription": "Artigos de Lucca Han sobre desenvolvimento web, Linux e programação de sistemas.",
     "ogAlt": "Lucca Han, Desenvolvedor Full-Stack"
+  },
+  "blog": {
+    "empty": "Ainda não há posts.",
+    "back": "← Todos os posts",
+    "minRead": "min de leitura",
+    "newer": "Mais recente",
+    "older": "Mais antigo",
+    "rss": "Feed RSS"
   }
 }

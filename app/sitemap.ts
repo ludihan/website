@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { SECTIONS, getSlugs } from "@/lib/content";
+import { getSlugs } from "@/lib/content";
 import { locales } from "@/lib/i18n";
 import { site } from "@/lib/profile";
 
@@ -10,13 +10,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "",
     "/about",
     "/projects",
-    ...SECTIONS.map((s) => `/${s}`),
+    "/blog",
     // Only posts that exist in every language, so the hreflang alternates are real pages.
-    ...SECTIONS.flatMap((s) =>
-      getSlugs("en", s)
-        .filter((slug) => locales.every((l) => getSlugs(l, s).includes(slug)))
-        .map((slug) => `/${s}/${slug}`),
-    ),
+    ...getSlugs("en")
+      .filter((slug) => locales.every((l) => getSlugs(l).includes(slug)))
+      .map((slug) => `/blog/${slug}`),
   ];
   return paths.flatMap((path) =>
     locales.map((lang) => ({
