@@ -51,7 +51,7 @@ export const profileText: Record<Locale, ProfileText> = {
     lead: "I build web applications end to end: React and Next.js front-ends, Go and Node.js back-ends, databases and the Linux/Docker tooling around them. Computer Science graduate based in Manaus, Brazil, with experience working in a remote team.",
     facts: [
       { label: "Based in", value: "Manaus, Amazonas, Brazil (UTC−4)" },
-      { label: "Now", value: "IT assistant & full-stack developer at Masf Refeições" },
+      { label: "Now", value: "IT assistant at Masf Refeições" },
       { label: "Education", value: "B.Sc. Computer Science, UNIFOR" },
       { label: "Languages", value: "English, Portuguese" },
     ],
@@ -65,7 +65,7 @@ export const profileText: Record<Locale, ProfileText> = {
         period: "Jun. 2026 – present",
         place: "Manaus, Brazil",
         summary:
-          "Own the company's IT infrastructure and work as a full-stack developer on the company website, a fleet management system and satisfaction forms.",
+          "Work as an IT assistant and build internal software as a full-stack developer, including the company website, satisfaction forms and a certificate system, among other projects.",
         stack: ["Svelte", "SvelteKit", "React", "Next.js", "Tailwind CSS", "Node.js", "Go"],
       },
       {
@@ -111,7 +111,7 @@ export const profileText: Record<Locale, ProfileText> = {
     lead: "Construo aplicações web de ponta a ponta: front-ends em React e Next.js, back-ends em Go e Node.js, bancos de dados e o ferramental de Linux/Docker ao redor. Bacharel em Ciência da Computação, baseado em Manaus, com experiência em time remoto.",
     facts: [
       { label: "Localização", value: "Manaus, Amazonas, Brasil (UTC−4)" },
-      { label: "Atualmente", value: "Assistente de TI e dev full-stack na Masf Refeições" },
+      { label: "Atualmente", value: "Assistente de TI na Masf Refeições" },
       { label: "Formação", value: "Bacharel em Ciência da Computação, UNIFOR" },
       { label: "Idiomas", value: "Inglês, Português" },
     ],
@@ -125,7 +125,7 @@ export const profileText: Record<Locale, ProfileText> = {
         period: "jun. 2026 – atual",
         place: "Manaus, Brasil",
         summary:
-          "Cuido da infraestrutura de TI da empresa e atuo como desenvolvedor full-stack no site da empresa, em um sistema de gestão de frota e em formulários de satisfação.",
+          "Atuo como assistente de TI e desenvolvo software interno como desenvolvedor full-stack, incluindo o site da empresa, formulários de satisfação e um sistema de certificados, entre outros projetos.",
         stack: ["Svelte", "SvelteKit", "React", "Next.js", "Tailwind CSS", "Node.js", "Go"],
       },
       {

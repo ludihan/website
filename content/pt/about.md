@@ -9,7 +9,7 @@ Bacharel em Ciência da Computação e desenvolvedor full-stack, com experiênci
 #### Masf Refeições. Manaus, Amazonas, Brasil
 
 - Stack: Svelte, SvelteKit, React, Next.js, TailwindCSS, Node.js, Go
-- Atuo na infraestrutura de TI da empresa e também como desenvolvedor full-stack do site da empresa, de um sistema de gestão de frota e de formulários de satisfação.
+- Atuo como assistente de TI e também como desenvolvedor full-stack, no site da empresa, em formulários de satisfação e em um sistema de certificados, entre outros projetos.
 
 ### Estagiário de Desenvolvimento Web Full-Stack (mai. 2025 - dez. 2025)
 #### FIOTEC/FIOCRUZ. Eusébio, Ceará, Brasil (Remoto)
