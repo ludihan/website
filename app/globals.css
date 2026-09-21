@@ -528,3 +528,36 @@ body:has(dialog[open]) {
   font-style: normal;
 }
 
+/* About */
+.card-static:hover {
+  border-color: #3a3a3a;
+}
+
+section > h2.sub {
+  margin-top: 2rem;
+}
+
+.timeline {
+  margin-left: 0.4rem;
+  padding-left: 1.25rem;
+  border-left: 2px solid #3a3a3a;
+}
+
+.timeline .role-item {
+  position: relative;
+}
+
+.timeline .role-item::before {
+  content: "";
+  position: absolute;
+  left: calc(-1.25rem - 6px);
+  top: 0.5rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--fg);
+}
+
+.cards-two {
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}

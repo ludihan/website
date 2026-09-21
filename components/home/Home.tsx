@@ -3,16 +3,8 @@ import { getDictionary, type Locale } from "@/lib/i18n";
 import { profileText, site, skills, type SkillGroup } from "@/lib/profile";
 import { projects } from "@/lib/projects";
 import { jsonLdScript } from "@/lib/seo";
-
-function Tags({ items }: { items: string[] }) {
-  return (
-    <ul className="tags">
-      {items.map((t) => (
-        <li key={t}>{t}</li>
-      ))}
-    </ul>
-  );
-}
+import { RoleList } from "../RoleList";
+import { Tags } from "../Tags";
 
 export function Home({ lang }: { lang: Locale }) {
   const t = profileText[lang];
@@ -93,20 +85,7 @@ export function Home({ lang }: { lang: Locale }) {
 
       <section>
         <h2>{t.workTitle}</h2>
-        {t.roles.map((r) => (
-          <article key={r.org} className="role-item">
-            <header>
-              <h3>
-                {r.title} <span>· {r.org}</span>
-              </h3>
-              <p>
-                {r.period} · {r.place}
-              </p>
-            </header>
-            <p>{r.summary}</p>
-            <Tags items={r.stack} />
-          </article>
-        ))}
+        <RoleList roles={t.roles} />
         <h3>{t.educationTitle}</h3>
         <ul className="plain">
           {t.education.map((e) => (

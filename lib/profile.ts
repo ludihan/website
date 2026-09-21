@@ -37,12 +37,23 @@ type ProfileText = {
   workAll: string;
   roles: Role[];
   educationTitle: string;
-  education: { school: string; title: string; period: string }[];
+  education: { school: string; title: string; period: string; place: string; coursework: string[] }[];
   skillsTitle: string;
   skillLabels: Record<SkillGroup, string>;
   contactTitle: string;
   contactText: string;
   osJoke: string;
+  about: {
+    title: string;
+    summary: string;
+    focusTitle: string;
+    focus: { title: string; text: string; tags: string[] }[];
+    courseworkLabel: string;
+    languagesTitle: string;
+    languages: string[];
+    beyondTitle: string;
+    beyond: string;
+  };
 };
 
 export const profileText: Record<Locale, ProfileText> = {
@@ -84,16 +95,20 @@ export const profileText: Record<Locale, ProfileText> = {
         school: "Wyden",
         title: "Postgraduate Program in Full Stack Development",
         period: "Jul. 2026 – ongoing",
+        place: "Manaus, Brazil",
+        coursework: ["Big Data Fundamentals", "Website Creation and Programming", "Cloud Computing", "Back-End Development", "Front-End Development", "Database Design and Implementation", "DevOps Methodology", "Information Security Fundamentals"],
       },
       {
         school: "University of Fortaleza (UNIFOR)",
         title: "Bachelor's Degree in Computer Science (8.37/10.0)",
         period: "Feb. 2022 – Dec. 2025",
+        place: "Fortaleza, Brazil",
+        coursework: ["Data Structures", "Databases", "Web Development", "Computer Graphics", "Mobile Development", "Functional Programming", "Object Oriented Programming", "Operating Systems", "Artificial Intelligence"],
       },
     ],
     skillsTitle: "Skills",
     skillLabels: {
-      languages: "Languages",
+      languages: "Programming languages",
       frontend: "Front-end",
       backend: "Back-end & data",
       mobile: "Mobile",
@@ -104,6 +119,39 @@ export const profileText: Record<Locale, ProfileText> = {
     contactText:
       "I'm always happy to chat about new roles, projects or anything web, systems or gamedev related.",
     osJoke: "I use openSUSE, btw.",
+    about: {
+      title: "About me",
+      summary:
+        "Computer Science graduate and full-stack developer with experience in web development, game development and automation. I like building correct, efficient solutions, and I keep learning through hands-on projects.",
+      focusTitle: "What I work on",
+      focus: [
+        {
+          title: "Web development",
+          text: "Front-end and back-end, from React and Next.js interfaces to Go and Node.js services.",
+          tags: ["React", "Next.js", "Go", "Node.js", "PostgreSQL"],
+        },
+        {
+          title: "Linux & DevOps",
+          text: "Linux user (openSUSE), working with Docker, Nix and the shell.",
+          tags: ["Linux", "Docker", "NixOS", "Shell"],
+        },
+        {
+          title: "Systems & embedded",
+          text: "C for embedded and systems work, Rust for general projects.",
+          tags: ["C", "Rust"],
+        },
+        {
+          title: "Game development",
+          text: "Games and tools built with Godot.",
+          tags: ["Godot", "GDScript"],
+        },
+      ],
+      courseworkLabel: "Relevant coursework",
+      languagesTitle: "Spoken languages",
+      languages: ["English", "Portuguese"],
+      beyondTitle: "Beyond code",
+      beyond: "Apart from coding, I really like music and videogames.",
+    },
   },
   pt: {
     role: "Desenvolvedor Full-Stack",
@@ -143,16 +191,20 @@ export const profileText: Record<Locale, ProfileText> = {
         school: "Wyden",
         title: "Pós-graduação em Desenvolvimento Full Stack",
         period: "jul. 2026 – em andamento",
+        place: "Manaus, Brasil",
+        coursework: ["Fundamentos de Big Data", "Criação e Programação de Websites", "Cloud Computing", "Desenvolvimento Back-End", "Desenvolvimento Front-End", "Projeto e Implementação de Banco de Dados", "Método DevOps", "Fundamentos de Segurança da Informação"],
       },
       {
         school: "Universidade de Fortaleza (UNIFOR)",
         title: "Bacharelado em Ciência da Computação (8,37/10,0)",
         period: "fev. 2022 – dez. 2025",
+        place: "Fortaleza, Brasil",
+        coursework: ["Estruturas de Dados", "Bancos de Dados", "Desenvolvimento Web", "Computação Gráfica", "Desenvolvimento Mobile", "Programação Funcional", "Programação Orientada a Objetos", "Sistemas Operacionais", "Inteligência Artificial"],
       },
     ],
     skillsTitle: "Habilidades",
     skillLabels: {
-      languages: "Linguagens",
+      languages: "Linguagens de programação",
       frontend: "Front-end",
       backend: "Back-end e dados",
       mobile: "Mobile",
@@ -163,5 +215,38 @@ export const profileText: Record<Locale, ProfileText> = {
     contactText:
       "Vou adorar conversar sobre novas oportunidades, projetos ou qualquer coisa de web, sistemas ou gamedev.",
     osJoke: "Eu uso openSUSE, btw.",
+    about: {
+      title: "Sobre mim",
+      summary:
+        "Bacharel em Ciência da Computação e desenvolvedor full-stack, com experiência em desenvolvimento web, desenvolvimento de jogos e automação. Gosto de criar soluções corretas e eficientes, e sigo aprendendo através de projetos práticos.",
+      focusTitle: "No que eu trabalho",
+      focus: [
+        {
+          title: "Desenvolvimento web",
+          text: "Front-end e back-end, de interfaces em React e Next.js a serviços em Go e Node.js.",
+          tags: ["React", "Next.js", "Go", "Node.js", "PostgreSQL"],
+        },
+        {
+          title: "Linux e DevOps",
+          text: "Usuário de Linux (openSUSE), trabalhando com Docker, Nix e o shell.",
+          tags: ["Linux", "Docker", "NixOS", "Shell"],
+        },
+        {
+          title: "Sistemas e embarcados",
+          text: "C para embarcados e sistemas, Rust para projetos em geral.",
+          tags: ["C", "Rust"],
+        },
+        {
+          title: "Desenvolvimento de jogos",
+          text: "Jogos e ferramentas feitos com Godot.",
+          tags: ["Godot", "GDScript"],
+        },
+      ],
+      courseworkLabel: "Disciplinas relevantes",
+      languagesTitle: "Idiomas falados",
+      languages: ["Inglês", "Português"],
+      beyondTitle: "Além do código",
+      beyond: "Fora da programação, gosto muito de música e videogames.",
+    },
   },
 };
