@@ -1,6 +1,20 @@
 {
   "description": "site pessoal do ludihan",
-  "nav": { "projects": "projetos", "blog": "blog", "about": "sobre" },
-  "sections": { "blog": "Blog", "projects": "Projetos" },
-  "language": "Idioma"
+  "nav": {
+    "projects": "projetos",
+    "blog": "blog",
+    "about": "sobre"
+  },
+  "sections": {
+    "blog": "Blog",
+    "projects": "Projetos"
+  },
+  "language": "Idioma",
+  "projects": {
+    "intro": "Alguns dos projetos que construí. Clique para ver o código no GitHub.",
+    "features": "Destaques",
+    "stack": "Feito com",
+    "source": "Código-fonte",
+    "license": "Licença"
+  }
 }
