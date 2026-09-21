@@ -14,7 +14,11 @@
     "features": "Highlights",
     "stack": "Built with",
     "source": "Source code",
-    "license": "License"
+    "license": "License",
+    "enlarge": "Enlarge image",
+    "close": "Close",
+    "prev": "Previous image",
+    "next": "Next image"
   },
   "meta": {
     "homeTitle": "Lucca Han | Full-Stack Developer (React, Next.js, TypeScript, Go)",
