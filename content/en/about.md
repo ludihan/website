@@ -9,7 +9,7 @@ Computer Science graduate and full-stack developer with experience in web develo
 #### Masf Refeições. Manaus, Amazonas, Brazil
 
 - Stack: Svelte, SvelteKit, React, Next.js, TailwindCSS, Node.js, Go
-- I work on the company's IT infrastructure and also as a full-stack developer for the company website, a fleet management system and satisfaction forms.
+- I work as an IT assistant and also as a full-stack developer, building the company website, satisfaction forms and a certificate system, among other projects.
 
 ### Full-Stack Web Developer Intern (May 2025 - Dec. 2025)
 #### FIOTEC/FIOCRUZ. Eusébio, Ceará, Brazil (Remote)
