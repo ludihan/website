@@ -35,4 +35,3 @@ Bacharel em Ciência da Computação e desenvolvedor full-stack, com experiênci
 ## Idiomas
 - Inglês
 - Português
-- Japonês
