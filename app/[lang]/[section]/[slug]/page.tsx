@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { SECTIONS, formatDate, getSlugs, isSection, loadPost } from "@/lib/content";
-import { hasLocale, locales } from "@/lib/i18n";
+import { getDictionary, hasLocale, locales } from "@/lib/i18n";
+import { pageMetadata } from "@/lib/seo";
 
 export const dynamicParams = false;
 
@@ -17,7 +18,11 @@ export async function generateMetadata({
 }: PageProps<"/[lang]/[section]/[slug]">): Promise<Metadata> {
   const { lang, section, slug } = await params;
   if (!hasLocale(lang) || !isSection(section)) return {};
-  return { title: (await loadPost(lang, section, slug)).frontmatter.title };
+  const { frontmatter } = await loadPost(lang, section, slug);
+  return pageMetadata(lang, `/${section}/${slug}`, {
+    title: frontmatter.title,
+    description: getDictionary(lang).meta.blogDescription,
+  });
 }
 
 export default async function Post({ params }: PageProps<"/[lang]/[section]/[slug]">) {

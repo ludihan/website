@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { hasLocale } from "@/lib/i18n";
+import { getDictionary, hasLocale } from "@/lib/i18n";
+import { pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -8,7 +9,10 @@ export async function generateMetadata({
   const { lang } = await params;
   if (!hasLocale(lang)) return {};
   const { frontmatter } = await import(`@/content/${lang}/about.md`);
-  return { title: frontmatter.title };
+  return pageMetadata(lang, "/about", {
+    title: frontmatter.title,
+    description: getDictionary(lang).meta.aboutDescription,
+  });
 }
 
 export default async function Page({ params }: PageProps<"/[lang]/about">) {
