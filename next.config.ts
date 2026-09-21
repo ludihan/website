@@ -15,7 +15,11 @@ const withMDX = createMDX({
       "remark-frontmatter",
       ["remark-mdx-frontmatter", { name: "frontmatter" }],
     ],
-    rehypePlugins: [["@shikijs/rehype", { theme: "gruvbox-dark-medium" }]],
+    rehypePlugins: [
+      "rehype-slug",
+      ["rehype-autolink-headings", { behavior: "wrap" }],
+      ["@shikijs/rehype", { theme: "gruvbox-dark-medium" }],
+    ],
   },
 });
 
