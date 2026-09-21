@@ -39,7 +39,7 @@ export function ProjectCard({
         ))}
       </ul>
 
-      <p>
+      <p className="actions">
         <a href={project.repo} className="btn-link">
           {dict.source}
         </a>{" "}
