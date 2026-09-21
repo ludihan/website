@@ -34,7 +34,7 @@ export function Home({ lang }: { lang: Locale }) {
       addressRegion: "Amazonas",
       addressCountry: "BR",
     },
-    knowsLanguage: ["en", "pt", "ja"],
+    knowsLanguage: ["en", "pt"],
     knowsAbout: [
       ...skills.languages,
       ...skills.frontend,

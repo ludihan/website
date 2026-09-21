@@ -35,4 +35,3 @@ Computer Science graduate and full-stack developer with experience in web develo
 ## Languages
 - English
 - Portuguese
-- Japanese
