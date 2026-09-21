@@ -30,7 +30,7 @@ Computer Science graduate and full-stack developer with experience in web develo
 ## Skills
 - Programming/Markup Languages: JavaScript, TypeScript, Python, C, HTML, CSS, Rust, Go, Elixir, Lua, Java, SQL, Ruby, Clojure, GDScript (Godot), Kotlin, Nix, QML
 - Technologies: React, Next.js, Git, Linux, Docker, Godot, PostgreSQL, Shell, RabbitMQ, Jetpack Compose, NixOS
-- AI-assisted development: OpenCode, Claude, Gemini, ChatGPT
+- AI-assisted development: OpenCode, Claude, Gemini, ChatGPT, Jev
 
 ## Languages
 - English

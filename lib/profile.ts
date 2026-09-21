@@ -14,7 +14,7 @@ export const skills = {
   backend: ["Node.js", "Go", "Django", "Phoenix", "PostgreSQL", "SQLite", "RabbitMQ"],
   mobile: ["React Native / Expo", "Kotlin", "Jetpack Compose"],
   devops: ["Linux", "Docker", "Git", "Nix / NixOS", "Shell"],
-  ai: ["Claude", "ChatGPT", "Gemini", "OpenCode"],
+  ai: ["Claude", "ChatGPT", "Gemini", "OpenCode", "Jev"],
 };
 
 export type SkillGroup = keyof typeof skills;
