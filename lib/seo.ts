@@ -8,7 +8,11 @@ const openGraphLocale: Record<Locale, string> = { en: "en_US", pt: "pt_BR" };
 export function pageMetadata(
   lang: Locale,
   path: string,
-  meta: { title?: string | { absolute: string }; description: string },
+  meta: {
+    title?: string | { absolute: string };
+    description: string;
+    publishedTime?: string;
+  },
 ): Metadata {
   const languages: Record<string, string> = Object.fromEntries(
     locales.map((l) => [l, `/${l}${path}`]),
@@ -24,7 +28,9 @@ export function pageMetadata(
     description: meta.description,
     alternates: { canonical: `/${lang}${path}`, languages },
     openGraph: {
-      type: "website",
+      ...(meta.publishedTime
+        ? { type: "article" as const, publishedTime: meta.publishedTime }
+        : { type: "website" as const }),
       siteName: site.name,
       title,
       description: meta.description,

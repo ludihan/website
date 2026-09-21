@@ -355,3 +355,72 @@ section p {
   gap: 0 1rem;
 }
 
+/* Blog */
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 2rem;
+}
+
+.post-list li {
+  margin: 0 0 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #3a3a3a;
+}
+
+.post-list h2 {
+  font-size: 1.4em;
+  margin: 0;
+}
+
+.post-list p {
+  margin: 0.25rem 0;
+}
+
+.post-meta {
+  opacity: 0.7;
+  font-size: 0.9em;
+  margin: 0 0 1rem;
+}
+
+.prose h2 a,
+.prose h3 a,
+.prose h4 a {
+  color: inherit;
+}
+
+.prose h2 a:hover::after,
+.prose h3 a:hover::after,
+.prose h4 a:hover::after {
+  content: " #";
+  color: var(--fg);
+}
+
+.post-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 3rem 0 1rem;
+  padding: 0;
+}
+
+.post-nav a {
+  display: flex;
+  flex-direction: column;
+  max-width: 48%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #3a3a3a;
+}
+
+.post-nav a:last-child:not(:first-child) {
+  text-align: right;
+  margin-left: auto;
+}
+
+.post-nav a:hover {
+  border-color: var(--fg);
+}
+
+.post-nav small {
+  opacity: 0.7;
+}

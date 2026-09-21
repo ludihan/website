@@ -23,5 +23,13 @@
     "projectsDescription": "Selected projects by Lucca Han: a ticketing system built with Next.js, a local-first inventory app in React Native and a real-time chat in Elixir and Phoenix LiveView.",
     "blogDescription": "Articles by Lucca Han on web development, Linux and systems programming.",
     "ogAlt": "Lucca Han, Full-Stack Developer"
+  },
+  "blog": {
+    "empty": "No posts yet.",
+    "back": "← All posts",
+    "minRead": "min read",
+    "newer": "Newer",
+    "older": "Older",
+    "rss": "RSS feed"
   }
 }
