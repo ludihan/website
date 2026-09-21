@@ -42,7 +42,7 @@ type ProfileText = {
   skillLabels: Record<SkillGroup, string>;
   contactTitle: string;
   contactText: string;
-  interests: string;
+  osJoke: string;
 };
 
 export const profileText: Record<Locale, ProfileText> = {
@@ -103,8 +103,7 @@ export const profileText: Record<Locale, ProfileText> = {
     contactTitle: "Let's talk",
     contactText:
       "I'm always happy to chat about new roles, projects or anything web, systems or gamedev related.",
-    interests:
-      "Outside of work: Linux, systems programming, embedded, game development and music. I use openSUSE, btw.",
+    osJoke: "I use openSUSE, btw.",
   },
   pt: {
     role: "Desenvolvedor Full-Stack",
@@ -163,7 +162,6 @@ export const profileText: Record<Locale, ProfileText> = {
     contactTitle: "Vamos conversar",
     contactText:
       "Vou adorar conversar sobre novas oportunidades, projetos ou qualquer coisa de web, sistemas ou gamedev.",
-    interests:
-      "Fora do trabalho: Linux, programação de sistemas, embarcados, desenvolvimento de jogos e música. Eu uso openSUSE, btw.",
+    osJoke: "Eu uso openSUSE, btw.",
   },
 };
