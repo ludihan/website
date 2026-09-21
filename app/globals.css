@@ -18,20 +18,12 @@ body {
 
 .container {
   margin: 1rem auto 0;
-  max-width: 40%;
-}
-
-@media (max-width: 480px) {
-  body {
-    font-size: 2rem;
-  }
-  .container {
-    max-width: 90%;
-  }
+  width: min(100% - 2rem, 46rem);
 }
 
 nav {
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
   justify-content: space-between;
   font-size: 1.3em;
@@ -44,6 +36,22 @@ nav div {
 
 nav div > a {
   margin-left: 2rem;
+}
+
+@media (max-width: 480px) {
+  nav {
+    font-size: 1.1em;
+    gap: 0.5rem;
+  }
+  nav div > a {
+    margin-left: 1rem;
+  }
+  .lang-switcher {
+    margin-left: 1rem;
+  }
+  .project .gallery img {
+    height: 11rem;
+  }
 }
 
 header {
@@ -191,4 +199,8 @@ img {
 .project .license {
   margin-left: 0.5rem;
   opacity: 0.7;
+}
+
+.project .actions {
+  margin-top: 1.5rem;
 }
