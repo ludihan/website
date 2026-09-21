@@ -1,0 +1,6 @@
+{
+  "description": "site pessoal do ludihan",
+  "nav": { "projects": "projetos", "blog": "blog", "about": "sobre" },
+  "sections": { "blog": "Blog", "projects": "Projetos" },
+  "language": "Idioma"
+}

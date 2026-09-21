@@ -1,0 +1,6 @@
+{
+  "description": "ludihan's personal website",
+  "nav": { "projects": "projects", "blog": "blog", "about": "about" },
+  "sections": { "blog": "Blog", "projects": "Projects" },
+  "language": "Language"
+}
