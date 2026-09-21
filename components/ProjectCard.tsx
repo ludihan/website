@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { ProjectGallery } from "./ProjectGallery";
 import type { Dictionary, Locale } from "@/lib/i18n";
 import type { Project } from "@/lib/projects";
 
@@ -19,11 +19,7 @@ export function ProjectCard({
       </h2>
       <p>{description}</p>
 
-      <div className="gallery">
-        {project.screenshots.map((s) => (
-          <Image key={s.src} src={s.src} width={s.width} height={s.height} alt={s.alt[lang]} />
-        ))}
-      </div>
+      <ProjectGallery shots={project.screenshots} lang={lang} labels={dict} />
 
       <h3>{dict.features}</h3>
       <ul>

@@ -53,7 +53,20 @@ nav div > a {
   .lang-switcher {
     margin-left: 1rem;
   }
-  .project .gallery img {
+  .project .gallery .thumb {
+  flex: none;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: zoom-in;
+}
+
+.project .gallery .thumb:hover img,
+.project .gallery .thumb:focus-visible img {
+  border-color: var(--fg);
+}
+
+.project .gallery img {
     height: 11rem;
   }
 }
@@ -182,6 +195,19 @@ img {
   gap: 0.75rem;
   overflow-x: auto;
   padding-bottom: 0.5rem;
+}
+
+.project .gallery .thumb {
+  flex: none;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: zoom-in;
+}
+
+.project .gallery .thumb:hover img,
+.project .gallery .thumb:focus-visible img {
+  border-color: var(--fg);
 }
 
 .project .gallery img {
@@ -424,3 +450,63 @@ section p {
 .post-nav small {
   opacity: 0.7;
 }
+
+/* Image preview */
+body:has(dialog[open]) {
+  overflow: hidden;
+}
+
+.lightbox {
+  margin: auto;
+  padding: 0.75rem;
+  max-width: 96vw;
+  max-height: 96vh;
+  background: #111;
+  color: var(--text);
+  border: 1px solid #3a3a3a;
+}
+
+.lightbox::backdrop {
+  background: rgb(0 0 0 / 0.85);
+}
+
+.lightbox img {
+  display: block;
+  margin: 0 auto;
+  width: auto;
+  height: auto;
+  max-width: calc(96vw - 2.5rem);
+  max-height: calc(96vh - 6rem);
+  image-rendering: auto;
+}
+
+.lightbox-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.lightbox-bar span {
+  flex: 1;
+  text-align: center;
+  font-size: 0.9em;
+}
+
+.lightbox-bar button {
+  min-width: 2.5rem;
+  height: 2.5rem;
+  padding: 0 0.5rem;
+  color: var(--fg);
+  background: none;
+  border: 1px solid var(--fg);
+  font-size: 1.25em;
+  cursor: pointer;
+}
+
+.lightbox-bar button:hover,
+.lightbox-bar button:focus-visible {
+  color: var(--background);
+  background: var(--selected);
+}
+
