@@ -510,3 +510,21 @@ body:has(dialog[open]) {
   background: var(--selected);
 }
 
+/* Home footer */
+.os-joke {
+  margin: 3rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px dashed #3a3a3a;
+  font-size: 0.85em;
+  opacity: 0.6;
+}
+
+.os-joke code {
+  font-family: ui-monospace, monospace;
+}
+
+.os-joke em {
+  color: var(--fg);
+  font-style: normal;
+}
+

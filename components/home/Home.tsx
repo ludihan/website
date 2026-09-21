@@ -144,8 +144,16 @@ export function Home({ lang }: { lang: Locale }) {
             GitHub
           </a>
         </p>
-        <p className="muted">{t.interests}</p>
       </section>
+
+      <p className="os-joke">
+        <span className="sr-only">{t.osJoke}</span>
+        <code aria-hidden="true">
+          $ grep ^NAME /etc/os-release
+          <br />
+          NAME=&quot;openSUSE&quot; <em># btw</em>
+        </code>
+      </p>
     </>
   );
 }
