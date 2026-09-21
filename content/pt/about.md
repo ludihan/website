@@ -30,7 +30,7 @@ Bacharel em Ciência da Computação e desenvolvedor full-stack, com experiênci
 ## Habilidades
 - Linguagens de Programação/Marcação: JavaScript, TypeScript, Python, C, HTML, CSS, Rust, Go, Elixir, Lua, Java, SQL, Ruby, Clojure, GDScript (Godot), Kotlin, Nix, QML
 - Tecnologias: React, Next.js, Git, Linux, Docker, Godot, PostgreSQL, Shell, RabbitMQ, Jetpack Compose, NixOS
-- Desenvolvimento com IA: OpenCode, Claude, Gemini, ChatGPT
+- Desenvolvimento com IA: OpenCode, Claude, Gemini, ChatGPT, Jev
 
 ## Idiomas
 - Inglês
