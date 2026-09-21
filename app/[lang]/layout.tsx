@@ -42,21 +42,18 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
   return (
     <html lang={lang}>
       <body>
-        <div className="container">
-          <header>
-            <nav>
-              <Link href={`/${lang}`}>ludihan.xyz</Link>
-              <div>
-                <Link href={`/${lang}/projects`}>{dict.nav.projects}</Link>
-                <Link href={`/${lang}/blog`}>{dict.nav.blog}</Link>
-                <Link href={`/${lang}/about`}>{dict.nav.about}</Link>
-                <LanguageSwitcher lang={lang} label={dict.language} />
-              </div>
-            </nav>
-          </header>
-          <hr className="nav" />
-          <main>{children}</main>
-        </div>
+        <header className="site-header">
+          <nav className="container">
+            <Link href={`/${lang}`}>ludihan.xyz</Link>
+            <div>
+              <Link href={`/${lang}/projects`}>{dict.nav.projects}</Link>
+              <Link href={`/${lang}/blog`}>{dict.nav.blog}</Link>
+              <Link href={`/${lang}/about`}>{dict.nav.about}</Link>
+              <LanguageSwitcher lang={lang} label={dict.language} />
+            </div>
+          </nav>
+        </header>
+        <main className="container">{children}</main>
       </body>
     </html>
   );

@@ -17,14 +17,18 @@ body {
 }
 
 .container {
-  margin: 1rem auto 0;
+  margin: 0 auto;
   width: min(100% - 2rem, 46rem);
+}
+
+main.container {
+  padding-top: 1rem;
 }
 
 nav {
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  padding: 0.75rem 0;
   justify-content: space-between;
   font-size: 1.3em;
 }
@@ -54,9 +58,17 @@ nav div > a {
   }
 }
 
-header {
-  display: flex;
-  flex-direction: row;
+html {
+  /* Keeps #anchors from landing under the sticky header. */
+  scroll-padding-top: 5rem;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--background);
+  border-bottom: 1px solid var(--fg);
 }
 
 a {
@@ -71,10 +83,6 @@ a:focus {
   transition: all 0.1s linear;
 }
 
-hr.nav {
-  color: var(--fg);
-  margin-top: 0;
-}
 
 .title {
   font-size: 2em;
@@ -340,8 +348,10 @@ section p {
 }
 
 .role-item header {
+  display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: baseline;
   gap: 0 1rem;
 }
+
