@@ -1,26 +1,126 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #1a1a1a;
+  --text: #ffffff;
+  --fg: #d1a159;
+  --selected: #e9d2af;
 }
 
 body {
+  margin: 0 0 4rem;
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text);
+  font-family: sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
 }
+
+.container {
+  margin: 1rem auto 0;
+  max-width: 40%;
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 2rem;
+  }
+  .container {
+    max-width: 90%;
+  }
+}
+
+nav {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  font-size: 1.3em;
+}
+
+nav div {
+  display: flex;
+  align-self: center;
+}
+
+nav div a {
+  margin-left: 2rem;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+}
+
+a {
+  color: var(--fg);
+  text-decoration: none;
+}
+
+a:hover,
+a:active,
+a:focus {
+  color: var(--selected);
+  transition: all 0.1s linear;
+}
+
+hr.nav {
+  color: var(--fg);
+  margin-top: 0;
+}
+
+.title {
+  font-size: 2em;
+  font-weight: normal;
+}
+
+img {
+  image-rendering: pixelated;
+}
+
+.btn-link {
+  display: inline-block;
+  background-color: transparent;
+  color: var(--fg);
+  padding: 10px 20px;
+  border: 0.2rem solid var(--fg);
+  font-weight: bold;
+  text-align: center;
+  transition: background 0.2s;
+}
+
+.btn-link:hover,
+.btn-link:active {
+  color: var(--background);
+  background-color: var(--selected);
+}
+
+.blog-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Rendered markdown: Tailwind's preflight resets these, so restore them. */
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  font-weight: bold;
+  margin: 1em 0 0.5em;
+}
+.prose h1 { font-size: 2em; }
+.prose h2 { font-size: 1.5em; }
+.prose h3 { font-size: 1.17em; }
+.prose p,
+.prose pre,
+.prose blockquote,
+.prose table { margin: 1em 0; }
+.prose ul { list-style: disc; padding-left: 2rem; margin: 1em 0; }
+.prose ol { list-style: decimal; padding-left: 2rem; margin: 1em 0; }
+.prose blockquote { border-left: 0.2rem solid var(--fg); padding-left: 1rem; }
+.prose pre { padding: 1rem; overflow-x: auto; font-size: 0.9em; }
+.prose :not(pre) > code { background: #2a2a2a; padding: 0.1em 0.3em; }
+.prose img { max-width: 100%; height: auto; }
+.prose table { border-collapse: collapse; }
+.prose th,
+.prose td { border: 1px solid #555; padding: 0.25rem 0.75rem; }
+.prose hr { margin: 1.5rem 0; }
