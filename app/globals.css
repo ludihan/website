@@ -42,7 +42,7 @@ nav div {
   align-self: center;
 }
 
-nav div a {
+nav div > a {
   margin-left: 2rem;
 }
 
@@ -124,3 +124,11 @@ img {
 .prose th,
 .prose td { border: 1px solid #555; padding: 0.25rem 0.75rem; }
 .prose hr { margin: 1.5rem 0; }
+
+.lang-switcher {
+  display: flex;
+  gap: 0.75rem;
+  margin-left: 2rem;
+  font-size: 0.8em;
+  align-self: center;
+}
