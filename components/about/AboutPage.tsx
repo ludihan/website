@@ -87,10 +87,10 @@ export function AboutPage({ lang }: { lang: Locale }) {
           <a href={`mailto:${site.email}`} className="btn-link btn-primary">
             {site.email}
           </a>
-          <a href={site.linkedin} className="btn-link">
+          <a href={site.linkedin} className="btn-link" target="_blank" rel="noopener noreferrer">
             LinkedIn
           </a>
-          <a href={site.github} className="btn-link">
+          <a href={site.github} className="btn-link" target="_blank" rel="noopener noreferrer">
             GitHub
           </a>
           <Link href={`/${lang}/projects`} className="btn-link">
