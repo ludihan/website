@@ -149,13 +149,14 @@ img {
   display: inline-flex;
 }
 
-.email-group .btn-link:first-child {
-  border-right: none;
-}
-
 .copy-email-wrap {
   position: relative;
   display: inline-flex;
+  margin-left: -0.2rem;
+}
+
+.copy-email-wrap .btn-copy {
+  position: relative;
 }
 
 .btn-copy {
