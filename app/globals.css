@@ -145,9 +145,18 @@ img {
   background-color: var(--selected);
 }
 
+.email-group {
+  display: inline-flex;
+}
+
+.email-group .btn-link:first-child {
+  border-right: none;
+}
+
 .btn-copy {
+  display: inline-flex;
+  align-items: center;
   padding: 10px 14px;
-  font-size: 0.9em;
   cursor: pointer;
 }
 
