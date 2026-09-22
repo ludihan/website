@@ -172,8 +172,8 @@ img {
 .copy-email-tooltip {
   position: absolute;
   bottom: calc(100% + 0.5rem);
-  left: 50%;
-  transform: translate(-50%, 4px);
+  right: 0;
+  max-width: calc(100vw - 2rem);
   white-space: nowrap;
   padding: 0.3rem 0.6rem;
   background-color: var(--fg);
@@ -182,12 +182,13 @@ img {
   font-weight: bold;
   pointer-events: none;
   opacity: 0;
+  transform: translateY(4px);
   transition: opacity 0.15s, transform 0.15s;
 }
 
 .copy-email-tooltip.is-visible {
   opacity: 1;
-  transform: translate(-50%, 0);
+  transform: translateY(0);
 }
 
 .blog-item {
