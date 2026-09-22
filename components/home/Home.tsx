@@ -3,6 +3,7 @@ import { getDictionary, type Locale } from "@/lib/i18n";
 import { profileText, site, skills, type SkillGroup } from "@/lib/profile";
 import { projects } from "@/lib/projects";
 import { jsonLdScript } from "@/lib/seo";
+import { CopyEmailButton } from "../CopyEmailButton";
 import { RoleList } from "../RoleList";
 import { Tags } from "../Tags";
 
@@ -61,6 +62,7 @@ export function Home({ lang }: { lang: Locale }) {
           <a href={`mailto:${site.email}`} className="btn-link">
             {t.cta.email}
           </a>
+          <CopyEmailButton email={site.email} label={t.cta.copyEmail} copiedLabel={t.cta.emailCopied} />
           <a href={site.linkedin} className="btn-link" target="_blank" rel="noopener noreferrer">
             LinkedIn
           </a>
@@ -118,6 +120,7 @@ export function Home({ lang }: { lang: Locale }) {
           <a href={`mailto:${site.email}`} className="btn-link btn-primary">
             {site.email}
           </a>
+          <CopyEmailButton email={site.email} label={t.cta.copyEmail} copiedLabel={t.cta.emailCopied} />
           <a href={site.linkedin} className="btn-link" target="_blank" rel="noopener noreferrer">
             LinkedIn
           </a>

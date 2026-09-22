@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getDictionary, type Locale } from "@/lib/i18n";
 import { profileText, site, skills, type SkillGroup } from "@/lib/profile";
+import { CopyEmailButton } from "../CopyEmailButton";
 import { RoleList } from "../RoleList";
 import { Tags } from "../Tags";
 
@@ -87,6 +88,7 @@ export function AboutPage({ lang }: { lang: Locale }) {
           <a href={`mailto:${site.email}`} className="btn-link btn-primary">
             {site.email}
           </a>
+          <CopyEmailButton email={site.email} label={t.cta.copyEmail} copiedLabel={t.cta.emailCopied} />
           <a href={site.linkedin} className="btn-link" target="_blank" rel="noopener noreferrer">
             LinkedIn
           </a>
