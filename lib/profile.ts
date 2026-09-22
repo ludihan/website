@@ -32,7 +32,7 @@ type ProfileText = {
   role: string;
   lead: string;
   facts: { label: string; value: string }[];
-  cta: { projects: string; email: string; about: string };
+  cta: { projects: string; email: string; about: string; copyEmail: string; emailCopied: string };
   workTitle: string;
   workAll: string;
   roles: Role[];
@@ -66,7 +66,13 @@ export const profileText: Record<Locale, ProfileText> = {
       { label: "Education", value: "B.Sc. Computer Science, UNIFOR" },
       { label: "Languages", value: "English, Portuguese" },
     ],
-    cta: { projects: "View projects", email: "Email me", about: "Full background" },
+    cta: {
+      projects: "View projects",
+      email: "Email me",
+      about: "Full background",
+      copyEmail: "Copy email address",
+      emailCopied: "Email copied!",
+    },
     workTitle: "Experience",
     workAll: "Full background",
     roles: [
@@ -162,7 +168,13 @@ export const profileText: Record<Locale, ProfileText> = {
       { label: "Formação", value: "Bacharel em Ciência da Computação, UNIFOR" },
       { label: "Idiomas", value: "Inglês, Português" },
     ],
-    cta: { projects: "Ver projetos", email: "Enviar email", about: "Trajetória completa" },
+    cta: {
+      projects: "Ver projetos",
+      email: "Enviar email",
+      about: "Trajetória completa",
+      copyEmail: "Copiar endereço de email",
+      emailCopied: "Email copiado!",
+    },
     workTitle: "Experiência",
     workAll: "Trajetória completa",
     roles: [

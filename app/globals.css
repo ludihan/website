@@ -145,6 +145,12 @@ img {
   background-color: var(--selected);
 }
 
+.btn-copy {
+  padding: 10px 14px;
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
 .blog-item {
   display: flex;
   justify-content: space-between;
