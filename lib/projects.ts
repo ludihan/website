@@ -125,7 +125,7 @@ export const projects: Project[] = [
     name: "atrium",
     repo: "https://github.com/ludihan/atrium",
     license: "AGPL-3.0",
-    stack: ["Elixir", "Phoenix LiveView", "Ecto", "SQLite"],
+    stack: ["Elixir", "Phoenix LiveView", "Ecto", "SQLite", "Jev"],
     screenshots: [
       {
         src: "/projects/atrium/chat.png",
@@ -149,6 +149,7 @@ export const projects: Project[] = [
           "The whole UI is a single LiveView, with messages arriving live through PubSub",
           "Slash commands: /join, /nick, /me and /help",
           "SQLite in WAL mode, so many people can write at once without losing messages",
+          "Optional AI moderation powered by Jev, which can flag or hold messages before they reach a channel",
         ],
       },
       pt: {
@@ -159,6 +160,7 @@ export const projects: Project[] = [
           "Toda a interface é uma única LiveView, com mensagens chegando ao vivo via PubSub",
           "Comandos com barra: /join, /nick, /me e /help",
           "SQLite em modo WAL, para muita gente escrever ao mesmo tempo sem perder mensagens",
+          "Moderação por IA opcional, com o Jev, que pode sinalizar ou reter mensagens antes de chegarem ao canal",
         ],
       },
     },
