@@ -128,13 +128,13 @@ export const projects: Project[] = [
     stack: ["Elixir", "Phoenix LiveView", "Ecto", "SQLite", "Jev"],
     screenshots: [
       {
-        src: "/projects/atrium/chat.png",
+        src: "https://raw.githubusercontent.com/ludihan/atrium/main/docs/chat.png",
         width: 1100,
         height: 650,
         alt: { en: "atrium chat", pt: "Chat do atrium" },
       },
       {
-        src: "/projects/atrium/nick-prompt.png",
+        src: "https://raw.githubusercontent.com/ludihan/atrium/main/docs/nick-prompt.png",
         width: 1100,
         height: 650,
         alt: { en: "atrium nick prompt", pt: "Escolha de nick no atrium" },
