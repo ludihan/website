@@ -85,10 +85,12 @@ export function AboutPage({ lang }: { lang: Locale }) {
         <h2>{t.contactTitle}</h2>
         <p>{t.contactText}</p>
         <p className="cta">
-          <a href={`mailto:${site.email}`} className="btn-link btn-primary">
-            {site.email}
-          </a>
-          <CopyEmailButton email={site.email} label={t.cta.copyEmail} copiedLabel={t.cta.emailCopied} />
+          <span className="email-group">
+            <a href={`mailto:${site.email}`} className="btn-link btn-primary">
+              {site.email}
+            </a>
+            <CopyEmailButton email={site.email} label={t.cta.copyEmail} copiedLabel={t.cta.emailCopied} />
+          </span>
           <a href={site.linkedin} className="btn-link" target="_blank" rel="noopener noreferrer">
             LinkedIn
           </a>
