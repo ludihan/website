@@ -162,6 +162,9 @@ img {
   display: inline-flex;
   align-items: center;
   padding: 10px 14px;
+  margin: 0;
+  font: inherit;
+  appearance: none;
   cursor: pointer;
 }
 
