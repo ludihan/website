@@ -61,10 +61,10 @@ export function Home({ lang }: { lang: Locale }) {
           <a href={`mailto:${site.email}`} className="btn-link">
             {t.cta.email}
           </a>
-          <a href={site.linkedin} className="btn-link">
+          <a href={site.linkedin} className="btn-link" target="_blank" rel="noopener noreferrer">
             LinkedIn
           </a>
-          <a href={site.github} className="btn-link">
+          <a href={site.github} className="btn-link" target="_blank" rel="noopener noreferrer">
             GitHub
           </a>
         </p>
@@ -118,10 +118,10 @@ export function Home({ lang }: { lang: Locale }) {
           <a href={`mailto:${site.email}`} className="btn-link btn-primary">
             {site.email}
           </a>
-          <a href={site.linkedin} className="btn-link">
+          <a href={site.linkedin} className="btn-link" target="_blank" rel="noopener noreferrer">
             LinkedIn
           </a>
-          <a href={site.github} className="btn-link">
+          <a href={site.github} className="btn-link" target="_blank" rel="noopener noreferrer">
             GitHub
           </a>
         </p>
