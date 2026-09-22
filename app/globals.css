@@ -153,11 +153,37 @@ img {
   border-right: none;
 }
 
+.copy-email-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
 .btn-copy {
   display: inline-flex;
   align-items: center;
   padding: 10px 14px;
   cursor: pointer;
+}
+
+.copy-email-tooltip {
+  position: absolute;
+  bottom: calc(100% + 0.5rem);
+  left: 50%;
+  transform: translate(-50%, 4px);
+  white-space: nowrap;
+  padding: 0.3rem 0.6rem;
+  background-color: var(--fg);
+  color: var(--background);
+  font-size: 0.8em;
+  font-weight: bold;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+.copy-email-tooltip.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
 }
 
 .blog-item {
