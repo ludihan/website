@@ -26,19 +26,19 @@ export const projects: Project[] = [
     stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "SQLite", "react-pdf"],
     screenshots: [
       {
-        src: "/projects/inci/home.png",
+        src: "https://raw.githubusercontent.com/ludihan/inci/main/docs/screenshots/home.png",
         width: 1440,
         height: 900,
         alt: { en: "Inci home page", pt: "Página inicial do Inci" },
       },
       {
-        src: "/projects/inci/admin-dashboard.png",
+        src: "https://raw.githubusercontent.com/ludihan/inci/main/docs/screenshots/admin-dashboard.png",
         width: 1440,
         height: 900,
         alt: { en: "Inci admin dashboard", pt: "Painel administrativo do Inci" },
       },
       {
-        src: "/projects/inci/admin-tickets.png",
+        src: "https://raw.githubusercontent.com/ludihan/inci/main/docs/screenshots/admin-tickets.png",
         width: 1440,
         height: 900,
         alt: { en: "Inci ticket list in the admin panel", pt: "Lista de chamados no painel do Inci" },
@@ -77,19 +77,19 @@ export const projects: Project[] = [
     stack: ["Expo", "React Native", "Expo Router", "TypeScript", "AsyncStorage"],
     screenshots: [
       {
-        src: "/projects/inv/home.png",
+        src: "https://raw.githubusercontent.com/ludihan/inv/main/docs/screenshots/home.png",
         width: 416,
         height: 1000,
         alt: { en: "inv dashboard", pt: "Dashboard do inv" },
       },
       {
-        src: "/projects/inv/items.png",
+        src: "https://raw.githubusercontent.com/ludihan/inv/main/docs/screenshots/items.png",
         width: 416,
         height: 1000,
         alt: { en: "inv items list", pt: "Lista de itens do inv" },
       },
       {
-        src: "/projects/inv/companies.png",
+        src: "https://raw.githubusercontent.com/ludihan/inv/main/docs/screenshots/companies.png",
         width: 416,
         height: 1000,
         alt: { en: "inv companies and sectors", pt: "Empresas e setores no inv" },
