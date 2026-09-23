@@ -789,6 +789,17 @@ ul.plain small {
   margin-bottom: 0.75rem;
 }
 
+.project-meta {
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.78rem;
+}
+
 .project h2 {
   margin: 0;
   font-size: 1.6rem;
