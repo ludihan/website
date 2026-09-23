@@ -77,8 +77,6 @@ export function AboutPage({ lang }: { lang: Locale }) {
       <section>
         <h2>{a.languagesTitle}</h2>
         <Tags items={a.languages} />
-        <h2 className="sub">{a.beyondTitle}</h2>
-        <p>{a.beyond}</p>
       </section>
 
       <section>
