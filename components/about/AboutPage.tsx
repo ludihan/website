@@ -70,8 +70,13 @@ export function AboutPage({ lang }: { lang: Locale }) {
                   {e.period} · {e.place}
                 </p>
               </header>
-              <p className="muted">{a.courseworkLabel}</p>
-              <Tags items={e.coursework} />
+              {e.summary && <p>{e.summary}</p>}
+              {e.coursework && (
+                <>
+                  <p className="muted">{a.courseworkLabel}</p>
+                  <Tags items={e.coursework} />
+                </>
+              )}
             </article>
           ))}
         </div>

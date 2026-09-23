@@ -37,7 +37,14 @@ type ProfileText = {
   workAll: string;
   roles: Role[];
   educationTitle: string;
-  education: { school: string; title: string; period: string; place: string; coursework: string[] }[];
+  education: {
+    school: string;
+    title: string;
+    period: string;
+    place: string;
+    summary?: string;
+    coursework?: string[];
+  }[];
   skillsTitle: string;
   skillLabels: Record<SkillGroup, string>;
   contactTitle: string;
@@ -108,6 +115,14 @@ export const profileText: Record<Locale, ProfileText> = {
         period: "Feb. 2022 – Dec. 2025",
         place: "Fortaleza, Brazil",
         coursework: ["Data Structures", "Databases", "Web Development", "Computer Graphics", "Mobile Development", "Functional Programming", "Object Oriented Programming", "Operating Systems", "Artificial Intelligence"],
+      },
+      {
+        school: "Quest Language Studies",
+        title: "English Language Exchange Program",
+        period: "Jan. 2019",
+        place: "Toronto, Canada",
+        summary:
+          "One-month exchange program to put my English to the test in a fully immersive, English-speaking environment.",
       },
     ],
     skillsTitle: "Skills",
@@ -208,6 +223,14 @@ export const profileText: Record<Locale, ProfileText> = {
         period: "fev. 2022 – dez. 2025",
         place: "Fortaleza, Brasil",
         coursework: ["Estruturas de Dados", "Bancos de Dados", "Desenvolvimento Web", "Computação Gráfica", "Desenvolvimento Mobile", "Programação Funcional", "Programação Orientada a Objetos", "Sistemas Operacionais", "Inteligência Artificial"],
+      },
+      {
+        school: "Quest Language Studies",
+        title: "Intercâmbio de Inglês",
+        period: "jan. 2019",
+        place: "Toronto, Canadá",
+        summary:
+          "Intercâmbio de um mês para testar meu inglês em um ambiente de imersão total.",
       },
     ],
     skillsTitle: "Habilidades",
