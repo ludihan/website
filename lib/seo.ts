@@ -34,10 +34,20 @@ export function pageMetadata(
   return {
     title: meta.title,
     description: meta.description,
-    alternates: { canonical: `/${lang}${path}`, languages },
+    alternates: {
+      canonical: `/${lang}${path}`,
+      languages,
+      // Lets feed readers and browsers discover the RSS feed from any page.
+      types: { "application/rss+xml": `/${lang}/blog/rss.xml` },
+    },
     openGraph: {
       ...(meta.publishedTime
-        ? { type: "article" as const, publishedTime: meta.publishedTime }
+        ? {
+            type: "article" as const,
+            publishedTime: meta.publishedTime,
+            modifiedTime: meta.publishedTime,
+            authors: [`${site.url}/${lang}/about`],
+          }
         : { type: "website" as const }),
       siteName: site.name,
       title,

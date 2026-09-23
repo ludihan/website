@@ -32,6 +32,14 @@ export async function generateMetadata({
     applicationName: site.name,
     authors: [{ name: site.name, url: site.url }],
     creator: site.name,
+    publisher: site.name,
+    // Allow large image previews and full snippets in search results.
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
+    },
+    formatDetection: { telephone: false, address: false, email: false },
     manifest: "/site.webmanifest",
     icons: {
       icon: [
@@ -85,12 +93,12 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
             </p>
             <ul>
               <li>
-                <a href={site.github} target="_blank" rel="noopener noreferrer">
+                <a href={site.github} target="_blank" rel="me noopener noreferrer">
                   GitHub
                 </a>
               </li>
               <li>
-                <a href={site.linkedin} target="_blank" rel="noopener noreferrer">
+                <a href={site.linkedin} target="_blank" rel="me noopener noreferrer">
                   LinkedIn
                 </a>
               </li>
