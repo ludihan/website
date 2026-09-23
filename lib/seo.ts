@@ -4,6 +4,9 @@ import { site } from "./profile";
 
 const openGraphLocale: Record<Locale, string> = { en: "en_US", pt: "pt_BR" };
 
+// Name of a page's generated Open Graph image: "" -> "home", "/blog/first" -> "blog-first".
+export const ogImageKey = (path: string) => (path === "" ? "home" : path.slice(1).replace(/\//g, "-"));
+
 // Canonical + hreflang for one page. `path` is the part after `/<lang>` ("", "/about", ...).
 export function pageMetadata(
   lang: Locale,
@@ -22,7 +25,12 @@ export function pageMetadata(
   const title =
     typeof meta.title === "string" ? `${meta.title} | ${site.name}` : meta.title?.absolute;
   // A page-level `openGraph`/`twitter` replaces the layout's, so the image is set here.
-  const image = { url: "/og.png", width: 1200, height: 630, alt: getDictionary(lang).meta.ogAlt };
+  const image = {
+    url: `/og/${lang}/${ogImageKey(path)}.png`,
+    width: 1200,
+    height: 630,
+    alt: path === "" ? getDictionary(lang).meta.ogAlt : (title ?? site.name),
+  };
   return {
     title: meta.title,
     description: meta.description,
