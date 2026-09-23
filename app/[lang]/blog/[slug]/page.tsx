@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { JsonLd } from "@/components/JsonLd";
 import { formatDate, getPosts, getSlugs, loadPost } from "@/lib/content";
 import { getDictionary, hasLocale, locales } from "@/lib/i18n";
 import { site } from "@/lib/profile";
-import { jsonLdScript, pageMetadata } from "@/lib/seo";
+import { jsonLdGraph, ogImageKey, pageMetadata, webPageJsonLd } from "@/lib/seo";
 
 export const dynamicParams = false;
 
@@ -36,20 +37,37 @@ export default async function Post({ params }: PageProps<"/[lang]/blog/[slug]">)
   const newer = posts[i - 1];
   const older = posts[i + 1];
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: frontmatter.title,
-    description: frontmatter.description,
-    inLanguage: lang,
-    url: `${site.url}/${lang}/blog/${slug}`,
-    datePublished: frontmatter.date ? new Date(frontmatter.date).toISOString() : undefined,
-    author: { "@type": "Person", name: site.name, url: `${site.url}/${lang}` },
-  };
+  const url = `${site.url}/${lang}/blog/${slug}`;
+  const published = frontmatter.date ? new Date(frontmatter.date).toISOString() : undefined;
+  const description = frontmatter.description ?? dict.meta.blogDescription;
+  const jsonLd = jsonLdGraph(
+    ...webPageJsonLd(lang, `/blog/${slug}`, {
+      name: frontmatter.title,
+      description,
+      crumbs: [dict.sections.blog, frontmatter.title],
+      mainEntity: { "@id": `${url}#post` },
+    }),
+    {
+      "@type": "BlogPosting",
+      "@id": `${url}#post`,
+      mainEntityOfPage: { "@id": url },
+      url,
+      headline: frontmatter.title,
+      description,
+      inLanguage: lang,
+      image: `${site.url}/og/${lang}/${ogImageKey(`/blog/${slug}`)}.png`,
+      datePublished: published,
+      dateModified: published,
+      timeRequired: `PT${minutes}M`,
+      author: { "@type": "Person", "@id": `${site.url}/#person`, name: site.name, url: `${site.url}/${lang}` },
+      publisher: { "@id": `${site.url}/#person` },
+      isPartOf: { "@type": "Blog", "@id": `${site.url}/${lang}/blog` },
+    },
+  );
 
   return (
     <article>
-      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(jsonLd)} />
+      <JsonLd data={jsonLd} />
       <p>
         <Link href={`/${lang}/blog`} className="text-link">
           {dict.blog.back}
