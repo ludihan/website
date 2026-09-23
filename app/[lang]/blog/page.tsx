@@ -11,18 +11,10 @@ export async function generateMetadata({ params }: PageProps<"/[lang]/blog">): P
   const { lang } = await params;
   if (!hasLocale(lang)) return {};
   const dict = getDictionary(lang);
-  const metadata = pageMetadata(lang, "/blog", {
+  return pageMetadata(lang, "/blog", {
     title: dict.sections.blog,
     description: dict.meta.blogDescription,
   });
-  // Lets feed readers and browsers discover the RSS feed.
-  return {
-    ...metadata,
-    alternates: {
-      ...metadata.alternates,
-      types: { "application/rss+xml": `/${lang}/blog/rss.xml` },
-    },
-  };
 }
 
 export default async function BlogPage({ params }: PageProps<"/[lang]/blog">) {

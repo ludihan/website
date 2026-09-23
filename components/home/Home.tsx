@@ -50,10 +50,10 @@ export function Home({ lang }: { lang: Locale }) {
             </a>
             <CopyEmailButton email={site.email} label={t.cta.copyEmail} copiedLabel={t.cta.emailCopied} />
           </span>
-          <a href={site.linkedin} className="btn-link" target="_blank" rel="noopener noreferrer">
+          <a href={site.linkedin} className="btn-link" target="_blank" rel="me noopener noreferrer">
             LinkedIn
           </a>
-          <a href={site.github} className="btn-link" target="_blank" rel="noopener noreferrer">
+          <a href={site.github} className="btn-link" target="_blank" rel="me noopener noreferrer">
             GitHub
           </a>
         </p>
@@ -115,10 +115,10 @@ export function Home({ lang }: { lang: Locale }) {
             </a>
             <CopyEmailButton email={site.email} label={t.cta.copyEmail} copiedLabel={t.cta.emailCopied} />
           </span>
-          <a href={site.linkedin} className="btn-link" target="_blank" rel="noopener noreferrer">
+          <a href={site.linkedin} className="btn-link" target="_blank" rel="me noopener noreferrer">
             LinkedIn
           </a>
-          <a href={site.github} className="btn-link" target="_blank" rel="noopener noreferrer">
+          <a href={site.github} className="btn-link" target="_blank" rel="me noopener noreferrer">
             GitHub
           </a>
         </p>
