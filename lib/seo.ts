@@ -110,6 +110,7 @@ export function personJsonLd(lang: Locale) {
     alumniOf: [
       { "@type": "CollegeOrUniversity", name: "University of Fortaleza (UNIFOR)" },
       { "@type": "CollegeOrUniversity", name: "Wyden" },
+      { "@type": "EducationalOrganization", name: "Quest Language Studies" },
     ],
     worksFor: { "@type": "Organization", name: "Masf Refeições" },
   };
