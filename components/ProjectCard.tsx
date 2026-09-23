@@ -13,17 +13,20 @@ export function ProjectCard({
   dict: Dictionary["projects"];
   priority?: boolean;
 }) {
-  const { tagline, description, features } = project.text[lang];
+  const { tagline, period, description, features } = project.text[lang];
   return (
     <article className="project" id={project.id}>
       <header className="project-head">
         <h2>
           {project.name} <small>{tagline}</small>
         </h2>
-        <span className="badge">
-          <span className="sr-only">{dict.license}: </span>
-          {project.license}
-        </span>
+        <div className="project-meta">
+          <span>{period}</span>
+          <span className="badge">
+            <span className="sr-only">{dict.license}: </span>
+            {project.license}
+          </span>
+        </div>
       </header>
       <p>{description}</p>
 

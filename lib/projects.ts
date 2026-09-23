@@ -14,7 +14,7 @@ export type Project = {
   license: string;
   stack: string[];
   screenshots: Screenshot[];
-  text: Record<Locale, { tagline: string; description: string; features: string[] }>;
+  text: Record<Locale, { tagline: string; period: string; description: string; features: string[] }>;
 };
 
 export const projects: Project[] = [
@@ -47,6 +47,7 @@ export const projects: Project[] = [
     text: {
       en: {
         tagline: "Support tickets and anonymous reports",
+        period: "Jul. 2026 – present",
         description:
           "A web system for IT and maintenance support tickets and anonymous reports, with an admin panel, tracking by registration number and a bilingual interface.",
         features: [
@@ -58,6 +59,7 @@ export const projects: Project[] = [
       },
       pt: {
         tagline: "Chamados de suporte e denúncias anônimas",
+        period: "jul. 2026 – atual",
         description:
           "Sistema web de chamados de suporte (TI e manutenção) e denúncias anônimas, com painel administrativo, rastreamento por matrícula e interface bilíngue.",
         features: [
@@ -98,6 +100,7 @@ export const projects: Project[] = [
     text: {
       en: {
         tagline: "Local-first inventory management",
+        period: "Jul. 2026 – present",
         description:
           "A mobile inventory app for tracking items grouped by company and sector, with values in Brazilian Reais. Everything is stored on the device, with no backend.",
         features: [
@@ -109,6 +112,7 @@ export const projects: Project[] = [
       },
       pt: {
         tagline: "Controle de estoque local-first",
+        period: "jul. 2026 – atual",
         description:
           "App mobile de inventário para acompanhar itens agrupados por empresa e setor, com valores em reais. Tudo fica salvo no dispositivo, sem backend.",
         features: [
@@ -143,6 +147,7 @@ export const projects: Project[] = [
     text: {
       en: {
         tagline: "A small IRC-style chat server",
+        period: "2026 – present",
         description:
           "A chat in the spirit of IRC: pick a nick, hop between channels and talk. Built with Phoenix LiveView and SQLite, so there is no database server to run.",
         features: [
@@ -154,6 +159,7 @@ export const projects: Project[] = [
       },
       pt: {
         tagline: "Um pequeno servidor de chat estilo IRC",
+        period: "2026 – atual",
         description:
           "Um chat no espírito do IRC: escolha um nick, navegue entre canais e converse. Feito com Phoenix LiveView e SQLite, sem precisar de servidor de banco de dados.",
         features: [
