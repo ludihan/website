@@ -1,14 +1,19 @@
 import type { Metadata, Viewport } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { NavLinks } from "@/components/NavLinks";
 import { getDictionary, hasLocale, locales } from "@/lib/i18n";
 import { site } from "@/lib/profile";
 import "../globals.css";
 
 export const dynamicParams = false;
 
-export const viewport: Viewport = { themeColor: "#1a1a1a" };
+const sans = Geist({ subsets: ["latin"], variable: "--font-sans" });
+const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono" });
+
+export const viewport: Viewport = { themeColor: "#141312" };
 
 export const generateStaticParams = () => locales.map((lang) => ({ lang }));
 
@@ -42,22 +47,56 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
   if (!hasLocale(lang)) notFound();
   const dict = getDictionary(lang);
   return (
-    <html lang={lang}>
+    <html lang={lang} className={`${sans.variable} ${mono.variable}`}>
       <body>
+        <a href="#content" className="skip-link">
+          {dict.skip}
+        </a>
         <header className="site-header">
-          <nav className="container">
-            <Link href={`/${lang}`}>
-              ludihan<span className="tld">.xyz</span>
+          <nav className="container" aria-label={dict.nav.label}>
+            <Link href={`/${lang}`} className="brand">
+              <span className="brand-mark" aria-hidden="true" />
+              <span>
+                ludihan<span className="tld">.xyz</span>
+              </span>
             </Link>
-            <div>
-              <Link href={`/${lang}/projects`}>{dict.nav.projects}</Link>
-              <Link href={`/${lang}/blog`}>{dict.nav.blog}</Link>
-              <Link href={`/${lang}/about`}>{dict.nav.about}</Link>
+            <div className="nav-links">
+              <NavLinks
+                links={[
+                  { href: `/${lang}/projects`, label: dict.nav.projects },
+                  { href: `/${lang}/blog`, label: dict.nav.blog },
+                  { href: `/${lang}/about`, label: dict.nav.about },
+                ]}
+              />
               <LanguageSwitcher lang={lang} label={dict.language} />
             </div>
           </nav>
         </header>
-        <main className="container">{children}</main>
+        <main id="content" className="container">
+          {children}
+        </main>
+        <footer className="site-footer">
+          <div className="container">
+            <p>
+              © {new Date().getFullYear()} {site.name}
+            </p>
+            <ul>
+              <li>
+                <a href={site.github} target="_blank" rel="noopener noreferrer">
+                  GitHub
+                </a>
+              </li>
+              <li>
+                <a href={site.linkedin} target="_blank" rel="noopener noreferrer">
+                  LinkedIn
+                </a>
+              </li>
+              <li>
+                <a href={`/${lang}/blog/rss.xml`}>RSS</a>
+              </li>
+            </ul>
+          </div>
+        </footer>
       </body>
     </html>
   );
