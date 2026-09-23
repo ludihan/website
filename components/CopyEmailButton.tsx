@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function CopyEmailButton({
   email,
@@ -12,12 +12,17 @@ export function CopyEmailButton({
   copiedLabel: string;
 }) {
   const [copied, setCopied] = useState(false);
+  const resetTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
+
+  useEffect(() => () => clearTimeout(resetTimer.current), []);
 
   async function handleClick() {
     try {
       await navigator.clipboard.writeText(email);
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      // Restart the countdown so earlier clicks can't hide the tooltip early.
+      clearTimeout(resetTimer.current);
+      resetTimer.current = setTimeout(() => setCopied(false), 2000);
     } catch {
       // Clipboard API unavailable; nothing to fall back to here.
     }
@@ -43,7 +48,11 @@ export function CopyEmailButton({
           </svg>
         )}
       </button>
-      <span className={`copy-email-tooltip${copied ? " is-visible" : ""}`} role="status" aria-live="polite">
+      {/* Keep the text while hidden so the fade-out doesn't collapse to an empty box. */}
+      <span className={`copy-email-tooltip${copied ? " is-visible" : ""}`} aria-hidden="true">
+        {copiedLabel}
+      </span>
+      <span className="sr-only" role="status" aria-live="polite">
         {copied ? copiedLabel : ""}
       </span>
     </span>
