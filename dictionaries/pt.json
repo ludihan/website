@@ -2,13 +2,15 @@
   "nav": {
     "projects": "projetos",
     "blog": "blog",
-    "about": "sobre"
+    "about": "sobre",
+    "label": "Principal"
   },
   "sections": {
     "blog": "Blog",
     "projects": "Projetos"
   },
   "language": "Idioma",
+  "skip": "Pular para o conteúdo",
   "projects": {
     "intro": "Alguns dos projetos que construí. Clique para ver o código no GitHub.",
     "features": "Destaques",

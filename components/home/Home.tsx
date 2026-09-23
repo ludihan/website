@@ -44,6 +44,9 @@ export function Home({ lang }: { lang: Locale }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(jsonLd)} />
 
       <section className="hero">
+        <p className="kicker" aria-hidden="true">
+          <span>~/ludihan</span> $ whoami
+        </p>
         <h1 className="title">{site.name}</h1>
         <p className="role">{t.role}</p>
         <p>{t.lead}</p>
@@ -79,7 +82,12 @@ export function Home({ lang }: { lang: Locale }) {
         <div className="cards">
           {projects.map((p) => (
             <Link key={p.id} href={`/${lang}/projects#${p.id}`} className="card">
-              <strong>{p.name}</strong>
+              <strong>
+                {p.name}
+                <span className="card-arrow" aria-hidden="true">
+                  →
+                </span>
+              </strong>
               <span>{p.text[lang].tagline}</span>
               <small>{p.stack.slice(0, 4).join(" · ")}</small>
             </Link>
@@ -134,14 +142,21 @@ export function Home({ lang }: { lang: Locale }) {
         </p>
       </section>
 
-      <p className="os-joke">
+      <div className="os-joke">
         <span className="sr-only">{t.osJoke}</span>
-        <code aria-hidden="true">
-          $ grep ^NAME /etc/os-release
-          <br />
-          NAME=&quot;openSUSE&quot; <em># btw</em>
-        </code>
-      </p>
+        <div className="terminal" aria-hidden="true">
+          <div className="terminal-bar">
+            <i />
+            <i />
+            <i />
+          </div>
+          <code>
+            <span className="prompt">$</span> grep ^NAME /etc/os-release
+            <br />
+            NAME=&quot;openSUSE&quot; <em># btw</em>
+          </code>
+        </div>
+      </div>
     </>
   );
 }
