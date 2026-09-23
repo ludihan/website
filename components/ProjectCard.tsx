@@ -6,10 +6,12 @@ export function ProjectCard({
   project,
   lang,
   dict,
+  priority,
 }: {
   project: Project;
   lang: Locale;
   dict: Dictionary["projects"];
+  priority?: boolean;
 }) {
   const { tagline, description, features } = project.text[lang];
   return (
@@ -25,7 +27,7 @@ export function ProjectCard({
       </header>
       <p>{description}</p>
 
-      <ProjectGallery shots={project.screenshots} lang={lang} labels={dict} />
+      <ProjectGallery shots={project.screenshots} lang={lang} labels={dict} priority={priority} />
 
       <div className="project-details">
         <div>

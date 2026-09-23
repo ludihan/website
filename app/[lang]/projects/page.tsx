@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { preconnect } from "react-dom";
 import { JsonLd } from "@/components/JsonLd";
 import { ProjectCard } from "@/components/ProjectCard";
 import { getDictionary, hasLocale } from "@/lib/i18n";
@@ -23,6 +24,8 @@ export default async function ProjectsPage({ params }: PageProps<"/[lang]/projec
   const { lang } = await params;
   if (!hasLocale(lang)) notFound();
   const dict = getDictionary(lang);
+  // Every screenshot is served from GitHub; open the connection before the images are found.
+  preconnect("https://raw.githubusercontent.com");
   const url = `${site.url}/${lang}/projects`;
   const jsonLd = jsonLdGraph(
     ...webPageJsonLd(lang, "/projects", {
@@ -57,8 +60,8 @@ export default async function ProjectsPage({ params }: PageProps<"/[lang]/projec
       <JsonLd data={jsonLd} />
       <h1 className="title">{dict.sections.projects}</h1>
       <p>{dict.projects.intro}</p>
-      {projects.map((p) => (
-        <ProjectCard key={p.id} project={p} lang={lang} dict={dict.projects} />
+      {projects.map((p, i) => (
+        <ProjectCard key={p.id} project={p} lang={lang} dict={dict.projects} priority={i === 0} />
       ))}
     </>
   );
