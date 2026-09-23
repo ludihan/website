@@ -13,10 +13,13 @@ export function ProjectGallery({
   shots,
   lang,
   labels,
+  priority = false,
 }: {
   shots: Screenshot[];
   lang: Locale;
   labels: Labels;
+  /** Load the first thumbnail right away: it's the page's largest image above the fold. */
+  priority?: boolean;
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const [index, setIndex] = useState(0);
@@ -39,7 +42,13 @@ export function ProjectGallery({
             aria-label={`${labels.enlarge}: ${s.alt[lang]}`}
             onClick={() => open(i)}
           >
-            <Image src={s.src} width={s.width} height={s.height} alt={s.alt[lang]} />
+            <Image
+              src={s.src}
+              width={s.width}
+              height={s.height}
+              alt={s.alt[lang]}
+              {...(priority && i === 0 && { loading: "eager", fetchPriority: "high" })}
+            />
           </button>
         ))}
       </div>
