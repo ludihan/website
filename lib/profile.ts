@@ -51,8 +51,6 @@ type ProfileText = {
     courseworkLabel: string;
     languagesTitle: string;
     languages: string[];
-    beyondTitle: string;
-    beyond: string;
   };
 };
 
@@ -155,8 +153,6 @@ export const profileText: Record<Locale, ProfileText> = {
       courseworkLabel: "Relevant coursework",
       languagesTitle: "Spoken languages",
       languages: ["English", "Portuguese"],
-      beyondTitle: "Beyond code",
-      beyond: "Apart from coding, I really like music and videogames.",
     },
   },
   pt: {
@@ -257,8 +253,6 @@ export const profileText: Record<Locale, ProfileText> = {
       courseworkLabel: "Disciplinas relevantes",
       languagesTitle: "Idiomas falados",
       languages: ["Inglês", "Português"],
-      beyondTitle: "Além do código",
-      beyond: "Fora da programação, gosto muito de música e videogames.",
     },
   },
 };
