@@ -57,7 +57,7 @@ type ProfileText = {
 export const profileText: Record<Locale, ProfileText> = {
   en: {
     role: "Full-Stack Developer",
-    lead: "I build web applications end to end: React and Next.js front-ends, Go and Node.js back-ends, databases and the Linux/Docker tooling around them. Computer Science graduate based in Manaus, Brazil, with experience working in a remote team.",
+    lead: "I build web applications end to end: React and Next.js front-ends, Go and Node.js back-ends, databases and the Linux/Docker tooling around them. Computer Science graduate based in Manaus, Brazil.",
     facts: [
       { label: "Based in", value: "Manaus, Amazonas, Brazil (UTC−4)" },
       { label: "Now", value: "IT assistant at Masf Refeições" },
@@ -157,7 +157,7 @@ export const profileText: Record<Locale, ProfileText> = {
   },
   pt: {
     role: "Desenvolvedor Full-Stack",
-    lead: "Construo aplicações web de ponta a ponta: front-ends em React e Next.js, back-ends em Go e Node.js, bancos de dados e o ferramental de Linux/Docker ao redor. Bacharel em Ciência da Computação, baseado em Manaus, com experiência em time remoto.",
+    lead: "Construo aplicações web de ponta a ponta: front-ends em React e Next.js, back-ends em Go e Node.js, bancos de dados e o ferramental de Linux/Docker ao redor. Bacharel em Ciência da Computação, baseado em Manaus.",
     facts: [
       { label: "Localização", value: "Manaus, Amazonas, Brasil (UTC−4)" },
       { label: "Atualmente", value: "Assistente de TI na Masf Refeições" },
