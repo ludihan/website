@@ -2,8 +2,9 @@ import Link from "next/link";
 import { getDictionary, type Locale } from "@/lib/i18n";
 import { profileText, site, skills, type SkillGroup } from "@/lib/profile";
 import { projects } from "@/lib/projects";
-import { jsonLdScript } from "@/lib/seo";
+import { jsonLdGraph, personRef, webPageJsonLd } from "@/lib/seo";
 import { CopyEmailButton } from "../CopyEmailButton";
+import { JsonLd } from "../JsonLd";
 import { RoleList } from "../RoleList";
 import { Tags } from "../Tags";
 
@@ -11,37 +12,18 @@ export function Home({ lang }: { lang: Locale }) {
   const t = profileText[lang];
   const dict = getDictionary(lang);
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: site.name,
-    alternateName: "ludihan",
-    url: `${site.url}/${lang}`,
-    jobTitle: t.role,
-    description: dict.meta.homeDescription,
-    email: `mailto:${site.email}`,
-    sameAs: [site.github, site.linkedin],
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Manaus",
-      addressRegion: "Amazonas",
-      addressCountry: "BR",
-    },
-    knowsLanguage: ["en", "pt"],
-    knowsAbout: [
-      ...skills.languages,
-      ...skills.frontend,
-      ...skills.backend,
-      ...skills.devops,
-      "Full-stack web development",
-    ],
-    alumniOf: { "@type": "CollegeOrUniversity", name: "University of Fortaleza (UNIFOR)" },
-    worksFor: { "@type": "Organization", name: "Masf Refeições" },
-  };
-
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(jsonLd)} />
+      <JsonLd
+        data={jsonLdGraph(
+          ...webPageJsonLd(lang, "", {
+            type: "ProfilePage",
+            name: dict.meta.homeTitle,
+            description: dict.meta.homeDescription,
+            mainEntity: personRef,
+          }),
+        )}
+      />
 
       <section className="hero">
         <p className="kicker" aria-hidden="true">

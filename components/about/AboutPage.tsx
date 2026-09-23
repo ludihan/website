@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { getDictionary, type Locale } from "@/lib/i18n";
 import { profileText, site, skills, type SkillGroup } from "@/lib/profile";
+import { jsonLdGraph, personRef, webPageJsonLd } from "@/lib/seo";
 import { CopyEmailButton } from "../CopyEmailButton";
+import { JsonLd } from "../JsonLd";
 import { RoleList } from "../RoleList";
 import { Tags } from "../Tags";
 
@@ -12,6 +14,17 @@ export function AboutPage({ lang }: { lang: Locale }) {
 
   return (
     <>
+      <JsonLd
+        data={jsonLdGraph(
+          ...webPageJsonLd(lang, "/about", {
+            type: "AboutPage",
+            name: a.title,
+            description: dict.meta.aboutDescription,
+            mainEntity: personRef,
+            crumbs: [a.title],
+          }),
+        )}
+      />
       <section className="hero">
         <h1 className="title">{a.title}</h1>
         <p className="role">{t.role}</p>

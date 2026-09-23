@@ -2,10 +2,12 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { JsonLd } from "@/components/JsonLd";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { NavLinks } from "@/components/NavLinks";
 import { getDictionary, hasLocale, locales } from "@/lib/i18n";
 import { site } from "@/lib/profile";
+import { jsonLdGraph, personJsonLd, websiteJsonLd } from "@/lib/seo";
 import "../globals.css";
 
 export const dynamicParams = false;
@@ -72,6 +74,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
             </div>
           </nav>
         </header>
+        <JsonLd data={jsonLdGraph(websiteJsonLd(lang), personJsonLd(lang))} />
         <main id="content" className="container">
           {children}
         </main>
