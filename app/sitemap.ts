@@ -1,24 +1,37 @@
 import type { MetadataRoute } from "next";
-import { getSlugs } from "@/lib/content";
+import { getSlugs, loadPost } from "@/lib/content";
 import { locales } from "@/lib/i18n";
 import { site } from "@/lib/profile";
+import { projects } from "@/lib/projects";
 
 export const dynamic = "force-static";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const paths = [
-    "",
-    "/about",
-    "/projects",
-    "/blog",
-    // Only posts that exist in every language, so the hreflang alternates are real pages.
-    ...getSlugs("en")
-      .filter((slug) => locales.every((l) => getSlugs(l).includes(slug)))
-      .map((slug) => `/blog/${slug}`),
+type Page = { path: string; lastModified?: Date; images?: string[] };
+
+const latest = (dates: (Date | undefined)[]) =>
+  dates.reduce<Date | undefined>((a, d) => (d && (!a || d > a) ? d : a), undefined);
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  // Only posts that exist in every language, so the hreflang alternates are real pages.
+  const slugs = getSlugs("en").filter((slug) => locales.every((l) => getSlugs(l).includes(slug)));
+  const posts = await Promise.all(
+    slugs.map(async (slug): Promise<Page> => {
+      const { date } = (await loadPost("en", slug)).frontmatter;
+      return { path: `/blog/${slug}`, lastModified: date ? new Date(date) : undefined };
+    }),
+  );
+  const pages: Page[] = [
+    { path: "" },
+    { path: "/about" },
+    // Screenshots help the projects page show up in image search.
+    { path: "/projects", images: projects.flatMap((p) => p.screenshots.map((s) => s.src)) },
+    { path: "/blog", lastModified: latest(posts.map((p) => p.lastModified)) },
+    ...posts,
   ];
-  return paths.flatMap((path) =>
+  return pages.flatMap(({ path, ...rest }) =>
     locales.map((lang) => ({
       url: `${site.url}/${lang}${path}`,
+      ...rest,
       alternates: {
         languages: Object.fromEntries(locales.map((l) => [l, `${site.url}/${l}${path}`])),
       },

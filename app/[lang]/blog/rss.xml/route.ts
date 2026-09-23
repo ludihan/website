@@ -22,20 +22,31 @@ export async function GET(_req: Request, { params }: RouteContext<"/[lang]/blog/
       return `<item>
 <title>${escape(title)}</title>
 <link>${url}</link>
-<guid>${url}</guid>${date ? `\n<pubDate>${new Date(date).toUTCString()}</pubDate>` : ""}${
+<guid>${url}</guid>
+<dc:creator>${escape(site.name)}</dc:creator>${date ? `\n<pubDate>${new Date(date).toUTCString()}</pubDate>` : ""}${
         description ? `\n<description>${escape(description)}</description>` : ""
       }
 </item>`;
     })
     .join("\n");
 
+  const latest = posts.find((p) => p.frontmatter.date)?.frontmatter.date;
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
 <channel>
 <title>${escape(`${dict.sections.blog} | ${site.name}`)}</title>
 <link>${site.url}/${lang}/blog</link>
+<atom:link href="${site.url}/${lang}/blog/rss.xml" rel="self" type="application/rss+xml"/>
 <description>${escape(dict.meta.blogDescription)}</description>
 <language>${lang}</language>
+<managingEditor>${site.email} (${escape(site.name)})</managingEditor>${
+    latest ? `\n<lastBuildDate>${new Date(latest).toUTCString()}</lastBuildDate>` : ""
+  }
+<image>
+<url>${site.url}/og/${lang}/blog.png</url>
+<title>${escape(`${dict.sections.blog} | ${site.name}`)}</title>
+<link>${site.url}/${lang}/blog</link>
+</image>
 ${items}
 </channel>
 </rss>
