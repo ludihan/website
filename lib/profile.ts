@@ -87,7 +87,7 @@ export const profileText: Record<Locale, ProfileText> = {
         org: "FIOTEC / FIOCRUZ",
         title: "Full-Stack Web Developer Intern",
         period: "May 2025 – Dec. 2025",
-        place: "Remote, Brazil",
+        place: "Eusébio, Brazil (remote)",
         summary:
           "Front-end developer on Helper, a laboratory-support web app that automates the analysis of RT-qPCR run files, significantly cutting the time specialists spent on manual analysis.",
         stack: ["React", "Vite", "Tailwind CSS", "Django"],
@@ -187,7 +187,7 @@ export const profileText: Record<Locale, ProfileText> = {
         org: "FIOTEC / FIOCRUZ",
         title: "Estagiário de Desenvolvimento Web Full-Stack",
         period: "mai. 2025 – dez. 2025",
-        place: "Remoto, Brasil",
+        place: "Eusébio, Brasil (remoto)",
         summary:
           "Desenvolvedor front-end do Helper, uma aplicação web de apoio laboratorial que automatiza a análise de arquivos de corridas de RT-qPCR, reduzindo significativamente o tempo de análise manual dos especialistas.",
         stack: ["React", "Vite", "Tailwind CSS", "Django"],
