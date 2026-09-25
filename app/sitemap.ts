@@ -28,13 +28,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: "/blog", lastModified: latest(posts.map((p) => p.lastModified)) },
     ...posts,
   ];
+  // No `alternates` here: every page already declares hreflang in its <head> (lib/seo.ts), and
+  // the sitemap's `xhtml:link` elements make browsers render the file as unstyled XHTML instead
+  // of showing the XML tree.
   return pages.flatMap(({ path, ...rest }) =>
-    locales.map((lang) => ({
-      url: `${site.url}/${lang}${path}`,
-      ...rest,
-      alternates: {
-        languages: Object.fromEntries(locales.map((l) => [l, `${site.url}/${l}${path}`])),
-      },
-    })),
+    locales.map((lang) => ({ url: `${site.url}/${lang}${path}`, ...rest })),
   );
 }
