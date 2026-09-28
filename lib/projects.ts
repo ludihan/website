@@ -22,7 +22,7 @@ export const projects: Project[] = [
     id: "inci",
     name: "Inci",
     repo: "https://github.com/ludihan/inci",
-    license: "AGPL-3.0",
+    license: "MIT",
     stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "SQLite", "react-pdf"],
     screenshots: [
       {
