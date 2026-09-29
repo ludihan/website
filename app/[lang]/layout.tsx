@@ -57,7 +57,8 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
   if (!hasLocale(lang)) notFound();
   const dict = getDictionary(lang);
   return (
-    <html lang={lang} className={`${sans.variable} ${mono.variable}`}>
+    // Lets Next.js pause the CSS smooth scrolling during route changes, so they jump to the top instead of animating.
+    <html lang={lang} className={`${sans.variable} ${mono.variable}`} data-scroll-behavior="smooth">
       <body>
         <a href="#content" className="skip-link">
           {dict.skip}
