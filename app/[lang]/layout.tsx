@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Geist_Mono } from "next/font/google";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/JsonLd";
@@ -12,7 +12,7 @@ import "../globals.css";
 
 export const dynamicParams = false;
 
-const sans = Geist({ subsets: ["latin"], variable: "--font-sans" });
+const sans = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-sans" });
 const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
 export const viewport: Viewport = { themeColor: "#141312" };
