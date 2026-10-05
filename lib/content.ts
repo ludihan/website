@@ -1,36 +1,36 @@
 import fs from "node:fs";
 import path from "node:path";
+import { postModules } from "@/content/posts";
 import { dateLocales, type Locale } from "./i18n";
 
 export type Frontmatter = { title: string; date?: Date | string; description?: string };
 
-const blogDir = (lang: Locale) => path.join(process.cwd(), "content", lang, "blog");
+const key = (lang: Locale, slug: string) => `./${lang}/blog/${slug}.md`;
+const source = (lang: Locale, slug: string) =>
+  fs.readFileSync(path.join(process.cwd(), "content", lang, "blog", `${slug}.md`), "utf8");
 
 // Posts with `draft: true` in their frontmatter stay out of every page, like Zola's drafts.
-// Deleting the last post would break the build: Turbopack can't compile the dynamic import in
-// loadPost when no file matches it.
 const isDraft = (source: string) => /^---[\s\S]*?^draft:\s*true\s*$[\s\S]*?^---/m.test(source);
 
 export function getSlugs(lang: Locale): string[] {
-  return fs
-    .readdirSync(blogDir(lang))
-    .filter((f) => f.endsWith(".md"))
-    .filter((f) => !isDraft(fs.readFileSync(path.join(blogDir(lang), f), "utf8")))
-    .map((f) => f.replace(/\.md$/, ""));
+  const prefix = key(lang, "").replace(/\.md$/, "");
+  return Object.keys(postModules)
+    .filter((k) => k.startsWith(prefix))
+    .map((k) => k.slice(prefix.length).replace(/\.md$/, ""))
+    .filter((slug) => !isDraft(source(lang, slug)));
 }
 
 function readingMinutes(lang: Locale, slug: string) {
-  const source = fs.readFileSync(path.join(blogDir(lang), `${slug}.md`), "utf8");
-  const words = source.replace(/^---[\s\S]*?---/, "").split(/\s+/).filter(Boolean).length;
+  const words = source(lang, slug).replace(/^---[\s\S]*?---/, "").split(/\s+/).filter(Boolean).length;
   return Math.max(1, Math.ceil(words / 200));
 }
 
 export async function loadPost(lang: Locale, slug: string) {
-  const mod = await import(`@/content/${lang}/blog/${slug}.md`);
+  const mod = await postModules[key(lang, slug)]();
   return {
     slug,
     Content: mod.default,
-    frontmatter: mod.frontmatter as Frontmatter,
+    frontmatter: mod.frontmatter,
     minutes: readingMinutes(lang, slug),
   };
 }
