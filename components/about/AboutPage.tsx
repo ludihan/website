@@ -44,7 +44,7 @@ export function AboutPage({ lang }: { lang: Locale }) {
         <h2>{a.focusTitle}</h2>
         <div className="cards cards-two">
           {a.focus.map((f) => (
-            <article key={f.title} className="card card-static">
+            <article key={f.title} className="card card-static" data-spotlight>
               <strong>{f.title}</strong>
               <span>{f.text}</span>
               <small>{f.tags.join(" · ")}</small>

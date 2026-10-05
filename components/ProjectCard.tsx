@@ -15,7 +15,7 @@ export function ProjectCard({
 }) {
   const { tagline, period, description, features } = project.text[lang];
   return (
-    <article className="project" id={project.id}>
+    <article className="project" id={project.id} data-spotlight>
       <header className="project-head">
         <h2>
           {project.name} <small>{tagline}</small>
