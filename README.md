@@ -1,6 +1,6 @@
-# ludihan.xyz
+# ludihan.com
 
-Source for my personal site, [ludihan.xyz](https://ludihan.xyz).
+Source for my personal site, [ludihan.com](https://ludihan.com).
 
 ## Development
 
