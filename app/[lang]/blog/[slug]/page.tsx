@@ -9,14 +9,18 @@ import { jsonLdGraph, ogImageKey, pageMetadata, webPageJsonLd } from "@/lib/seo"
 
 export const dynamicParams = false;
 
-export const generateStaticParams = () =>
-  locales.flatMap((lang) => getSlugs(lang).map((slug) => ({ lang, slug })));
+// A static export refuses an empty list, so with no published posts one placeholder page is
+// built, and it renders the 404 page.
+export const generateStaticParams = () => {
+  const params = locales.flatMap((lang) => getSlugs(lang).map((slug) => ({ lang, slug })));
+  return params.length ? params : [{ lang: locales[0], slug: "_" }];
+};
 
 export async function generateMetadata({
   params,
 }: PageProps<"/[lang]/blog/[slug]">): Promise<Metadata> {
   const { lang, slug } = await params;
-  if (!hasLocale(lang)) return {};
+  if (!hasLocale(lang) || !getSlugs(lang).includes(slug)) return {};
   const { frontmatter } = await loadPost(lang, slug);
   return pageMetadata(lang, `/blog/${slug}`, {
     title: frontmatter.title,
@@ -27,7 +31,7 @@ export async function generateMetadata({
 
 export default async function Post({ params }: PageProps<"/[lang]/blog/[slug]">) {
   const { lang, slug } = await params;
-  if (!hasLocale(lang)) notFound();
+  if (!hasLocale(lang) || !getSlugs(lang).includes(slug)) notFound();
   const dict = getDictionary(lang);
   const { Content, frontmatter, minutes } = await loadPost(lang, slug);
 
