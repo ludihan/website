@@ -122,7 +122,7 @@ export function websiteJsonLd(lang: Locale) {
     "@id": websiteId,
     url: site.url,
     name: site.name,
-    alternateName: "ludihan.xyz",
+    alternateName: "ludihan.com",
     description: getDictionary(lang).meta.homeDescription,
     inLanguage: locales,
     author: personRef,

@@ -68,7 +68,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
             <Link href={`/${lang}`} className="brand">
               <span className="brand-mark" aria-hidden="true" />
               <span>
-                ludihan<span className="tld">.xyz</span>
+                ludihan<span className="tld">.com</span>
               </span>
             </Link>
             <div className="nav-links">
