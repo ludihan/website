@@ -5,6 +5,7 @@ import { jsonLdGraph, personRef, webPageJsonLd } from "@/lib/seo";
 import { CopyEmailButton } from "../CopyEmailButton";
 import { JsonLd } from "../JsonLd";
 import { RoleList } from "../RoleList";
+import { SplitTitle } from "../SplitTitle";
 import { Tags } from "../Tags";
 
 export function AboutPage({ lang }: { lang: Locale }) {
@@ -26,9 +27,9 @@ export function AboutPage({ lang }: { lang: Locale }) {
         )}
       />
       <section className="hero">
-        <h1 className="title">{a.title}</h1>
+        <SplitTitle text={a.title} />
         <p className="role">{t.role}</p>
-        <p>{a.summary}</p>
+        <p className="lead">{a.summary}</p>
         <dl className="facts">
           {t.facts.map((f) => (
             <div key={f.label}>
