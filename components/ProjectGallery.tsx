@@ -63,7 +63,8 @@ export function ProjectGallery({
           if (e.key === "ArrowRight") step(1);
         }}
       >
-        <Image src={shot.src} width={shot.width} height={shot.height} alt={shot.alt[lang]} />
+        {/* Keyed so each new screenshot remounts and fades in. */}
+        <Image key={shot.src} src={shot.src} width={shot.width} height={shot.height} alt={shot.alt[lang]} />
         <div className="lightbox-bar">
           <button type="button" onClick={() => step(-1)} aria-label={labels.prev}>
             ‹
