@@ -61,6 +61,22 @@ export default async function ProjectsPage({ params }: PageProps<"/[lang]/projec
       <JsonLd data={jsonLd} />
       <SplitTitle text={dict.sections.projects} />
       <p className="intro">{dict.projects.intro}</p>
+      <nav className="project-index" aria-label={dict.projects.index}>
+        <ul>
+          {projects.map((p) => (
+            <li key={p.id}>
+              <a href={`#${p.id}`}>
+                <strong>
+                  {p.name}
+                  <span aria-hidden="true">↓</span>
+                </strong>
+                <span>{p.text[lang].tagline}</span>
+                <small>{p.stack[0]}</small>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
       {projects.map((p, i) => (
         <ProjectCard key={p.id} project={p} lang={lang} dict={dict.projects} priority={i === 0} />
       ))}

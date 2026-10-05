@@ -1266,14 +1266,83 @@ ul.plain small {
 }
 
 /* Projects */
+/* The index: one tile per project, jumping down to it. */
+.project-index ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
+  gap: 0.75rem;
+  margin: 2rem 0 0;
+  animation: arrive 0.9s var(--ease-out) 0.45s both;
+}
+
+.project-index a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  height: 100%;
+  padding: 0.9rem 1.1rem 1rem;
+  border: 1px solid var(--line-hi);
+  border-radius: var(--radius);
+  background: rgb(255 255 255 / 0.02);
+  color: var(--text);
+  line-height: 1.45;
+  transition:
+    border-color 0.3s var(--ease),
+    background-color 0.3s var(--ease);
+}
+
+.project-index a:hover {
+  border-color: var(--line-strong);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.project-index strong {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.05rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.project-index strong span {
+  color: var(--muted);
+  transition:
+    transform 0.4s var(--ease-spring),
+    color 0.2s var(--ease);
+}
+
+.project-index a:hover strong span {
+  color: var(--accent);
+  transform: translateY(3px);
+}
+
+.project-index a > span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.project-index small {
+  margin-top: auto;
+  padding-top: 0.45rem;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+}
+
+/* A project: its screenshots on a lit stage across the top, then the write-up. */
 .project {
   position: relative;
-  margin: 2.5rem 0;
-  padding: clamp(1.25rem, 0.8rem + 2vw, 2.25rem);
+  margin: 2rem 0;
   border: 1px solid var(--line-hi);
   border-radius: var(--radius-lg);
   background: linear-gradient(180deg, var(--surface), rgb(27 26 23 / 0.5));
+  overflow: hidden;
   transition: border-color 0.4s var(--ease);
+}
+
+main > .project-index + .project {
+  margin-top: 3rem;
 }
 
 /* Not the preview <dialog>: it must stay position: fixed to open over the viewport. */
@@ -1293,23 +1362,180 @@ ul.plain small {
   }
 }
 
+.showcase {
+  border-bottom: 1px solid var(--line);
+  background:
+    radial-gradient(70% 80% at 50% 115%, rgb(214 167 94 / 0.2), transparent 70%),
+    radial-gradient(50% 60% at 15% 0%, rgb(var(--jungle) / 0.1), transparent 70%),
+    linear-gradient(180deg, #1d1b18, #141311);
+}
+
+.showcase .stage {
+  display: block;
+  width: 100%;
+  padding: clamp(1.25rem, 0.5rem + 3.5vw, 3rem) clamp(1rem, 6vw, 4.5rem) 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+
+/* Wide screenshots play in a browser window that rises from the stage's bottom edge. */
+.window {
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  border-bottom: 0;
+  border-radius: 0.75rem 0.75rem 0 0;
+  background: #0e0d0c;
+  box-shadow: 0 30px 60px -24px rgb(0 0 0 / 0.85);
+  transition: transform 0.7s var(--ease-out);
+}
+
+.stage:hover .window,
+.stage:focus-visible .window {
+  transform: translateY(-6px);
+}
+
+.window-bar {
+  display: flex;
+  gap: 0.4rem;
+  padding: 0.55rem 0.8rem;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.window-bar i {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: var(--line-strong);
+}
+
+.window-view {
+  display: grid;
+}
+
+.window-view img {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: auto;
+  image-rendering: auto;
+  opacity: 0;
+  transition: opacity 0.5s var(--ease);
+}
+
+.window-view img.is-active {
+  opacity: 1;
+}
+
+/* The filmstrip that picks what the window shows. */
+.filmstrip {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1rem;
+  border-top: 1px solid var(--line);
+  background: rgb(14 13 12 / 0.6);
+}
+
+.filmstrip button {
+  width: 6.5rem;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--line-hi);
+  border-radius: 0.45rem;
+  background: none;
+  cursor: pointer;
+  opacity: 0.5;
+  transition:
+    opacity 0.3s var(--ease),
+    border-color 0.3s var(--ease),
+    box-shadow 0.3s var(--ease),
+    scale 0.2s var(--ease);
+}
+
+.filmstrip button:hover {
+  opacity: 0.85;
+}
+
+.filmstrip button:active {
+  scale: 0.95;
+}
+
+.filmstrip button[aria-pressed="true"] {
+  opacity: 1;
+  border-color: rgb(214 167 94 / 0.7);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.filmstrip img {
+  display: block;
+  width: 100%;
+  height: auto;
+  image-rendering: auto;
+}
+
+/* Phone screenshots stand side by side, the middle one a step ahead, and sink into the
+   stage's bottom edge. */
+.showcase.is-tall .stage {
+  display: flex;
+  justify-content: center;
+  gap: clamp(0.75rem, 3vw, 2rem);
+  height: clamp(17rem, 8rem + 30vw, 28rem);
+  padding-inline: 1rem;
+  overflow: hidden;
+  cursor: auto;
+  mask: linear-gradient(180deg, #000 80%, transparent);
+}
+
+.device {
+  flex: none;
+  align-self: flex-start;
+  width: min(12.5rem, 28%);
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  border-radius: clamp(0.8rem, 2vw, 1.4rem);
+  background: #0e0d0c;
+  box-shadow: 0 30px 60px -24px rgb(0 0 0 / 0.85);
+  cursor: zoom-in;
+  transition:
+    transform 0.6s var(--ease-out),
+    border-color 0.3s var(--ease);
+}
+
+.device:nth-child(odd) {
+  margin-top: clamp(1rem, 3vw, 2.25rem);
+}
+
+.device:hover,
+.device:focus-visible {
+  border-color: rgb(214 167 94 / 0.6);
+  transform: translateY(-8px);
+}
+
+.device img {
+  display: block;
+  width: 100%;
+  height: auto;
+  image-rendering: auto;
+}
+
+/* The write-up: what it is and does on the left, the facts on the right. */
+.project-body {
+  padding: clamp(1.25rem, 0.8rem + 2vw, 2.25rem);
+}
+
 .project-head {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 1rem;
-  margin-bottom: 0.75rem;
+  gap: 1rem 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
-.project-meta {
-  display: flex;
+.project-head .btn-link {
   flex: none;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem 0.75rem;
-  color: var(--muted);
-  font-family: var(--mono);
-  font-size: 0.76rem;
 }
 
 .project h2 {
@@ -1330,9 +1556,16 @@ ul.plain small {
   letter-spacing: -0.01em;
 }
 
-.project > p {
-  max-width: 44rem;
+.project-cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+  gap: 2rem 3rem;
+}
+
+.project-desc {
+  margin: 0 0 1.75rem;
   color: var(--text-2);
+  font-size: 1.05rem;
 }
 
 .project h3 {
@@ -1340,13 +1573,6 @@ ul.plain small {
   color: var(--muted);
   font-size: 0.85rem;
   font-weight: 500;
-}
-
-.project-details {
-  display: grid;
-  gap: 1.75rem 2.5rem;
-  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
-  margin-top: 1.75rem;
 }
 
 .checklist {
@@ -1373,50 +1599,34 @@ ul.plain small {
   transform: rotate(-45deg);
 }
 
-.project .actions {
-  margin: 1.75rem 0 0;
+.project-facts {
+  align-self: start;
+  padding-left: 2rem;
+  border-left: 1px solid var(--line);
 }
 
-.project .gallery {
-  display: flex;
-  gap: 0.85rem;
-  margin: 1.5rem calc(-1 * clamp(1.25rem, 0.8rem + 2vw, 2.25rem)) 0;
-  padding: 0.5rem clamp(1.25rem, 0.8rem + 2vw, 2.25rem) 0.85rem;
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scroll-snap-type: x mandatory;
-  scroll-padding: 0 clamp(1.25rem, 0.8rem + 2vw, 2.25rem);
-  scrollbar-width: thin;
-  scrollbar-color: var(--line-strong) transparent;
+.project-facts > div {
+  padding: 0.9rem 0;
+  border-top: 1px solid var(--line);
 }
 
-.project .gallery .thumb {
-  flex: none;
-  padding: 0;
-  border: 0;
-  border-radius: var(--radius-sm);
-  background: none;
-  cursor: zoom-in;
-  scroll-snap-align: start;
+.project-facts > div:first-child {
+  padding-top: 0.1rem;
+  border-top: 0;
 }
 
-.project .gallery img {
-  width: auto;
-  height: 15rem;
-  border: 1px solid var(--line-hi);
-  border-radius: var(--radius-sm);
-  image-rendering: auto;
-  transition:
-    border-color 0.3s var(--ease),
-    transform 0.5s var(--ease-out),
-    box-shadow 0.5s var(--ease-out);
+.project-facts dt {
+  color: var(--muted);
+  font-size: 0.8rem;
 }
 
-.project .gallery .thumb:hover img,
-.project .gallery .thumb:focus-visible img {
-  border-color: rgb(214 167 94 / 0.6);
-  transform: translateY(-4px);
-  box-shadow: 0 18px 36px -18px rgb(0 0 0 / 0.9);
+.project-facts dd {
+  margin: 0.35rem 0 0;
+  font-weight: 500;
+}
+
+.project-facts .badge {
+  display: inline-block;
 }
 
 /* Image preview: zooms in from slightly smaller and fades back out. */
@@ -1919,6 +2129,7 @@ article > .title {
 [data-navigated] .kicker .typed,
 [data-navigated] .hero > *,
 [data-navigated] main > .intro,
+[data-navigated] .project-index ul,
 [data-navigated] .post > .title,
 [data-navigated] .post > .post-meta,
 [data-navigated] .post > .prose {
@@ -1927,8 +2138,27 @@ article > .title {
 
 /* Small screens */
 @media (max-width: 720px) {
-  .project-details {
+  .project-cols {
     grid-template-columns: 1fr;
+  }
+
+  /* Timeline and license share a row; the stack gets one to itself. */
+  .project-facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 1.5rem;
+    padding: 1.25rem 0 0;
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+
+  .project-facts > div:nth-child(2) {
+    padding-top: 0.1rem;
+    border-top: 0;
+  }
+
+  .project-facts > div:last-child {
+    grid-column: 1 / -1;
   }
 
   .skill-group {
@@ -2027,8 +2257,21 @@ article > .title {
     gap: 0.5rem;
   }
 
-  .project .gallery img {
-    height: 11rem;
+  .project-index ul {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+
+  .project-index a {
+    padding: 0.7rem 0.85rem;
+  }
+
+  .project-index a > span {
+    display: none;
+  }
+
+  .filmstrip button {
+    width: 4.75rem;
   }
 
   .post-list li {
