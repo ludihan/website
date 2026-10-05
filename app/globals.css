@@ -1276,7 +1276,8 @@ ul.plain small {
   transition: border-color 0.4s var(--ease);
 }
 
-.project > * {
+/* Not the preview <dialog>: it must stay position: fixed to open over the viewport. */
+.project > :not(dialog) {
   position: relative;
   z-index: 2;
 }
