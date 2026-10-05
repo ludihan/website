@@ -20,7 +20,11 @@
     "enlarge": "Ampliar imagem",
     "close": "Fechar",
     "prev": "Imagem anterior",
-    "next": "Próxima imagem"
+    "next": "Próxima imagem",
+    "period": "Período",
+    "show": "Mostrar captura de tela",
+    "screenshots": "Capturas de tela",
+    "index": "Projetos nesta página"
   },
   "meta": {
     "homeTitle": "Lucca Han | Desenvolvedor Full-Stack (React, Next.js, TypeScript, Go)",
