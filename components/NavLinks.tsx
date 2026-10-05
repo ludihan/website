@@ -13,7 +13,7 @@ export function NavLinks({ links }: { links: { href: string; label: string }[] }
     return (
       <Link key={href} href={href} className="nav-link" aria-current={active ? "page" : undefined}>
         {active && (
-          <ViewTransition name="nav-pill" share="pill" default="none">
+          <ViewTransition name="nav-pill" share="pill" enter="pill-in" exit="pill-out" default="none">
             <span className="nav-pill" aria-hidden="true" />
           </ViewTransition>
         )}
