@@ -66,8 +66,9 @@ export default async function Post({ params }: PageProps<"/[lang]/blog/[slug]">)
   );
 
   return (
-    <article>
+    <article className="post">
       <JsonLd data={jsonLd} />
+      <div className="read-progress" aria-hidden="true" />
       <p>
         <Link href={`/${lang}/blog`} className="text-link">
           {dict.blog.back}
