@@ -17,15 +17,11 @@ export function CopyEmailButton({
   useEffect(() => () => clearTimeout(resetTimer.current), []);
 
   async function handleClick() {
-    try {
-      await navigator.clipboard.writeText(email);
-      setCopied(true);
-      // Restart the countdown so earlier clicks can't hide the tooltip early.
-      clearTimeout(resetTimer.current);
-      resetTimer.current = setTimeout(() => setCopied(false), 2000);
-    } catch {
-      // Clipboard API unavailable; nothing to fall back to here.
-    }
+    if (!(await copyText(email))) return;
+    setCopied(true);
+    // Restart the countdown so earlier clicks can't hide the tooltip early.
+    clearTimeout(resetTimer.current);
+    resetTimer.current = setTimeout(() => setCopied(false), 2000);
   }
 
   return (
@@ -57,4 +53,27 @@ export function CopyEmailButton({
       </span>
     </span>
   );
+}
+
+// The Clipboard API only exists on secure origins (HTTPS or localhost). Elsewhere, such as
+// a dev server opened by its LAN address, fall back to copying from a hidden textarea.
+async function copyText(text: string) {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch {
+    const area = document.createElement("textarea");
+    area.value = text;
+    area.setAttribute("readonly", "");
+    area.style.cssText = "position:fixed;opacity:0;pointer-events:none";
+    document.body.append(area);
+    area.select();
+    try {
+      return document.execCommand("copy");
+    } catch {
+      return false;
+    } finally {
+      area.remove();
+    }
+  }
 }
