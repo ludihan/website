@@ -102,7 +102,7 @@ export function Home({ lang }: { lang: Locale }) {
 
       <section>
         <h2>{t.workTitle}</h2>
-        <RoleList roles={t.roles} />
+        <RoleList roles={t.roles} timeline />
         <h3>{t.educationTitle}</h3>
         <ul className="plain">
           {t.education.map((e) => (
