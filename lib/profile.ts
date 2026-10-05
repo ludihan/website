@@ -1,7 +1,7 @@
 import type { Locale } from "./i18n";
 
 export const site = {
-  url: "https://ludihan.xyz",
+  url: "https://ludihan.com",
   name: "Lucca Han",
   email: "luccad.han@gmail.com",
   github: "https://github.com/ludihan",
