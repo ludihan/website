@@ -34,6 +34,9 @@
 html {
   /* Keeps #anchors from landing under the sticky header. */
   scroll-padding-top: 5.5rem;
+  /* Reserve the scrollbar's space on every page, so moving between a long page and a
+     short one doesn't shift the centred layout sideways. */
+  scrollbar-gutter: stable;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -127,30 +130,40 @@ img {
   color: var(--bg);
 }
 
-/* Header: glass that firms up once the page scrolls under it. */
+/* Header: the same frosted glass on every page and at every scroll position, so a
+   page change has nothing to crossfade. Only the unprefixed backdrop-filter is written:
+   with a -webkit- copy after it, the minifier keeps just the copy, which Chrome ignores. */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgb(18 17 15 / 0.7);
+  background: rgb(18 17 15 / 0.72);
   backdrop-filter: saturate(180%) blur(18px);
-  -webkit-backdrop-filter: saturate(180%) blur(18px);
   border-bottom: 1px solid var(--line);
+  /* Its own layer in page transitions, stacked above the page's, so the leaving page
+     can't paint over the header while it fades. */
+  view-transition-name: site-header;
 }
 
-@supports (animation-timeline: scroll()) {
-  .site-header {
-    animation: header-settle linear both;
-    animation-timeline: scroll(root);
-    animation-range: 0 8rem;
-  }
+/* Swap the header straight to its new state rather than crossfading two copies. */
+::view-transition-old(site-header) {
+  display: none;
 }
 
-@keyframes header-settle {
-  from {
-    background-color: rgb(18 17 15 / 0);
-    border-bottom-color: transparent;
-  }
+::view-transition-new(site-header) {
+  animation: none;
+}
+
+/* During a transition the header is drawn as a standalone snapshot, with nothing behind it
+   to blur, so the glass would show the pages passing underneath unblurred. Go near-opaque
+   at once for the transition, then ease back to glass once it's over. */
+.site-header {
+  transition: background-color 0.4s var(--ease);
+}
+
+:root:active-view-transition .site-header {
+  background-color: rgb(18 17 15 / 0.97);
+  transition: none;
 }
 
 .site-header nav {
@@ -179,24 +192,21 @@ img {
 .brand .tld {
   color: var(--muted);
   font-weight: 400;
-  transition: color 0.3s var(--ease);
 }
 
-.brand:hover .tld {
-  color: var(--accent);
-}
-
+/* A soft glow on hover. Clicking the logo starts a page transition, which drops the
+   hover state partway; a glow just fades, where a spin would visibly unwind. */
 .brand-mark {
   width: 0.7rem;
   height: 0.7rem;
   border-radius: 3px;
   background: linear-gradient(135deg, var(--accent-hi), var(--accent));
   box-shadow: 0 0 0 3px var(--accent-soft), 0 0 18px rgb(214 167 94 / 0.5);
-  transition: transform 0.5s var(--ease-spring);
+  transition: box-shadow 0.4s var(--ease);
 }
 
 .brand:hover .brand-mark {
-  transform: rotate(135deg) scale(1.1);
+  box-shadow: 0 0 0 4px rgb(214 167 94 / 0.2), 0 0 26px rgb(214 167 94 / 0.8);
 }
 
 .nav-links {
@@ -1970,6 +1980,21 @@ article > .title {
 ::view-transition-group(.pill) {
   animation-duration: 0.5s;
   animation-timing-function: var(--ease-spring);
+}
+
+/* With no link to slide to (or from), as on the home page, the highlight fades instead of popping. */
+::view-transition-old(.pill-out) {
+  animation: page-out 0.2s var(--ease) both;
+}
+
+::view-transition-new(.pill-in) {
+  animation: pill-in 0.3s var(--ease-out) both;
+}
+
+@keyframes pill-in {
+  from {
+    opacity: 0;
+  }
 }
 
 /* Small screens */
