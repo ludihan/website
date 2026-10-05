@@ -1,4 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
+import { preconnect } from "react-dom";
 import { getDictionary, type Locale } from "@/lib/i18n";
 import { profileText, site, skills, type SkillGroup } from "@/lib/profile";
 import { projects } from "@/lib/projects";
@@ -13,6 +15,8 @@ import { Waters } from "./Waters";
 export function Home({ lang }: { lang: Locale }) {
   const t = profileText[lang];
   const dict = getDictionary(lang);
+  // The project tiles show a screenshot served from GitHub.
+  preconnect("https://raw.githubusercontent.com");
 
   return (
     <>
@@ -65,18 +69,34 @@ export function Home({ lang }: { lang: Locale }) {
       <section>
         <h2>{dict.sections.projects}</h2>
         <div className="cards">
-          {projects.map((p) => (
-            <Link key={p.id} href={`/${lang}/projects#${p.id}`} className="card">
-              <strong>
-                {p.name}
-                <span className="card-arrow" aria-hidden="true">
-                  →
+          {projects.map((p, i) => {
+            const shot = p.screenshots[0];
+            return (
+              <Link key={p.id} href={`/${lang}/projects#${p.id}`} className="card card-project" data-spotlight>
+                {/* Phone screenshots stand upright in the frame; wide ones fill it. */}
+                <span className={`card-shot${shot.height > shot.width ? " is-tall" : ""}`} aria-hidden="true">
+                  <Image
+                    src={shot.src}
+                    width={shot.width}
+                    height={shot.height}
+                    alt=""
+                    // On tall screens the first tile is the largest thing in view, so don't lazy-load it.
+                    {...(i === 0 && { loading: "eager", fetchPriority: "high" })}
+                  />
                 </span>
-              </strong>
-              <span>{p.text[lang].tagline}</span>
-              <small>{p.stack.slice(0, 4).join(" · ")}</small>
-            </Link>
-          ))}
+                <span className="card-body">
+                  <strong>
+                    {p.name}
+                    <span className="card-arrow" aria-hidden="true">
+                      →
+                    </span>
+                  </strong>
+                  <span>{p.text[lang].tagline}</span>
+                  <small>{p.stack.slice(0, 4).join(" · ")}</small>
+                </span>
+              </Link>
+            );
+          })}
         </div>
       </section>
 
