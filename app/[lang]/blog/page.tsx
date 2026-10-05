@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/JsonLd";
+import { SplitTitle } from "@/components/SplitTitle";
 import { formatDate, getPosts } from "@/lib/content";
 import { getDictionary, hasLocale } from "@/lib/i18n";
 import { site } from "@/lib/profile";
@@ -43,8 +44,8 @@ export default async function BlogPage({ params }: PageProps<"/[lang]/blog">) {
   return (
     <>
       <JsonLd data={jsonLd} />
-      <h1 className="title">{dict.sections.blog}</h1>
-      <p>{dict.meta.blogDescription}</p>
+      <SplitTitle text={dict.sections.blog} />
+      <p className="intro">{dict.meta.blogDescription}</p>
       {posts.length === 0 ? (
         <p className="muted">{dict.blog.empty}</p>
       ) : (

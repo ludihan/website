@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { preconnect } from "react-dom";
 import { JsonLd } from "@/components/JsonLd";
 import { ProjectCard } from "@/components/ProjectCard";
+import { SplitTitle } from "@/components/SplitTitle";
 import { getDictionary, hasLocale } from "@/lib/i18n";
 import { projects } from "@/lib/projects";
 import { site } from "@/lib/profile";
@@ -58,8 +59,8 @@ export default async function ProjectsPage({ params }: PageProps<"/[lang]/projec
   return (
     <>
       <JsonLd data={jsonLd} />
-      <h1 className="title">{dict.sections.projects}</h1>
-      <p>{dict.projects.intro}</p>
+      <SplitTitle text={dict.sections.projects} />
+      <p className="intro">{dict.projects.intro}</p>
       {projects.map((p, i) => (
         <ProjectCard key={p.id} project={p} lang={lang} dict={dict.projects} priority={i === 0} />
       ))}
