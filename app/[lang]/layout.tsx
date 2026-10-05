@@ -12,10 +12,11 @@ import "../globals.css";
 
 export const dynamicParams = false;
 
-const sans = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-sans" });
+// The optical size and width axes let the display type tighten up at large sizes.
+const sans = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-sans", axes: ["opsz", "wdth"] });
 const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
-export const viewport: Viewport = { themeColor: "#141312" };
+export const viewport: Viewport = { themeColor: "#12110f" };
 
 export const generateStaticParams = () => locales.map((lang) => ({ lang }));
 
