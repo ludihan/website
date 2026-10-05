@@ -51,7 +51,7 @@ export default async function BlogPage({ params }: PageProps<"/[lang]/blog">) {
       ) : (
         <ul className="post-list">
           {posts.map(({ slug, frontmatter: { title, date, description }, minutes }) => (
-            <li key={slug}>
+            <li key={slug} data-spotlight>
               <h2>
                 <Link href={`/${lang}/blog/${slug}`}>{title}</Link>
               </h2>

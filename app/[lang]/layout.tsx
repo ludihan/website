@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/JsonLd";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { Motion } from "@/components/Motion";
 import { NavLinks } from "@/components/NavLinks";
 import { getDictionary, hasLocale, locales } from "@/lib/i18n";
 import { site } from "@/lib/profile";
@@ -110,6 +111,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
             </ul>
           </div>
         </footer>
+        <Motion />
       </body>
     </html>
   );

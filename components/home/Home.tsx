@@ -149,16 +149,18 @@ export function Home({ lang }: { lang: Locale }) {
 
       <div className="os-joke">
         <span className="sr-only">{t.osJoke}</span>
-        <div className="terminal" aria-hidden="true">
+        <div className="terminal" aria-hidden="true" data-play>
           <div className="terminal-bar">
             <i />
             <i />
             <i />
           </div>
           <code>
-            <span className="prompt">$</span> grep ^NAME /etc/os-release
+            <span className="prompt">$</span> <span className="typed">grep ^NAME /etc/os-release</span>
             <br />
-            NAME=&quot;openSUSE&quot; <em># btw</em>
+            <span className="output">
+              NAME=&quot;openSUSE&quot; <em># btw</em>
+            </span>
           </code>
         </div>
       </div>
