@@ -41,5 +41,12 @@
     "newer": "Newer",
     "older": "Older",
     "rss": "RSS feed"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "lead": "There's nothing at this address. The page may have moved, or the link may have a typo.",
+    "home": "Back to home",
+    "projects": "See projects",
+    "blog": "Read the blog"
   }
 }

@@ -41,5 +41,12 @@
     "newer": "Mais recente",
     "older": "Mais antigo",
     "rss": "Feed RSS"
+  },
+  "notFound": {
+    "title": "Página não encontrada",
+    "lead": "Não há nada neste endereço. A página pode ter mudado de lugar, ou o link pode ter um erro de digitação.",
+    "home": "Voltar ao início",
+    "projects": "Ver projetos",
+    "blog": "Ler o blog"
   }
 }

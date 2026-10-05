@@ -720,6 +720,25 @@ section p {
   animation-delay: 1.1s;
 }
 
+/* 404: the home page's display type for the number, and a shorter command to type.
+   Its header and footer come once per language, in wrappers that mustn't add a box. */
+div[data-lang] {
+  display: contents;
+}
+
+.not-found .title {
+  font-size: clamp(5rem, 2.5rem + 12vw, 10rem);
+  font-variation-settings: "opsz" 96, "wdth" 88;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+}
+
+.not-found .kicker .typed {
+  width: 5ch;
+  animation-timing-function: steps(5, end);
+}
+
 /* The meeting of the waters, behind the home hero. */
 /* Positioned against the page, so it spans its exact width (100vw would include the scrollbar). */
 .waters {
