@@ -4,6 +4,8 @@ import createMDX from "@next/mdx";
 const nextConfig: NextConfig = {
   output: "export",
   images: { unoptimized: true },
+  // A static export has two root layouts and no server, so every missing URL gets one 404 page.
+  experimental: { globalNotFound: true },
   pageExtensions: ["ts", "tsx", "md", "mdx"],
 };
 

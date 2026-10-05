@@ -4,10 +4,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { locales, localeNames, type Locale } from "@/lib/i18n";
 
-// Swaps the leading `/<lang>` segment, keeping the rest of the path.
-export function LanguageSwitcher({ lang, label }: { lang: Locale; label: string }) {
+// Swaps the leading `/<lang>` segment, keeping the rest of the path. With `home`, links to
+// each language's home page instead, for pages built without knowing their path (the 404).
+export function LanguageSwitcher({ lang, label, home = false }: { lang: Locale; label: string; home?: boolean }) {
   const pathname = usePathname();
-  const rest = pathname.split("/").slice(2).join("/");
+  const rest = home ? "" : pathname.split("/").slice(2).join("/");
   return (
     <div className="lang-switcher" role="group" aria-label={label}>
       {locales.map((l) =>

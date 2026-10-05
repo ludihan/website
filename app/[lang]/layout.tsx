@@ -1,21 +1,16 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, Geist_Mono } from "next/font/google";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/JsonLd";
-import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { Motion } from "@/components/Motion";
-import { NavLinks } from "@/components/NavLinks";
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
+import { mono, sans } from "@/lib/fonts";
 import { getDictionary, hasLocale, locales } from "@/lib/i18n";
 import { site } from "@/lib/profile";
 import { jsonLdGraph, personJsonLd, websiteJsonLd } from "@/lib/seo";
 import "../globals.css";
 
 export const dynamicParams = false;
-
-// The optical size and width axes let the display type tighten up at large sizes.
-const sans = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-sans", axes: ["opsz", "wdth"] });
-const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
 export const viewport: Viewport = { themeColor: "#12110f" };
 
@@ -57,60 +52,16 @@ export async function generateMetadata({
 export default async function RootLayout({ children, params }: LayoutProps<"/[lang]">) {
   const { lang } = await params;
   if (!hasLocale(lang)) notFound();
-  const dict = getDictionary(lang);
   return (
     // Lets Next.js pause the CSS smooth scrolling during route changes, so they jump to the top instead of animating.
     <html lang={lang} className={`${sans.variable} ${mono.variable}`} data-scroll-behavior="smooth">
       <body>
-        <a href="#content" className="skip-link">
-          {dict.skip}
-        </a>
-        <header className="site-header">
-          <nav className="container" aria-label={dict.nav.label}>
-            <Link href={`/${lang}`} className="brand">
-              <span className="brand-mark" aria-hidden="true" />
-              <span>
-                ludihan<span className="tld">.com</span>
-              </span>
-            </Link>
-            <div className="nav-links">
-              <NavLinks
-                links={[
-                  { href: `/${lang}/projects`, label: dict.nav.projects },
-                  { href: `/${lang}/blog`, label: dict.nav.blog },
-                  { href: `/${lang}/about`, label: dict.nav.about },
-                ]}
-              />
-              <LanguageSwitcher lang={lang} label={dict.language} />
-            </div>
-          </nav>
-        </header>
+        <SiteHeader lang={lang} />
         <JsonLd data={jsonLdGraph(websiteJsonLd(lang), personJsonLd(lang))} />
         <main id="content" className="container">
           {children}
         </main>
-        <footer className="site-footer">
-          <div className="container">
-            <p>
-              © {new Date().getFullYear()} {site.name}
-            </p>
-            <ul>
-              <li>
-                <a href={site.github} target="_blank" rel="me noopener noreferrer">
-                  GitHub
-                </a>
-              </li>
-              <li>
-                <a href={site.linkedin} target="_blank" rel="me noopener noreferrer">
-                  LinkedIn
-                </a>
-              </li>
-              <li>
-                <a href={`/${lang}/blog/rss.xml`}>RSS</a>
-              </li>
-            </ul>
-          </div>
-        </footer>
+        <SiteFooter lang={lang} />
         <Motion />
       </body>
     </html>
