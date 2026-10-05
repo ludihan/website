@@ -7,6 +7,8 @@ import { CopyEmailButton } from "../CopyEmailButton";
 import { JsonLd } from "../JsonLd";
 import { RoleList } from "../RoleList";
 import { Tags } from "../Tags";
+import { SplitTitle } from "../SplitTitle";
+import { Waters } from "./Waters";
 
 export function Home({ lang }: { lang: Locale }) {
   const t = profileText[lang];
@@ -26,12 +28,13 @@ export function Home({ lang }: { lang: Locale }) {
       />
 
       <section className="hero">
+        <Waters />
         <p className="kicker" aria-hidden="true">
-          <span>~/ludihan</span> $ whoami
+          <span>~/ludihan</span> $ <span className="typed">whoami</span>
         </p>
-        <h1 className="title">{site.name}</h1>
+        <SplitTitle text={site.name} />
         <p className="role">{t.role}</p>
-        <p>{t.lead}</p>
+        <p className="lead">{t.lead}</p>
         <dl className="facts">
           {t.facts.map((f) => (
             <div key={f.label}>
