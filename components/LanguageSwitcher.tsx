@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ViewTransition } from "react";
 import { locales, localeNames, type Locale } from "@/lib/i18n";
 
 // Swaps the leading `/<lang>` segment, keeping the rest of the path.
@@ -14,9 +13,7 @@ export function LanguageSwitcher({ lang, label }: { lang: Locale; label: string 
       {locales.map((l) =>
         l === lang ? (
           <span key={l} aria-current="true" title={localeNames[l]}>
-            <ViewTransition name="lang-pill" share="pill" default="none">
-              <span className="lang-pill" aria-hidden="true" />
-            </ViewTransition>
+            <span className="lang-pill" aria-hidden="true" />
             <span className="lang-label">{l}</span>
           </span>
         ) : (

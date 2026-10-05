@@ -130,9 +130,8 @@ img {
   color: var(--bg);
 }
 
-/* Header: the same frosted glass on every page and at every scroll position, so a
-   page change has nothing to crossfade. Only the unprefixed backdrop-filter is written:
-   with a -webkit- copy after it, the minifier keeps just the copy, which Chrome ignores. */
+/* Header: frosted glass. Only the unprefixed backdrop-filter is written: with a -webkit-
+   copy after it, the minifier keeps just the copy, which Chrome ignores. */
 .site-header {
   position: sticky;
   top: 0;
@@ -140,30 +139,6 @@ img {
   background: rgb(18 17 15 / 0.72);
   backdrop-filter: saturate(180%) blur(18px);
   border-bottom: 1px solid var(--line);
-  /* Its own layer in page transitions, stacked above the page's, so the leaving page
-     can't paint over the header while it fades. */
-  view-transition-name: site-header;
-}
-
-/* Swap the header straight to its new state rather than crossfading two copies. */
-::view-transition-old(site-header) {
-  display: none;
-}
-
-::view-transition-new(site-header) {
-  animation: none;
-}
-
-/* During a transition the header is drawn as a standalone snapshot, with nothing behind it
-   to blur, so the glass would show the pages passing underneath unblurred. Go near-opaque
-   at once for the transition, then ease back to glass once it's over. */
-.site-header {
-  transition: background-color 0.4s var(--ease);
-}
-
-:root:active-view-transition .site-header {
-  background-color: rgb(18 17 15 / 0.97);
-  transition: none;
 }
 
 .site-header nav {
@@ -241,7 +216,7 @@ img {
   position: relative;
 }
 
-/* The current page's highlight; it slides between links on navigation. */
+/* The current page's highlight. */
 .nav-pill {
   position: absolute;
   inset: 0;
@@ -386,7 +361,7 @@ img {
 }
 
 /* Page intros (projects, blog). */
-.page > .intro {
+main > .intro {
   max-width: 40rem;
   color: var(--muted);
   font-size: 1.15rem;
@@ -1936,65 +1911,17 @@ article > .title {
   }
 }
 
-/* Page transitions: a clean handoff. The old page fades out fast, then the new one
-   rises in, so the two never sit on top of each other. No blur: blurring whole-page
-   snapshots turns screenshots into flashing grey blocks. */
-@view-transition {
-  navigation: auto;
-}
-
-::view-transition-old(.page-out) {
-  animation: page-out 0.14s var(--ease) both;
-}
-
-::view-transition-new(.page-in) {
-  animation: page-in 0.38s var(--ease-out) 0.1s both;
-}
-
-@keyframes page-out {
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes page-in {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-}
-
-/* The opening choreography is for the first page load only. After an in-app
-   navigation the page transition is the entrance, so these stay put instead of
-   replaying (which left pages empty for a second, then popping in). */
+/* The opening choreography is for the first page load only. After an in-app navigation
+   the new page appears complete, instead of replaying its entrances (which left pages
+   empty for a second, then popping in). */
 [data-navigated] .split-title .char,
 [data-navigated] .kicker .typed,
 [data-navigated] .hero > *,
-[data-navigated] .page > .intro,
+[data-navigated] main > .intro,
 [data-navigated] .post > .title,
 [data-navigated] .post > .post-meta,
 [data-navigated] .post > .prose {
   animation: none;
-}
-
-::view-transition-group(.pill) {
-  animation-duration: 0.5s;
-  animation-timing-function: var(--ease-spring);
-}
-
-/* With no link to slide to (or from), as on the home page, the highlight fades instead of popping. */
-::view-transition-old(.pill-out) {
-  animation: page-out 0.2s var(--ease) both;
-}
-
-::view-transition-new(.pill-in) {
-  animation: pill-in 0.3s var(--ease-out) both;
-}
-
-@keyframes pill-in {
-  from {
-    opacity: 0;
-  }
 }
 
 /* Small screens */
@@ -2146,12 +2073,6 @@ article > .title {
   *::after {
     animation: none !important;
     transition: none !important;
-  }
-
-  ::view-transition-group(*),
-  ::view-transition-old(*),
-  ::view-transition-new(*) {
-    animation: none !important;
   }
 
   /* Without the scroll-linked animation the bar would sit empty; hide it instead. */

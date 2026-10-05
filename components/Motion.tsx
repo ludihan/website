@@ -12,8 +12,7 @@ export function Motion() {
   const pathname = usePathname();
   const firstPathname = useRef(pathname);
 
-  // A layout effect runs in the same commit as the new page, before the view transition
-  // captures it, so the new page is snapshotted already settled.
+  // A layout effect runs before the new page is painted, so it never shows a frame mid-entrance.
   useLayoutEffect(() => {
     if (pathname !== firstPathname.current) document.documentElement.dataset.navigated = "";
   }, [pathname]);
