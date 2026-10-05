@@ -348,23 +348,30 @@ img {
   text-wrap: balance;
 }
 
-/* Page titles arrive letter by letter, as if surfacing. */
+/* Page titles surface letter by letter: each word clips at its waterline and the
+   letters rise through it. Only opacity and movement animate. A blur filter on text
+   lingers soft, then snaps sharp when it ends, which reads as a rendering glitch. */
 .split-title .word {
   display: inline-block;
   white-space: nowrap;
+  /* Room above for accents and below for descenders; the bottom edge is the waterline. */
+  clip-path: inset(-0.4em -0.2em -0.2em -0.2em);
 }
 
 .split-title .char {
   display: inline-block;
-  animation: surface 1s var(--ease-out) both;
-  animation-delay: calc(0.1s + var(--i) * 38ms);
+  animation: surface 0.9s var(--ease-out) both;
+  animation-delay: calc(0.1s + var(--i) * 30ms);
 }
 
 @keyframes surface {
   from {
     opacity: 0;
-    transform: translateY(0.4em) rotate(4deg);
-    filter: blur(12px);
+    /* Far enough below that no part of a letter peeks past the waterline before it moves. */
+    transform: translateY(130%);
+  }
+  40% {
+    opacity: 1;
   }
 }
 
@@ -379,8 +386,7 @@ img {
 @keyframes arrive {
   from {
     opacity: 0;
-    transform: translateY(14px);
-    filter: blur(6px);
+    transform: translateY(12px);
   }
 }
 
@@ -676,7 +682,7 @@ section p {
 }
 
 .hero:has(.waters) .split-title .char {
-  animation-delay: calc(0.55s + var(--i) * 45ms);
+  animation-delay: calc(0.35s + var(--i) * 40ms);
 }
 
 .hero .role {
@@ -700,33 +706,33 @@ section p {
 .hero > .lead,
 .hero > .facts,
 .hero > .cta {
-  animation: arrive 1s var(--ease-out) both;
+  animation: arrive 0.8s var(--ease-out) both;
 }
 
 .hero > .role {
-  animation-delay: 0.6s;
+  animation-delay: 0.45s;
 }
 .hero > .lead {
-  animation-delay: 0.72s;
+  animation-delay: 0.55s;
 }
 .hero > .facts {
-  animation-delay: 0.84s;
+  animation-delay: 0.65s;
 }
 .hero > .cta {
-  animation-delay: 0.96s;
+  animation-delay: 0.75s;
 }
 
 .hero:has(.waters) > .role {
-  animation-delay: 1s;
+  animation-delay: 0.8s;
 }
 .hero:has(.waters) > .lead {
-  animation-delay: 1.12s;
+  animation-delay: 0.9s;
 }
 .hero:has(.waters) > .facts {
-  animation-delay: 1.24s;
+  animation-delay: 1s;
 }
 .hero:has(.waters) > .cta {
-  animation-delay: 1.36s;
+  animation-delay: 1.1s;
 }
 
 /* The meeting of the waters, behind the home hero. */
@@ -748,7 +754,6 @@ section p {
 @keyframes waters-in {
   from {
     opacity: 0;
-    transform: scale(1.04);
   }
 }
 
@@ -1501,7 +1506,6 @@ body:has(dialog[open]) {
 @keyframes shot-in {
   from {
     opacity: 0;
-    filter: blur(8px);
     scale: 0.985;
   }
 }
@@ -1879,7 +1883,8 @@ article > .title {
   .os-joke {
     animation: rise linear both;
     animation-timeline: view();
-    animation-range: entry 0% entry 70%;
+    /* Done within the first 9rem of entering view, so nothing sits half-faded mid-screen. */
+    animation-range: entry 0% entry 9rem;
   }
 
   section:not(.hero, .contact) > h2::after {
@@ -1898,15 +1903,14 @@ article > .title {
   .skill-group .tags {
     animation: rise linear both;
     animation-timeline: view();
-    animation-range: entry 15% entry 90%;
+    animation-range: entry 1rem entry 10rem;
   }
 }
 
 @keyframes rise {
   from {
     opacity: 0;
-    translate: 0 2rem;
-    filter: blur(6px);
+    translate: 0 1.5rem;
   }
 }
 
