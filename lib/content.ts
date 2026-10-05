@@ -6,10 +6,16 @@ export type Frontmatter = { title: string; date?: Date | string; description?: s
 
 const blogDir = (lang: Locale) => path.join(process.cwd(), "content", lang, "blog");
 
+// Posts with `draft: true` in their frontmatter stay out of every page, like Zola's drafts.
+// Deleting the last post would break the build: Turbopack can't compile the dynamic import in
+// loadPost when no file matches it.
+const isDraft = (source: string) => /^---[\s\S]*?^draft:\s*true\s*$[\s\S]*?^---/m.test(source);
+
 export function getSlugs(lang: Locale): string[] {
   return fs
     .readdirSync(blogDir(lang))
     .filter((f) => f.endsWith(".md"))
+    .filter((f) => !isDraft(fs.readFileSync(path.join(blogDir(lang), f), "utf8")))
     .map((f) => f.replace(/\.md$/, ""));
 }
 

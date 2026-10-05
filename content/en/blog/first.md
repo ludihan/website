@@ -1,5 +1,6 @@
 ---
 title: "My first post"
+draft: true
 date: 2026-01-26
 ---
 
