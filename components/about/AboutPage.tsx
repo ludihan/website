@@ -98,7 +98,7 @@ export function AboutPage({ lang }: { lang: Locale }) {
         <Tags items={a.languages} />
       </section>
 
-      <section>
+      <section className="contact" data-spotlight>
         <h2>{t.contactTitle}</h2>
         <p>{t.contactText}</p>
         <p className="cta">
