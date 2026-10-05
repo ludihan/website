@@ -47,7 +47,7 @@ export default async function BlogPage({ params }: PageProps<"/[lang]/blog">) {
       <SplitTitle text={dict.sections.blog} />
       <p className="intro">{dict.meta.blogDescription}</p>
       {posts.length === 0 ? (
-        <p className="muted">{dict.blog.empty}</p>
+        <p className="post-empty">{dict.blog.empty}</p>
       ) : (
         <ul className="post-list">
           {posts.map(({ slug, frontmatter: { title, date, description }, minutes }) => (
