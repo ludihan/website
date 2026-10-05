@@ -128,7 +128,7 @@ export function Home({ lang }: { lang: Locale }) {
         ))}
       </section>
 
-      <section>
+      <section className="contact" data-spotlight>
         <h2>{t.contactTitle}</h2>
         <p>{t.contactText}</p>
         <p className="cta">
