@@ -1922,33 +1922,45 @@ article > .title {
   }
 }
 
-/* Page transitions: the old page lifts away quickly, the new one settles in. */
+/* Page transitions: a clean handoff. The old page fades out fast, then the new one
+   rises in, so the two never sit on top of each other. No blur: blurring whole-page
+   snapshots turns screenshots into flashing grey blocks. */
 @view-transition {
   navigation: auto;
 }
 
 ::view-transition-old(.page-out) {
-  animation: page-out 0.2s var(--ease) both;
+  animation: page-out 0.14s var(--ease) both;
 }
 
 ::view-transition-new(.page-in) {
-  animation: page-in 0.55s var(--ease-out) 0.08s both;
+  animation: page-in 0.38s var(--ease-out) 0.1s both;
 }
 
 @keyframes page-out {
   to {
     opacity: 0;
-    filter: blur(4px);
-    transform: translateY(-8px);
   }
 }
 
 @keyframes page-in {
   from {
     opacity: 0;
-    filter: blur(8px);
-    transform: translateY(14px);
+    transform: translateY(10px);
   }
+}
+
+/* The opening choreography is for the first page load only. After an in-app
+   navigation the page transition is the entrance, so these stay put instead of
+   replaying (which left pages empty for a second, then popping in). */
+[data-navigated] .split-title .char,
+[data-navigated] .kicker .typed,
+[data-navigated] .hero > *,
+[data-navigated] .page > .intro,
+[data-navigated] .post > .title,
+[data-navigated] .post > .post-meta,
+[data-navigated] .post > .prose {
+  animation: none;
 }
 
 ::view-transition-group(.pill) {
