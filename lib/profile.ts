@@ -9,11 +9,11 @@ export const site = {
 };
 
 export const skills = {
-  languages: ["TypeScript", "JavaScript", "Go", "Rust", "Python", "C", "Elixir", "SQL"],
+  languages: ["TypeScript", "JavaScript", "Go", "Rust", "Python", "Java", "C", "Elixir", "SQL"],
   frontend: ["React", "Next.js", "Svelte / SvelteKit", "Tailwind CSS", "Vite"],
   backend: ["Node.js", "Go", "Django", "Phoenix", "PostgreSQL", "SQLite", "RabbitMQ"],
   mobile: ["React Native / Expo", "Kotlin", "Jetpack Compose"],
-  devops: ["Linux", "Docker", "Git", "Nix / NixOS", "Shell", "GitHub Actions", "Jenkins", "VPS", "AWS", "GCP", "Vercel"],
+  devops: ["Linux", "Docker", "Git", "Nix / NixOS", "Shell", "n8n", "GitHub Actions", "Jenkins", "VPS", "AWS", "GCP", "Vercel"],
   ai: ["Claude", "ChatGPT", "Gemini", "OpenCode", "Jev"],
 };
 
