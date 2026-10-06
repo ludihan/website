@@ -13,7 +13,7 @@ export const skills = {
   frontend: ["React", "Next.js", "Svelte / SvelteKit", "Tailwind CSS", "Vite"],
   backend: ["Node.js", "Go", "Django", "Phoenix", "PostgreSQL", "SQLite", "RabbitMQ"],
   mobile: ["React Native / Expo", "Kotlin", "Jetpack Compose"],
-  devops: ["Linux", "Docker", "Git", "Nix / NixOS", "Shell"],
+  devops: ["Linux", "Docker", "Git", "Nix / NixOS", "Shell", "GitHub Actions", "Jenkins", "VPS", "AWS", "GCP", "Vercel"],
   ai: ["Claude", "ChatGPT", "Gemini", "OpenCode", "Jev"],
 };
 
@@ -151,8 +151,8 @@ export const profileText: Record<Locale, ProfileText> = {
         },
         {
           title: "Linux & DevOps",
-          text: "Linux user (openSUSE), working with Docker, Nix and the shell.",
-          tags: ["Linux", "Docker", "NixOS", "Shell"],
+          text: "Linux user (openSUSE), working with Docker, Nix and the shell, CI/CD with GitHub Actions and Jenkins, and deploys to VPS, AWS, GCP and Vercel.",
+          tags: ["Linux", "Docker", "NixOS", "Shell", "GitHub Actions", "AWS"],
         },
         {
           title: "Systems & embedded",
@@ -259,8 +259,8 @@ export const profileText: Record<Locale, ProfileText> = {
         },
         {
           title: "Linux e DevOps",
-          text: "Usuário de Linux (openSUSE), trabalhando com Docker, Nix e o shell.",
-          tags: ["Linux", "Docker", "NixOS", "Shell"],
+          text: "Usuário de Linux (openSUSE), trabalhando com Docker, Nix e o shell, CI/CD com GitHub Actions e Jenkins, e deploys em VPS, AWS, GCP e Vercel.",
+          tags: ["Linux", "Docker", "NixOS", "Shell", "GitHub Actions", "AWS"],
         },
         {
           title: "Sistemas e embarcados",
