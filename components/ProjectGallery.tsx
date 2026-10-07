@@ -7,7 +7,7 @@ import type { Locale } from "@/lib/i18n";
 
 type Labels = { enlarge: string; close: string; prev: string; next: string; show: string; screenshots: string };
 
-// A lit stage for a project's screenshots. Wide ones play in a browser window, picked from
+// A lit stage for a project's screenshots. Wide ones play in a framed screen, picked from
 // a filmstrip below; phone ones stand side by side. Any of them opens in a native <dialog>
 // preview, which brings focus trapping, Esc to close and a backdrop for free.
 export function ProjectGallery({
@@ -63,11 +63,6 @@ export function ProjectGallery({
             onClick={() => open(active)}
           >
             <span className="window">
-              <span className="window-bar" aria-hidden="true">
-                <i />
-                <i />
-                <i />
-              </span>
               {/* All stacked in one cell and cross-faded, so switching never waits on a download. */}
               <span className="window-view">
                 {shots.map((s, i) => (

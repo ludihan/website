@@ -1398,7 +1398,7 @@ main > .project-index + .project {
   cursor: zoom-in;
 }
 
-/* Wide screenshots play in a browser window that rises from the stage's bottom edge. */
+/* Wide screenshots play in a plain frame that rises from the stage's bottom edge. */
 .window {
   display: block;
   overflow: hidden;
@@ -1413,21 +1413,6 @@ main > .project-index + .project {
 .stage:hover .window,
 .stage:focus-visible .window {
   transform: translateY(-6px);
-}
-
-.window-bar {
-  display: flex;
-  gap: 0.4rem;
-  padding: 0.55rem 0.8rem;
-  border-bottom: 1px solid var(--line);
-  background: var(--surface);
-}
-
-.window-bar i {
-  width: 0.6rem;
-  height: 0.6rem;
-  border-radius: 50%;
-  background: var(--line-strong);
 }
 
 .window-view {
@@ -2024,30 +2009,6 @@ article > .title {
   background: #0e0d0c;
   overflow: hidden;
   box-shadow: 0 24px 48px -28px rgb(0 0 0 / 0.9);
-}
-
-.terminal-bar {
-  display: flex;
-  gap: 0.45rem;
-  padding: 0.65rem 0.85rem;
-  border-bottom: 1px solid var(--line);
-  background: var(--surface);
-}
-
-.terminal-bar i {
-  width: 0.65rem;
-  height: 0.65rem;
-  border-radius: 50%;
-  background: #e5776b;
-  opacity: 0.85;
-}
-
-.terminal-bar i:nth-child(2) {
-  background: #e6b94f;
-}
-
-.terminal-bar i:nth-child(3) {
-  background: #6fbf73;
 }
 
 .terminal code {

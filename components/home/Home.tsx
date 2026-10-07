@@ -150,11 +150,6 @@ export function Home({ lang }: { lang: Locale }) {
       <div className="os-joke">
         <span className="sr-only">{t.osJoke}</span>
         <div className="terminal" aria-hidden="true" data-play>
-          <div className="terminal-bar">
-            <i />
-            <i />
-            <i />
-          </div>
           <code>
             <span className="prompt">$</span> <span className="typed">grep ^NAME /etc/os-release</span>
             <br />
