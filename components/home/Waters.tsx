@@ -10,7 +10,7 @@ const currents = [
 
 export function Waters() {
   return (
-    <div className="waters" aria-hidden="true">
+    <div className="waters" aria-hidden="true" data-loop>
       <div className="waters-glow" />
       <svg viewBox="0 0 1440 720" preserveAspectRatio="xMidYMin slice">
         <defs>
