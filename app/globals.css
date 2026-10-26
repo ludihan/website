@@ -761,6 +761,14 @@ div[data-lang] {
   }
 }
 
+/* Scrolled out of view: everything inside holds still and stops redrawing. */
+[data-paused],
+[data-paused] *,
+[data-paused] *::before,
+[data-paused] *::after {
+  animation-play-state: paused;
+}
+
 .waters-glow::before,
 .waters-glow::after {
   content: "";

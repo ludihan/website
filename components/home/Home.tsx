@@ -69,7 +69,7 @@ export function Home({ lang }: { lang: Locale }) {
       <section>
         <h2>{dict.sections.projects}</h2>
         <div className="cards">
-          {projects.map((p, i) => {
+          {projects.map((p) => {
             const shot = p.screenshots[0];
             return (
               <Link key={p.id} href={`/${lang}/projects#${p.id}`} className="card card-project" data-spotlight>
@@ -79,9 +79,9 @@ export function Home({ lang }: { lang: Locale }) {
                     src={shot.src}
                     width={shot.width}
                     height={shot.height}
+                    // Lazy even for the first tile: an eager image gets preloaded on every screen,
+                    // ahead of the fonts. Where it is in view, a lazy one still loads right away.
                     alt=""
-                    // On tall screens the first tile is the largest thing in view, so don't lazy-load it.
-                    {...(i === 0 && { loading: "eager", fetchPriority: "high" })}
                   />
                 </span>
                 <span className="card-body">
