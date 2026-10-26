@@ -343,9 +343,11 @@ img {
   clip-path: inset(-0.4em -0.2em -0.2em -0.2em);
 }
 
+/* A long, gentle ease-out with heavily overlapping letters, so the title rolls up as
+   one wave instead of each letter shooting up and stopping. */
 .split-title .char {
   display: inline-block;
-  animation: surface 0.9s var(--ease-out) both;
+  animation: surface 1.1s cubic-bezier(0.33, 1, 0.68, 1) both;
   animation-delay: calc(0.1s + var(--i) * 30ms);
 }
 
@@ -355,7 +357,7 @@ img {
     /* Far enough below that no part of a letter peeks past the waterline before it moves. */
     transform: translateY(130%);
   }
-  40% {
+  60% {
     opacity: 1;
   }
 }
@@ -769,6 +771,9 @@ div[data-lang] {
   animation-play-state: paused;
 }
 
+/* The glows start drifting once the name has risen: moving them redraws everything
+   under the mask and the header's blur, which cost the name its frames. The drift eases
+   in from rest, so the late start doesn't show. */
 .waters-glow::before,
 .waters-glow::after {
   content: "";
@@ -784,7 +789,7 @@ div[data-lang] {
   width: min(56rem, 120vw);
   height: 34rem;
   background: radial-gradient(closest-side, rgb(214 167 94 / 0.3), rgb(214 167 94 / 0.1) 55%, transparent);
-  animation: drift-a 19s ease-in-out infinite alternate;
+  animation: drift-a 19s ease-in-out 1.8s infinite alternate;
 }
 
 /* The Rio Negro: dark, with the forest in it. */
@@ -794,7 +799,7 @@ div[data-lang] {
   width: min(48rem, 110vw);
   height: 28rem;
   background: radial-gradient(closest-side, rgb(var(--jungle) / 0.26), rgb(var(--jungle) / 0.07) 60%, transparent);
-  animation: drift-b 23s ease-in-out infinite alternate;
+  animation: drift-b 23s ease-in-out 1.8s infinite alternate;
 }
 
 @keyframes drift-a {
@@ -824,13 +829,24 @@ div[data-lang] {
 }
 
 /* The dash settings are inherited, so the core and its halo flow as one. The glow is a
-   wide, faint stroke rather than a drop-shadow filter, which re-renders every frame. */
+   wide, faint stroke rather than a drop-shadow filter, which re-renders every frame.
+   A moving dash is redrawn every frame, and those redraws made the compositor drop the
+   frames the name rises in. So the currents hold still and unseen until it has risen,
+   then fade in already flowing. */
 .waters-current {
   fill: none;
   stroke-width: 1.5;
   stroke-linecap: round;
   stroke-dasharray: 90 910;
-  animation: flow linear infinite;
+  animation:
+    flow var(--dur) linear 1.8s infinite both,
+    currents-in 1.2s var(--ease) 1.8s both;
+}
+
+@keyframes currents-in {
+  from {
+    opacity: 0;
+  }
 }
 
 .waters-halo {
@@ -840,10 +856,10 @@ div[data-lang] {
 
 @keyframes flow {
   from {
-    stroke-dashoffset: 1000;
+    stroke-dashoffset: var(--from);
   }
   to {
-    stroke-dashoffset: 0;
+    stroke-dashoffset: calc(var(--from) - 1000);
   }
 }
 
@@ -2143,6 +2159,13 @@ article > .title {
 [data-navigated] .post > .post-meta,
 [data-navigated] .post > .prose {
   animation: none;
+}
+
+/* No name rises then, so nothing to wait for. */
+[data-navigated] .waters-current,
+[data-navigated] .waters-glow::before,
+[data-navigated] .waters-glow::after {
+  animation-delay: 0s;
 }
 
 /* Small screens */
