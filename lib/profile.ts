@@ -87,7 +87,7 @@ export const profileText: Record<Locale, ProfileText> = {
         period: "Jun. 2026 – present",
         place: "Manaus, Brazil",
         summary:
-          "Work as an IT assistant and develop web applications and internal tools as a software engineer.",
+          "Work as an IT assistant and develop web applications and internal tools.",
         stack: ["Svelte", "SvelteKit", "React", "Next.js", "Tailwind CSS", "Node.js", "Go"],
       },
       {
@@ -195,7 +195,7 @@ export const profileText: Record<Locale, ProfileText> = {
         period: "jun. 2026 – atual",
         place: "Manaus, Brasil",
         summary:
-          "Atuo como assistente de TI e desenvolvo aplicações web e ferramentas internas como engenheiro de software.",
+          "Atuo como assistente de TI e desenvolvo aplicações web e ferramentas internas.",
         stack: ["Svelte", "SvelteKit", "React", "Next.js", "Tailwind CSS", "Node.js", "Go"],
       },
       {
