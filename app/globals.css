@@ -24,7 +24,7 @@
   --radius-lg: 1.5rem;
   /* Material's emphasized curve for UI, a long ease-out for things arriving, a soft spring for things moving. */
   --ease: cubic-bezier(0.2, 0, 0, 1);
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-spring: cubic-bezier(0.34, 1.36, 0.64, 1);
   --sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   --mono: var(--font-mono), ui-monospace, "SFMono-Regular", monospace;
@@ -815,13 +815,19 @@ div[data-lang] {
   vector-effect: non-scaling-stroke;
 }
 
+/* The dash settings are inherited, so the core and its halo flow as one. The glow is a
+   wide, faint stroke rather than a drop-shadow filter, which re-renders every frame. */
 .waters-current {
   fill: none;
   stroke-width: 1.5;
   stroke-linecap: round;
   stroke-dasharray: 90 910;
   animation: flow linear infinite;
-  filter: drop-shadow(0 0 6px rgb(241 210 155 / 0.6));
+}
+
+.waters-halo {
+  stroke-width: 8;
+  stroke-opacity: 0.12;
 }
 
 @keyframes flow {
@@ -1669,25 +1675,25 @@ body:has(dialog[open]) {
   }
 }
 
+/* The blur stays fixed and the whole backdrop fades: animating the blur radius
+   re-renders the page behind it on every frame. */
 .lightbox::backdrop {
-  background: rgb(0 0 0 / 0);
-  backdrop-filter: blur(0);
+  background: rgb(0 0 0 / 0.75);
+  backdrop-filter: blur(10px);
+  opacity: 0;
   transition:
-    background-color 0.3s var(--ease),
-    backdrop-filter 0.3s var(--ease),
+    opacity 0.3s var(--ease),
     overlay 0.3s allow-discrete,
     display 0.3s allow-discrete;
 }
 
 .lightbox[open]::backdrop {
-  background: rgb(0 0 0 / 0.75);
-  backdrop-filter: blur(10px);
+  opacity: 1;
 }
 
 @starting-style {
   .lightbox[open]::backdrop {
-    background: rgb(0 0 0 / 0);
-    backdrop-filter: blur(0);
+    opacity: 0;
   }
 }
 
@@ -2071,7 +2077,8 @@ article > .title {
   .project,
   .post-list li,
   .os-joke {
-    animation: rise linear both;
+    /* Eased rather than linear, so each one glides to a stop instead of halting. */
+    animation: rise cubic-bezier(0.33, 1, 0.68, 1) both;
     animation-timeline: view();
     /* Done within the first 9rem of entering view, so nothing sits half-faded mid-screen. */
     animation-range: entry 0% entry 9rem;
@@ -2091,7 +2098,7 @@ article > .title {
 
   /* The tags in a skill row follow their label a beat behind. */
   .skill-group .tags {
-    animation: rise linear both;
+    animation: rise cubic-bezier(0.33, 1, 0.68, 1) both;
     animation-timeline: view();
     animation-range: entry 1rem entry 10rem;
   }
