@@ -21,14 +21,17 @@ export function Waters() {
           </linearGradient>
         </defs>
         <path d={seam} className="waters-seam" />
+        {/* Each current is a bright core over a wide, faint halo that flows with it. */}
         {currents.map((c, i) => (
-          <path
+          <g
             key={i}
-            d={c.d}
             className="waters-current"
             stroke="url(#current)"
             style={{ animationDuration: `${c.dur}s`, animationDelay: `${c.delay}s`, opacity: c.opacity }}
-          />
+          >
+            <path d={c.d} className="waters-halo" />
+            <path d={c.d} />
+          </g>
         ))}
       </svg>
     </div>

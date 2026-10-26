@@ -17,16 +17,28 @@ export function Motion() {
     if (pathname !== firstPathname.current) document.documentElement.dataset.navigated = "";
   }, [pathname]);
 
+  // Pointers can report several moves per frame; only the latest is drawn, once per frame.
   useEffect(() => {
-    const onMove = (e: PointerEvent) => {
+    let last: PointerEvent | null = null;
+    let frame = 0;
+    const draw = () => {
+      frame = 0;
+      const e = last!;
       const el = (e.target as Element | null)?.closest?.<HTMLElement>("[data-spotlight]");
       if (!el) return;
       const r = el.getBoundingClientRect();
       el.style.setProperty("--mx", `${e.clientX - r.left}px`);
       el.style.setProperty("--my", `${e.clientY - r.top}px`);
     };
+    const onMove = (e: PointerEvent) => {
+      last = e;
+      if (!frame) frame = requestAnimationFrame(draw);
+    };
     document.addEventListener("pointermove", onMove, { passive: true });
-    return () => document.removeEventListener("pointermove", onMove);
+    return () => {
+      document.removeEventListener("pointermove", onMove);
+      cancelAnimationFrame(frame);
+    };
   }, []);
 
   // Re-run per page: the elements to watch change with every navigation.
