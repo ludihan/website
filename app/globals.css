@@ -530,26 +530,21 @@ p {
   content: ",\00a0";
 }
 
-/* ---------- Skills: typeset columns, one item per line ---------- */
+/* ---------- Skills: one row per group ---------- */
 
-.skills {
-  row-gap: 1.5rem;
-  margin-top: 1.5rem;
+.skill-row {
+  align-items: baseline;
+  padding: 0.7rem 0;
 }
 
-.skill-col {
-  grid-column: span 4;
-  padding-top: 0.75rem;
-  border-top: 1px solid var(--ink);
-}
-
-.skill-col h3 {
-  margin-bottom: 0.4rem;
+.skill-row h3 {
+  grid-column: 1 / 4;
   font-size: var(--text-small);
   font-weight: 600;
 }
 
-.skill-col .tags {
+.skill-row .tags {
+  grid-column: 4 / 13;
   color: var(--ink);
   font-size: var(--text-body);
 }
@@ -1196,10 +1191,6 @@ div[data-lang] {
 
   .row {
     row-gap: 0.5rem;
-  }
-
-  .skill-col {
-    grid-column: span 12 !important;
   }
 
   .focus-item {
