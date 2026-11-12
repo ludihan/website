@@ -31,6 +31,13 @@ export function ProjectGallery({
   const [isOpen, setIsOpen] = useState(false);
   const shot = shots[index];
   const tall = shots[0].height > shots[0].width;
+  const imageProps = (s: Screenshot, alt: string, i?: number) => ({
+    src: s.src,
+    width: s.width,
+    height: s.height,
+    alt,
+    ...(priority && i === 0 ? { loading: "eager" as const, fetchPriority: "high" as const } : {}),
+  });
 
   const open = (i: number) => {
     setIndex(i);
@@ -38,8 +45,6 @@ export function ProjectGallery({
     dialog.current?.showModal();
   };
   const step = (delta: number) => setIndex((i) => (i + delta + shots.length) % shots.length);
-  const eager = (i: number) => priority && i === 0 && ({ loading: "eager", fetchPriority: "high" } as const);
-
   return (
     <>
       {tall ? (
@@ -53,7 +58,7 @@ export function ProjectGallery({
                 aria-label={`${labels.enlarge}: ${s.alt[lang]}`}
                 onClick={() => open(i)}
               >
-                <Image src={s.src} width={s.width} height={s.height} alt={s.alt[lang]} {...eager(i)} />
+                <Image {...imageProps(s, s.alt[lang], i)} />
               </button>
             ))}
           </div>
@@ -72,12 +77,8 @@ export function ProjectGallery({
                 {shots.map((s, i) => (
                   <Image
                     key={s.src}
-                    src={s.src}
-                    width={s.width}
-                    height={s.height}
-                    alt={i === active ? s.alt[lang] : ""}
+                    {...imageProps(s, i === active ? s.alt[lang] : "", i)}
                     className={i === active ? "is-active" : undefined}
-                    {...eager(i)}
                   />
                 ))}
               </span>
@@ -93,7 +94,7 @@ export function ProjectGallery({
                   aria-label={`${labels.show}: ${s.alt[lang]}`}
                   onClick={() => setActive(i)}
                 >
-                  <Image src={s.src} width={s.width} height={s.height} alt="" {...eager(i)} />
+                  <Image {...imageProps(s, "", i)} />
                 </button>
               ))}
             </div>
@@ -118,7 +119,7 @@ export function ProjectGallery({
       >
         {/* Keyed so each new screenshot remounts and fades in. */}
         {isOpen && (
-          <Image key={shot.src} src={shot.src} width={shot.width} height={shot.height} alt={shot.alt[lang]} />
+          <Image key={shot.src} {...imageProps(shot, shot.alt[lang])} />
         )}
         <div className="lightbox-bar">
           <button type="button" onClick={() => step(-1)} aria-label={labels.prev}>

@@ -1,4 +1,5 @@
 import type { Education } from "@/lib/profile";
+import { ResumeRow } from "./ResumeRow";
 import { Tags } from "./Tags";
 
 export function EducationList({
@@ -11,14 +12,15 @@ export function EducationList({
   return (
     <div className="rows">
       {entries.map((entry) => (
-        <article key={entry.title} className="row grid">
-          <p className="row-date">{entry.period}</p>
-          <div className="row-title">
-            <h3>{entry.title}</h3>
-            <p>{entry.school}, {entry.place}</p>
-          </div>
+        <ResumeRow
+          key={entry.title}
+          period={entry.period}
+          title={entry.title}
+          organization={entry.school}
+          place={entry.place}
+        >
           {courseworkLabel && (entry.summary || entry.coursework) && (
-            <div className="row-body">
+            <>
               {entry.summary && <p>{entry.summary}</p>}
               {entry.coursework && (
                 <>
@@ -26,9 +28,9 @@ export function EducationList({
                   <Tags items={entry.coursework} />
                 </>
               )}
-            </div>
+            </>
           )}
-        </article>
+        </ResumeRow>
       ))}
     </div>
   );
