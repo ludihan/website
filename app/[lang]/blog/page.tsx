@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/JsonLd";
+import { PageIntro } from "@/components/PageIntro";
 import { formatDate, getPosts } from "@/lib/content";
 import { getDictionary, hasLocale } from "@/lib/i18n";
 import { site } from "@/lib/profile";
@@ -43,12 +44,7 @@ export default async function BlogPage({ params }: PageProps<"/[lang]/blog">) {
   return (
     <>
       <JsonLd data={jsonLd} />
-      <header className="page-head">
-        <h1 className="display display-page">{dict.sections.blog}</h1>
-        <div className="grid">
-          <p className="statement">{dict.meta.blogDescription}</p>
-        </div>
-      </header>
+      <PageIntro title={dict.sections.blog} description={dict.meta.blogDescription} />
       <div className="section">
         {posts.length === 0 ? (
           <p className="post-empty">{dict.blog.empty}</p>

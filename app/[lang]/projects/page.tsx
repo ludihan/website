@@ -4,6 +4,7 @@ import { preconnect } from "react-dom";
 import { JsonLd } from "@/components/JsonLd";
 import { ProjectCard } from "@/components/ProjectCard";
 import { ProjectIndex } from "@/components/ProjectIndex";
+import { PageIntro } from "@/components/PageIntro";
 import { getDictionary, hasLocale } from "@/lib/i18n";
 import { projects } from "@/lib/projects";
 import { site } from "@/lib/profile";
@@ -59,12 +60,7 @@ export default async function ProjectsPage({ params }: PageProps<"/[lang]/projec
   return (
     <>
       <JsonLd data={jsonLd} />
-      <header className="page-head">
-        <h1 className="display display-page">{dict.sections.projects}</h1>
-        <div className="grid">
-          <p className="statement">{dict.projects.intro}</p>
-        </div>
-      </header>
+      <PageIntro title={dict.sections.projects} description={dict.projects.intro} />
       <nav aria-label={dict.projects.index} className="section">
         <ProjectIndex lang={lang} hrefBase="" />
       </nav>
