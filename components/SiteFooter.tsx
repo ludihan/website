@@ -10,7 +10,6 @@ export function SiteFooter({ lang }: { lang: Locale }) {
     <footer className="site-footer">
       <div className="grid footer-top">
         <p className="footer-label">{ui.contact}</p>
-        <p className="footer-text">{t.contactText}</p>
       </div>
       <p className="footer-email">
         <a href={`mailto:${site.email}`}>{site.email}</a>

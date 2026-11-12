@@ -52,7 +52,6 @@ type ProfileText = {
   skillsTitle: string;
   skillLabels: Record<SkillGroup, string>;
   contactTitle: string;
-  contactText: string;
   about: {
     title: string;
     summary: string;
@@ -138,8 +137,6 @@ export const profileText: Record<Locale, ProfileText> = {
       ai: "AI-assisted development",
     },
     contactTitle: "Let's talk",
-    contactText:
-      "I'm always happy to chat about new roles, projects or anything web, systems or gamedev related.",
     about: {
       title: "About me",
       summary:
@@ -245,8 +242,6 @@ export const profileText: Record<Locale, ProfileText> = {
       ai: "Desenvolvimento com IA",
     },
     contactTitle: "Vamos conversar",
-    contactText:
-      "Vou adorar conversar sobre novas oportunidades, projetos ou qualquer coisa de web, sistemas ou gamedev.",
     about: {
       title: "Sobre mim",
       summary:
