@@ -35,14 +35,16 @@ flush-left text and a single accent colour. Keep to this when changing or adding
   column 4. Text is flush left, ragged right; nothing is centred. Body text stays within 60ch.
 - **Labels.** Labels (meta, facts, dates, the footer label) are small, normal case, at 70% ink.
   No uppercase or letter-spaced captions.
-- **Hairlines, not boxes.** Ink rules open sections; 16% ink rules separate rows. No cards,
+- **Hairlines, not boxes.** A 2px ink rule opens each section, 1px ink rules open the page intro
+  and tables, and 16% ink rules separate rows. No cards,
   shadows, gradients or rounded corners (the current-page dot is the only round shape).
 - **Content as tables and indexes.** Projects are a numbered index; experience, education and
-  skills are rows of label and detail; sections are numbered from 01; screenshots are captioned
+  skills are rows of label and detail; sections are numbered from 01, the numerals set in blue
+  at the size and weight of the section title; screenshots are captioned
   figures ("Fig. 1"). Tech lists are plain comma-separated text, never chips.
 - **Typography details.** Curly quotes and apostrophes, `…` not `...`, tabular figures in number
   columns (not dates: Schibsted's tabular figures gap after "Oct."), balanced headings.
-- **Header.** The nav bar sticks to the top of the screen, on paper with a 16% ink hairline
+- **Header.** The nav links and language codes are lower case. The nav bar sticks to the top of the screen, on paper with a 16% ink hairline
   under it; on phones it is a single row (name left, links right) to keep it short.
 - **Mobile.** Every layout must work from 320px. Links are at least 44px tall on phones.
 - **Almost no motion.** Only responses to the pointer: the row hover fill, the email underline,
