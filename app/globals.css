@@ -1091,13 +1091,20 @@ body:has(dialog[open]) {
   opacity: 0.7;
 }
 
-.colophon-email {
+.colophon-contact {
   grid-column: 4 / 13;
+  display: grid;
+  gap: clamp(0.5rem, 1.5vw, 1rem);
+  margin: clamp(2.5rem, 6vw, 5rem) 0 clamp(2.5rem, 6vw, 5rem) -0.05em;
+  padding: 0;
+  list-style: none;
+}
+
+.colophon-email {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.75rem 1rem;
-  margin: clamp(2.5rem, 6vw, 5rem) 0 clamp(2.5rem, 6vw, 5rem) -0.05em;
   font-size: var(--t-5);
   font-weight: 700;
   letter-spacing: -0.05em;
