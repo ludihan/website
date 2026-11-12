@@ -512,6 +512,10 @@ p {
   margin-top: 0.75rem;
 }
 
+.row-grade {
+  color: var(--ink);
+}
+
 .row-label {
   color: var(--ink);
   font-size: var(--text-small);

@@ -35,6 +35,8 @@ export type Education = {
   title: string;
   period: string;
   place: string;
+  /** Shown in the detail column, not the title. */
+  grade?: string;
   summary?: string;
   coursework?: string[];
 };
@@ -113,7 +115,8 @@ export const profileText: Record<Locale, ProfileText> = {
       },
       {
         school: "University of Fortaleza (UNIFOR)",
-        title: "Bachelor's Degree in Computer Science (8.37/10.0)",
+        title: "Bachelor's Degree in Computer Science",
+        grade: "GPA 8.37/10.0",
         period: "Feb. 2022 – Dec. 2025",
         place: "Fortaleza, Brazil",
         coursework: ["Data Structures", "Databases", "Web Development", "Computer Graphics", "Mobile Development", "Functional Programming", "Object Oriented Programming", "Operating Systems", "Artificial Intelligence"],
@@ -218,7 +221,8 @@ export const profileText: Record<Locale, ProfileText> = {
       },
       {
         school: "Universidade de Fortaleza (UNIFOR)",
-        title: "Bacharelado em Ciência da Computação (8,37/10,0)",
+        title: "Bacharelado em Ciência da Computação",
+        grade: "Média 8,37/10,0",
         period: "fev. 2022 – dez. 2025",
         place: "Fortaleza, Brasil",
         coursework: ["Estruturas de Dados", "Bancos de Dados", "Desenvolvimento Web", "Computação Gráfica", "Desenvolvimento Mobile", "Programação Funcional", "Programação Orientada a Objetos", "Sistemas Operacionais", "Inteligência Artificial"],

@@ -19,10 +19,11 @@ export function EducationList({
           organization={entry.school}
           place={entry.place}
         >
-          {courseworkLabel && (entry.summary || entry.coursework) && (
+          {(entry.grade || (courseworkLabel && (entry.summary || entry.coursework))) && (
             <>
-              {entry.summary && <p>{entry.summary}</p>}
-              {entry.coursework && (
+              {entry.grade && <p className="row-grade">{entry.grade}</p>}
+              {courseworkLabel && entry.summary && <p>{entry.summary}</p>}
+              {courseworkLabel && entry.coursework && (
                 <>
                   <p className="row-label">{courseworkLabel}</p>
                   <Tags items={entry.coursework} />
