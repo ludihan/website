@@ -26,11 +26,15 @@ export function ProjectGallery({
   // `active` is the one on the stage, `index` the one in the preview.
   const [active, setActive] = useState(0);
   const [index, setIndex] = useState(0);
+  // The preview image only exists while the dialog is open. Left in the page, a lazy copy of
+  // the first screenshot makes Next.js report the eager one on the stage as a lazy LCP image.
+  const [isOpen, setIsOpen] = useState(false);
   const shot = shots[index];
   const tall = shots[0].height > shots[0].width;
 
   const open = (i: number) => {
     setIndex(i);
+    setIsOpen(true);
     dialog.current?.showModal();
   };
   const step = (delta: number) => setIndex((i) => (i + delta + shots.length) % shots.length);
@@ -107,10 +111,15 @@ export function ProjectGallery({
           if (e.key === "ArrowRight") step(1);
         }}
         // Leave the stage on whatever was last looked at.
-        onClose={() => !tall && setActive(index)}
+        onClose={() => {
+          setIsOpen(false);
+          if (!tall) setActive(index);
+        }}
       >
         {/* Keyed so each new screenshot remounts and fades in. */}
-        <Image key={shot.src} src={shot.src} width={shot.width} height={shot.height} alt={shot.alt[lang]} />
+        {isOpen && (
+          <Image key={shot.src} src={shot.src} width={shot.width} height={shot.height} alt={shot.alt[lang]} />
+        )}
         <div className="lightbox-bar">
           <button type="button" onClick={() => step(-1)} aria-label={labels.prev}>
             ‹
