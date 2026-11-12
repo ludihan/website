@@ -41,6 +41,8 @@ changing or adding UI.
   figures ("Fig. 1"). Tech lists are plain comma-separated text, never chips.
 - **Typography details.** Curly quotes and apostrophes, `…` not `...`, tabular figures for dates
   and numbers, balanced headings.
+- **Header.** The nav bar sticks to the top of the screen, on paper with a 16% ink hairline
+  under it; on phones it is a single row (name left, links right) to keep it short.
 - **Mobile.** Every layout must work from 320px. Links are at least 44px tall on phones.
 - **Almost no motion.** Only responses to the pointer: the row hover fill, the email underline,
   the screenshot cross-fade. No entrance or scroll animations, and respect reduced motion.

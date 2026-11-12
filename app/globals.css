@@ -45,6 +45,8 @@
 html {
   background: var(--paper);
   -webkit-text-size-adjust: 100%;
+  /* Jumps to an anchor land below the sticky header, not under it. */
+  scroll-padding-top: 5rem;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -170,9 +172,15 @@ p {
 
 /* ---------- Header ---------- */
 
+/* The header stays at the top of the screen while the page scrolls under it. */
 .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
   align-items: baseline;
-  padding: 1.5rem var(--edge);
+  padding: 1.25rem var(--edge);
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper);
   font-size: var(--text-small);
 }
 
@@ -1163,18 +1171,17 @@ div[data-lang] {
     grid-column: 1 / -1 !important;
   }
 
+  /* On phones the header is one row, so the sticky bar stays short: name left, links right. */
   .site-header {
-    row-gap: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
   }
 
   .brand {
-    grid-column: 1 / 7 !important;
+    margin-right: auto;
   }
 
-  .lang-switcher {
-    grid-column: 7 / 13 !important;
-    grid-row: 1;
-  }
 
   .header-role {
     display: none;
@@ -1193,7 +1200,11 @@ div[data-lang] {
   }
 
   .site-header {
-    padding-block: 0.5rem;
+    padding-block: 0.25rem;
+  }
+
+  html {
+    scroll-padding-top: 4rem;
   }
 
   .meta {
