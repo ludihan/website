@@ -100,7 +100,7 @@ export const projects: Project[] = [
     text: {
       en: {
         tagline: "A small IRC-style chat server",
-        period: "2026 – present",
+        period: "Aug. 2026 – present",
         description:
           "A chat in the spirit of IRC: pick a nick, hop between channels and talk. Built with Phoenix LiveView and SQLite, so there is no database server to run.",
         features: [
@@ -112,7 +112,7 @@ export const projects: Project[] = [
       },
       pt: {
         tagline: "Um pequeno servidor de chat estilo IRC",
-        period: "2026 – atual",
+        period: "ago. 2026 – atual",
         description:
           "Um chat no espírito do IRC: escolha um nick, navegue entre canais e converse. Feito com Phoenix LiveView e SQLite, sem precisar de servidor de banco de dados.",
         features: [
