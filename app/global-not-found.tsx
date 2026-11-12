@@ -37,9 +37,9 @@ export default function GlobalNotFound() {
             const t = getDictionary(l).notFound;
             return (
               <section key={l} data-lang={l} lang={l} className="page-head not-found">
-                <h1 className="display">404</h1>
-                <div className="grid hero-body">
-                  <p className="meta-title">{t.title}</p>
+                <h1 className="page-title">404</h1>
+                <div className="page-lead grid">
+                  <p className="facts-title">{t.title}</p>
                   <div className="statement">
                     <p>{t.lead}</p>
                     <ul className="inline-links">

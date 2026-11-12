@@ -44,7 +44,9 @@ export default async function BlogPage({ params }: PageProps<"/[lang]/blog">) {
   return (
     <>
       <JsonLd data={jsonLd} />
-      <PageIntro title={dict.sections.blog} description={dict.meta.blogDescription} />
+      <PageIntro title={dict.sections.blog}>
+        <p className="statement">{dict.meta.blogDescription}</p>
+      </PageIntro>
       <div className="section">
         {posts.length === 0 ? (
           <p className="post-empty">{dict.blog.empty}</p>

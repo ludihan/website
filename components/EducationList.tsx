@@ -11,28 +11,31 @@ export function EducationList({
 }) {
   return (
     <div className="rows">
-      {entries.map((entry) => (
-        <ResumeRow
-          key={entry.title}
-          period={entry.period}
-          title={entry.title}
-          organization={entry.school}
-          place={entry.place}
-        >
-          {(entry.grade || (courseworkLabel && (entry.summary || entry.coursework))) && (
-            <>
-              {entry.grade && <p className="row-grade">{entry.grade}</p>}
-              {courseworkLabel && entry.summary && <p>{entry.summary}</p>}
-              {courseworkLabel && entry.coursework && (
-                <>
-                  <p className="row-label">{courseworkLabel}</p>
-                  <Tags items={entry.coursework} />
-                </>
-              )}
-            </>
-          )}
-        </ResumeRow>
-      ))}
+      {entries.map((entry) => {
+        const detail = entry.grade || (courseworkLabel && (entry.summary || entry.coursework));
+        return (
+          <ResumeRow
+            key={entry.title}
+            period={entry.period}
+            title={entry.title}
+            organization={entry.school}
+            place={entry.place}
+          >
+            {detail && (
+              <>
+                {entry.grade && <p className="row-strong">{entry.grade}</p>}
+                {courseworkLabel && entry.summary && <p>{entry.summary}</p>}
+                {courseworkLabel && entry.coursework && (
+                  <>
+                    <p className="row-label">{courseworkLabel}</p>
+                    <Tags items={entry.coursework} />
+                  </>
+                )}
+              </>
+            )}
+          </ResumeRow>
+        );
+      })}
     </div>
   );
 }

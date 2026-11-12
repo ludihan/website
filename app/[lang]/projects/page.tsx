@@ -60,9 +60,11 @@ export default async function ProjectsPage({ params }: PageProps<"/[lang]/projec
     <>
       <JsonLd data={jsonLd} />
       <PageIntro title={dict.sections.projects} />
-      {projects.map((p, i) => (
-        <ProjectCard key={p.id} project={p} n={i + 1} lang={lang} dict={dict.projects} priority={i === 0} />
-      ))}
+      <div className="projects">
+        {projects.map((p, i) => (
+          <ProjectCard key={p.id} project={p} n={i + 1} lang={lang} dict={dict.projects} priority={i === 0} />
+        ))}
+      </div>
     </>
   );
 }

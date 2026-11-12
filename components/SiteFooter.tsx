@@ -3,24 +3,24 @@ import { getDictionary, type Locale } from "@/lib/i18n";
 import { profileText, site } from "@/lib/profile";
 import { CopyEmailButton } from "./CopyEmailButton";
 
-// Every page ends on the same full-bleed blue contact block, with the address set large.
+// The colophon: a black field closing every page, with the address set as large as the name.
 export function SiteFooter({ lang }: { lang: Locale }) {
   const t = profileText[lang];
   const ui = getDictionary(lang).ui;
   return (
-    <footer className="site-footer">
-      <div className="grid footer-top">
-        <p className="footer-label">{ui.contact}</p>
+    <footer className="colophon">
+      <div className="grid colophon-main">
+        <p className="colophon-label">{ui.contact}</p>
+        <p className="colophon-email">
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+          <CopyEmailButton email={site.email} label={t.cta.copyEmail} copiedLabel={t.cta.emailCopied} />
+        </p>
       </div>
-      <p className="footer-email">
-        <a href={`mailto:${site.email}`}>{site.email}</a>
-        <CopyEmailButton email={site.email} label={t.cta.copyEmail} copiedLabel={t.cta.emailCopied} />
-      </p>
-      <div className="grid footer-bottom">
-        <p className="footer-copy">
+      <div className="grid colophon-foot">
+        <p className="colophon-copy">
           © {new Date().getFullYear()} {site.name}
         </p>
-        <ul className="footer-links">
+        <ul className="colophon-links">
           <li>
             <a href={site.linkedin} target="_blank" rel="me noopener noreferrer">
               LinkedIn
@@ -37,7 +37,7 @@ export function SiteFooter({ lang }: { lang: Locale }) {
             </li>
           )}
         </ul>
-        <p className="footer-top-link">
+        <p className="colophon-top">
           <a href="#content">{ui.top} ↑</a>
         </p>
       </div>

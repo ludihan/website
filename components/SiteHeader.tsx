@@ -6,28 +6,33 @@ import { LanguageSwitcher } from "./LanguageSwitcher";
 import { NavLinks } from "./NavLinks";
 
 /**
+ * The masthead: one row of the page grid, set like the information line at the top of a Swiss
+ * poster. Name and role in the first field, the numbered sections in the middle, the language
+ * at the end. It stays on screen while the page scrolls.
+ *
  * `unknownPath`: the page is built once for many URLs (the 404), so nothing may depend on
  * the path. No link is marked current, and the language switcher goes to the home pages.
  */
 export function SiteHeader({ lang, unknownPath = false }: { lang: Locale; unknownPath?: boolean }) {
   const dict = getDictionary(lang);
+  const t = profileText[lang];
   return (
     <>
       <a href="#content" className="skip-link">
         {dict.skip}
       </a>
-      <header className="site-header grid">
-        <Link href={`/${lang}`} className="brand">
-          Lucca Han
+      <header className="masthead grid">
+        <Link href={`/${lang}`} className="masthead-name">
+          <strong>Lucca Han</strong>
+          <span>{t.role}</span>
         </Link>
-        <p className="header-role">{profileText[lang].role}</p>
-        <nav className="header-nav" aria-label={dict.nav.label}>
+        <nav className="masthead-nav" aria-label={dict.nav.label}>
           <NavLinks
             links={[
               { href: `/${lang}/projects`, label: dict.nav.projects },
+              { href: `/${lang}/about`, label: dict.nav.about },
               // The blog stays out of the menu until it has a post to show.
               ...(getSlugs(lang).length > 0 ? [{ href: `/${lang}/blog`, label: dict.nav.blog }] : []),
-              { href: `/${lang}/about`, label: dict.nav.about },
             ]}
             highlight={!unknownPath}
           />

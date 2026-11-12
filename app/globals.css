@@ -1,50 +1,47 @@
 @import "tailwindcss";
 
 /*
- * Swiss International Style: Inter, a Helvetica-line neo-grotesk, in strong weights, a 12-column grid on an 8px
- * base, warm paper and near-black ink with hierarchy by opacity, and one accent, ultramarine.
- * Light theme only.
+ * Swiss International Style, after Müller-Brockmann, Ruder and Hofmann.
+ *
+ * - One neo-grotesk (Inter, in the Helvetica line) in two weights, regular and bold.
+ * - A 12-column grid, edge to edge, divided into four fields of three columns. Labels sit in
+ *   the first field; content starts at column 4. Text is flush left, ragged right.
+ * - A modular type scale with a ratio of 1.5, so every size relates to the others.
+ * - Warm paper, near-black ink and one ultramarine, used as solid fields and as signal.
+ * - Rules instead of boxes: a heavy rule opens a section, hairlines divide its rows.
  */
 :root {
-  --paper: #f1efe9; /* warm paper */
-  --paper-2: #e6e3db;
+  --paper: #f1efe9;
+  --paper-2: #e4e1d8;
   --ink: #0f0f0e;
-  /* Hierarchy is the ink at lower opacity, never another hue. */
-  --ink-2: rgb(15 15 14 / 0.85); /* running text */
-  --soft: rgb(15 15 14 / 0.7); /* labels, dates, captions */
-  --faint: rgb(15 15 14 / 0.4); /* separators */
-  --rule: rgb(15 15 14 / 0.16); /* hairlines between rows */
-  --accent: #1c3fd1; /* ultramarine, from the LinkedIn banner */
-  --accent-text: var(--accent);
-  --on-accent: #f1efe9;
-  /* 8px base. The gutter is 16px on phones, 32px from tablets up. */
-  --gutter: 1rem;
-  /* The grid runs edge to edge: the page margin is one gutter, at every width. */
-  --edge: var(--gutter);
-  /*
-   * The type scale. Apart from the display sizes, every size on the site is one of these.
-   */
-  --text-small: 0.875rem; /* dates, captions, tech lists */
-  --text-body: 1rem;
-  --text-sub: 1.25rem; /* row and item titles */
-  --text-heading: 1.5rem; /* names in an index */
-  --text-title: clamp(1.5rem, 1.1rem + 1.2vw, 1.875rem); /* section titles and the lead statement */
-  --text-headline: clamp(1.875rem, 1.4rem + 1.5vw, 2.5rem); /* project and post titles */
-  --sans: var(--font-sans), "Helvetica Neue", Arial, sans-serif;
+  --ink-2: rgb(15 15 14 / 0.86); /* running text */
+  --soft: rgb(15 15 14 / 0.62); /* labels, captions */
+  --faint: rgb(15 15 14 / 0.35);
+  --rule: rgb(15 15 14 / 0.18);
+  --blue: #1c3fd1;
+
+  --margin: clamp(1rem, 2.2vw, 2rem);
+  --gutter: clamp(1rem, 2.2vw, 2rem);
+
+  /* Type scale, ratio 1.5: 13 · 16 · 24 · 36 · 54 · 81. */
+  --t-cap: 0.8125rem;
+  --t-1: 1rem;
+  --t-2: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+  --t-3: clamp(1.625rem, 1.2rem + 1.4vw, 2.25rem);
+  --t-4: clamp(2.125rem, 1.4rem + 2.6vw, 3.375rem);
+  --t-5: clamp(2.75rem, 1.4rem + 4.6vw, 5.0625rem);
+
+  --sans: var(--font-sans), "Helvetica Neue", Helvetica, Arial, sans-serif;
   --mono: var(--font-mono), ui-monospace, monospace;
   color-scheme: light;
 }
 
-@media (min-width: 768px) {
-  :root {
-    --gutter: 2rem;
-  }
-}
+/* ---------- Base ---------- */
 
 html {
   background: var(--paper);
   -webkit-text-size-adjust: 100%;
-  /* Jumps to an anchor land below the sticky header, not under it. */
+  /* Anchor jumps land below the sticky masthead. */
   scroll-padding-top: 5rem;
 }
 
@@ -62,16 +59,16 @@ body {
   background: var(--paper);
   color: var(--ink-2);
   font-family: var(--sans);
-  font-size: var(--text-body);
-  line-height: 1.625;
-  font-feature-settings: "kern";
+  font-size: var(--t-1);
+  line-height: 1.5;
   font-optical-sizing: auto;
+  font-feature-settings: "kern";
   -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background: var(--accent);
-  color: var(--on-accent);
+  background: var(--blue);
+  color: var(--paper);
 }
 
 a {
@@ -80,7 +77,7 @@ a {
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent-text);
+  outline: 2px solid var(--blue);
   outline-offset: 2px;
 }
 
@@ -95,11 +92,15 @@ h3,
 h4 {
   margin: 0;
   color: var(--ink);
-  font-weight: 500;
+  font-weight: 700;
   text-wrap: balance;
 }
 
-p {
+p,
+dl,
+dd,
+ol,
+ul {
   margin: 0;
 }
 
@@ -119,10 +120,10 @@ p {
   position: absolute;
   top: 0.5rem;
   left: 0.5rem;
-  z-index: 10;
+  z-index: 20;
   padding: 0.4rem 0.8rem;
-  background: var(--accent);
-  color: var(--on-accent);
+  background: var(--blue);
+  color: var(--paper);
   transform: translateY(-200%);
 }
 
@@ -131,7 +132,7 @@ p {
 }
 
 .text-link {
-  color: var(--accent-text);
+  color: var(--blue);
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.18em;
@@ -139,6 +140,15 @@ p {
 
 .text-link:hover {
   color: var(--ink);
+}
+
+/* Figures line up in columns of dates and numbers. */
+.row-period,
+.work-meta,
+.post-date,
+.facts dd,
+.project-features li::before {
+  font-variant-numeric: tabular-nums;
 }
 
 /* ---------- Grid ---------- */
@@ -152,58 +162,52 @@ p {
 .page {
   flex: 1;
   width: 100%;
-  padding: 0 var(--edge);
+  padding: 0 var(--margin);
 }
 
 .section {
-  margin-top: clamp(4rem, 8vw, 5rem);
+  margin-top: clamp(4.5rem, 9vw, 8rem);
 }
 
-/* Figures line up in columns of dates and numbers. */
-.index-no,
-.index-period,
-.section-no,
-.row-date,
-.post-date,
-.project-facts dd,
-.project-features li::before {
-  font-variant-numeric: tabular-nums;
-}
+/* ---------- Masthead ---------- */
 
-/* ---------- Header ---------- */
-
-/* The header stays at the top of the screen while the page scrolls under it. */
-.site-header {
+.masthead {
   position: sticky;
   top: 0;
-  z-index: 5;
-  align-items: baseline;
-  padding: 1.25rem var(--edge);
-  border-bottom: 1px solid var(--rule);
+  z-index: 10;
+  align-items: start;
+  padding: 0.9rem var(--margin);
+  border-bottom: 1px solid var(--ink);
   background: var(--paper);
-  font-size: var(--text-small);
+  font-size: var(--t-cap);
+  line-height: 1.35;
 }
 
-.brand {
+.masthead-name {
   grid-column: 1 / 4;
-  color: var(--ink);
-  font-weight: 700;
-}
-
-.header-role {
-  grid-column: 4 / 7;
-  color: var(--soft);
-}
-
-.header-nav {
-  grid-column: 7 / 11;
   display: flex;
-  gap: 1.5rem;
+  flex-direction: column;
+  color: var(--ink);
 }
 
-/* The header is set in lower case, as in the Swiss and Bauhaus tradition. */
-.nav-link {
+.masthead-name span {
   color: var(--soft);
+}
+
+.masthead-nav {
+  grid-column: 4 / 10;
+  display: flex;
+  gap: 2.5rem;
+}
+
+.nav-link {
+  display: flex;
+  flex-direction: column;
+  color: var(--soft);
+}
+
+.nav-no {
+  color: var(--faint);
 }
 
 .nav-link:hover,
@@ -211,20 +215,12 @@ p {
   color: var(--ink);
 }
 
-.nav-link[aria-current="page"]::before {
-  content: "";
-  display: inline-block;
-  width: 0.45em;
-  height: 0.45em;
-  margin-right: 0.4em;
-  vertical-align: 0.12em;
-  border-radius: 50%;
-  background: var(--accent-text);
+.nav-link[aria-current="page"] .nav-no {
+  color: var(--blue);
 }
 
 .lang-switcher {
-  grid-column: 11 / 13;
-  justify-self: end;
+  grid-column: 10 / 13;
   display: flex;
 }
 
@@ -243,66 +239,106 @@ p {
   color: var(--ink);
 }
 
-/* ---------- Display type ---------- */
+/* ---------- Cover: the home page poster ---------- */
 
-/* The name: the one very large thing on the site, bold and tightly spaced, against small text. */
-.display {
-  margin: clamp(2rem, 5vw, 3rem) 0 0 -0.05em;
-  color: var(--ink);
-  font-size: clamp(3.5rem, 1.5rem + 9vw, 9rem);
-  font-weight: 700;
-  letter-spacing: -0.055em;
-  line-height: 0.9;
+.cover {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: max(34rem, calc(100svh - 3.6rem));
+  margin-inline: calc(-1 * var(--margin));
+  padding: 1rem var(--margin) clamp(1.5rem, 3vw, 2.5rem);
+  background: var(--blue);
+  color: var(--paper);
 }
 
-.display-page {
-  font-size: clamp(2.5rem, 1.75rem + 4vw, 4.5rem);
+.cover-info {
+  font-size: var(--t-cap);
+  line-height: 1.35;
 }
 
-.hero-body {
-  margin-top: clamp(1.5rem, 3vw, 2rem);
+.cover-info > div {
+  grid-column: span 3;
+}
+
+.cover-info dt {
+  opacity: 0.7;
+}
+
+.cover-main {
+  align-items: end;
+  margin-top: 3rem;
+}
+
+.cover-name {
+  grid-column: 1 / 8;
+  margin-left: -0.06em;
+  color: var(--paper);
+  font-size: clamp(5rem, 1rem + 14.5vw, 15rem);
+  letter-spacing: -0.065em;
+  line-height: 0.8;
+}
+
+.cover-name span {
+  display: block;
+}
+
+.cover-lead {
+  grid-column: 8 / 13;
+  max-width: 30em;
+  font-size: var(--t-2);
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+  text-wrap: pretty;
+}
+
+/* ---------- Page heads ---------- */
+
+.page-title {
+  /* Room below the baseline so descenders (the j in "Projects") clear the rule beneath. */
+  padding-bottom: 0.12em;
+  margin: clamp(2rem, 5vw, 4rem) 0 0 -0.055em;
+  font-size: clamp(4rem, 1rem + 11vw, 12rem);
+  letter-spacing: -0.06em;
+  line-height: 0.85;
+}
+
+.page-lead {
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
   padding-top: 1rem;
   border-top: 1px solid var(--ink);
 }
 
-.page-head .grid:not(.hero-body) {
-  margin-top: clamp(1.5rem, 3vw, 2rem);
-  padding-top: 1rem;
-  border-top: 1px solid var(--ink);
-}
-
-.meta {
+.facts {
   grid-column: 1 / 4;
   display: grid;
-  gap: 0.9rem;
+  gap: 1rem;
   align-content: start;
-  margin: 0;
-  font-size: var(--text-small);
+  font-size: var(--t-cap);
+  line-height: 1.4;
 }
 
-.meta dt,
-.meta-title {
+.facts dt,
+.facts-title {
   color: var(--soft);
-  font-size: var(--text-small);
 }
 
-.meta dd {
-  margin: 0;
+.facts dd {
   color: var(--ink);
 }
 
-.meta-title {
+.facts-title {
   grid-column: 1 / 4;
+  font-size: var(--t-cap);
 }
 
 .statement {
-  grid-column: 4 / 12;
+  grid-column: 4 / 13;
+  max-width: 26em;
   color: var(--ink);
-  max-width: 32em;
-  font-size: var(--text-title);
-  font-weight: 400;
+  font-size: var(--t-3);
   letter-spacing: -0.025em;
-  line-height: 1.2;
+  line-height: 1.15;
   text-wrap: pretty;
 }
 
@@ -311,145 +347,86 @@ p {
   flex-wrap: wrap;
   gap: 0.25rem 1.5em;
   margin-top: 1.5rem;
-  font-size: var(--text-body);
+  padding: 0;
+  font-size: var(--t-1);
   letter-spacing: 0;
+  list-style: none;
 }
 
 .inline-links a {
-  color: var(--accent-text);
+  color: var(--blue);
 }
 
 .inline-links a:hover {
   color: var(--ink);
 }
 
-/* ---------- Section openers ---------- */
+/* ---------- Section heads ---------- */
 
-/* A section opens on a heavier rule than the hairlines inside it. */
-.section-head {
+.sec-head {
   align-items: baseline;
-  padding-top: 1rem;
-  border-top: 2px solid var(--ink);
+  padding-top: 0.6rem;
+  border-top: 3px solid var(--ink);
 }
 
-/* Section numbers are set like the titles beside them: the numerals are part of the layout. */
-.section-no {
-  grid-column: 1 / 4;
-  color: var(--accent-text);
-  font-size: var(--text-title);
+.sec-no,
+.sec-title {
+  font-size: var(--t-4);
   font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-}
-
-/* Over a project name the number steps back down to a label. */
-.project-head .section-no {
-  font-size: var(--text-small);
-  font-weight: 500;
-  letter-spacing: 0;
-}
-
-.section-head h2 {
-  grid-column: 4 / 10;
-  font-size: var(--text-title);
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-}
-
-.section-more {
-  grid-column: 10 / 13;
-  justify-self: end;
-  color: var(--accent-text);
-  font-size: var(--text-small);
-}
-
-.section-more:hover {
-  color: var(--ink);
-}
-
-/* ---------- Project index ---------- */
-
-.index {
-  margin-top: 1.5rem;
-  border-bottom: 1px solid var(--ink);
-}
-
-.index-row {
-  align-items: baseline;
-  padding: 1rem 0;
-  border-top: 1px solid var(--rule);
-  color: var(--ink);
-  transition:
-    background 0.12s,
-    color 0.12s;
-}
-
-.index li:first-child .index-row {
-  border-top-color: var(--ink);
-}
-
-.index-row:hover,
-.index-row:focus-visible {
-  outline: none;
-  background: var(--accent);
-  color: var(--on-accent);
-}
-
-.index-no {
-  grid-column: 1 / 2;
-  padding-left: 0.5rem;
-  font-size: var(--text-small);
-}
-
-.index-name {
-  grid-column: 2 / 4;
-  font-size: var(--text-heading);
-  font-weight: 700;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.045em;
   line-height: 1;
 }
 
-.index-desc {
-  grid-column: 4 / 8;
-  font-size: var(--text-body);
+.sec-no {
+  grid-column: 1 / 4;
+  color: var(--blue);
+  font-variant-numeric: tabular-nums;
 }
 
-.index-stack {
-  grid-column: 8 / 11;
-  font-size: var(--text-small);
-  opacity: 0.7;
+.sec-title {
+  grid-column: 4 / 10;
 }
 
-.index-period {
-  grid-column: 11 / 13;
-  justify-self: end;
-  padding-right: 0.5rem;
-  font-size: var(--text-small);
+.sec-more {
+  grid-column: 10 / 13;
+  justify-self: start;
+  color: var(--blue);
+  font-size: var(--t-1);
 }
 
-/* ---------- Figures ---------- */
-
-.figures {
-  row-gap: 1.5rem;
-  margin-top: 1.5rem;
+.sec-more:hover {
+  color: var(--ink);
 }
 
-.figure {
+/* ---------- Work: the modular field on the home page ---------- */
+
+.work {
+  row-gap: 3rem;
+  margin-top: 2rem;
+  padding: 0;
+  list-style: none;
+}
+
+.work-item {
   grid-column: span 4;
-  margin: 0;
 }
 
-.figure-frame {
+.work-link {
+  display: flex;
+  flex-direction: column;
+  color: var(--ink);
+}
+
+/* Every figure is the same crop: the top of the screenshot, enlarged to be legible. */
+.work-fig {
   position: relative;
   display: block;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   background: var(--paper-2);
 }
 
-/* A hairline over the image edge, so light screenshots keep their outline. */
-.figure-frame::after {
+.work-fig::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -457,46 +434,64 @@ p {
   pointer-events: none;
 }
 
-/*
- * Every figure is the same kind of crop: the top-left corner of the screenshot, enlarged until
- * the interface is legible at thumbnail size. The whole screenshot is on the projects page.
- */
-.figure-frame img {
+.work-fig img {
   display: block;
-  width: 170%;
+  width: 175%;
   max-width: none;
-  transform-origin: top left;
-  transition: transform 0.5s cubic-bezier(0.2, 0, 0, 1);
 }
 
-/* A phone screenshot is already narrow: its top fills the frame at full width. */
-.figure-frame.is-tall img {
-  width: 100%;
+/* A phone screen stands upright in the frame, its top inset, its foot running off the edge. */
+.work-fig.is-tall {
+  display: flex;
+  justify-content: center;
+  padding-top: 7%;
 }
 
-.figure-frame:hover img {
-  transform: scale(1.025);
+.work-fig.is-tall img {
+  width: 44%;
+  outline: 1px solid var(--rule);
 }
 
-.figure figcaption {
-  margin-top: 0.6rem;
+.work-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.75rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--ink);
+  font-size: var(--t-cap);
+}
+
+.work-name {
+  margin-top: 1.25rem;
+  font-size: var(--t-3);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.work-tagline {
+  margin-top: 0.4rem;
+  color: var(--ink-2);
+}
+
+.work-stack {
+  margin-top: 0.25rem;
   color: var(--soft);
-  font-size: var(--text-small);
+  font-size: var(--t-cap);
 }
 
-.figure figcaption span {
-  color: var(--ink);
-  font-weight: 600;
+.work-link:hover .work-name {
+  color: var(--blue);
 }
 
-/* ---------- Rows: experience & education ---------- */
+/* ---------- Rows: experience, education, skills ---------- */
 
 .rows {
   margin-top: 1.5rem;
 }
 
 .row {
-  padding: 1rem 0;
+  padding: 1.25rem 0;
   border-top: 1px solid var(--rule);
 }
 
@@ -504,10 +499,9 @@ p {
   border-top-color: var(--ink);
 }
 
-.row-date {
+.row-period {
   grid-column: 1 / 4;
-  color: var(--soft);
-  font-size: var(--text-small);
+  color: var(--ink);
 }
 
 .row-title {
@@ -515,79 +509,78 @@ p {
 }
 
 .row-title h3 {
-  font-size: var(--text-sub);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.25;
+  font-size: var(--t-2);
+  letter-spacing: -0.025em;
+  line-height: 1.2;
 }
 
 .row-title p {
-  margin-top: 0.2rem;
+  margin-top: 0.25rem;
   color: var(--soft);
 }
 
-.row-body {
+.row-detail {
   grid-column: 8 / 13;
   max-width: 60ch;
   color: var(--ink-2);
 }
 
-.row-body p + * {
-  margin-top: 0.75rem;
+.row-detail > * + * {
+  margin-top: 0.6rem;
 }
 
-.row-grade {
-  color: var(--ink);
+.row-detail .tags {
+  color: var(--soft);
+  font-size: var(--t-cap);
 }
 
 .row-label {
-  color: var(--soft);
-  font-size: var(--text-small);
-  font-weight: 500;
+  color: var(--ink);
+  font-size: var(--t-cap);
+  font-weight: 700;
 }
 
 .row-label + .tags {
-  margin-top: 0.3rem;
+  margin-top: 0.25rem;
 }
 
-/* Tags: an inline, comma-separated line. */
+.row-strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.skill-row {
+  align-items: baseline;
+  padding: 0.9rem 0;
+}
+
+.skill-row h3 {
+  grid-column: 1 / 4;
+  font-size: var(--t-1);
+}
+
+.skill-row .tags {
+  grid-column: 4 / 13;
+  color: var(--ink);
+}
+
+/* Tags: plain, comma-separated text. */
 .tags {
   display: flex;
   flex-wrap: wrap;
-  margin: 0;
-  color: var(--soft);
-  font-size: var(--text-small);
+  padding: 0;
+  list-style: none;
 }
 
 .tags li:not(:last-child)::after {
   content: ",\00a0";
 }
 
-/* ---------- Skills: one row per group ---------- */
-
-.skill-row {
-  align-items: baseline;
-  padding: 1rem 0;
-}
-
-.skill-row h3 {
-  grid-column: 1 / 4;
-  color: var(--ink);
-  font-size: var(--text-small);
-  font-weight: 600;
-}
-
-.skill-row .tags {
-  grid-column: 4 / 13;
-  color: var(--ink);
-  font-size: var(--text-body);
-}
-
 /* ---------- About: focus areas ---------- */
 
 .focus {
-  row-gap: 1.5rem;
-  margin-top: 1rem;
+  row-gap: 2rem;
+  margin-top: 2rem;
 }
 
 .focus-item {
@@ -598,113 +591,127 @@ p {
 
 .focus-no {
   display: block;
-  margin-bottom: 0.5rem;
-  color: var(--soft);
-  font-size: var(--text-small);
-}
-
-.focus-item h3 {
-  font-size: var(--text-sub);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-}
-
-.focus-item p {
-  max-width: 60ch;
-  margin: 0.5rem 0 1rem;
-}
-
-/* ---------- Projects page ---------- */
-
-/* Each project is a spread: media on columns 1–6, text on 7–12. */
-.project {
-  align-items: start;
-  padding-top: 0.75rem;
-  border-top: 1px solid var(--ink);
-}
-
-/* With no intro, the first project's rule sits under the page title like any other page's. */
-.page-head + .project {
-  margin-top: clamp(1rem, 2vw, 1.5rem);
-}
-
-.project-media {
-  grid-column: 1 / 7;
-}
-
-.project-info {
-  grid-column: 7 / 13;
-}
-
-.project-head h2 {
-  margin-top: 0.5rem;
-  font-size: var(--text-headline);
+  color: var(--blue);
+  font-size: var(--t-2);
   font-weight: 700;
-  letter-spacing: -0.045em;
   line-height: 1;
 }
 
+.focus-item h3 {
+  margin-top: 1.5rem;
+  font-size: var(--t-2);
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.focus-item p {
+  margin: 0.6rem 0 1rem;
+}
+
+.focus-item .tags {
+  color: var(--soft);
+  font-size: var(--t-cap);
+}
+
+/* ---------- Projects ---------- */
+
+.project {
+  margin-top: clamp(4.5rem, 9vw, 8rem);
+  padding-top: 0.75rem;
+  border-top: 3px solid var(--ink);
+}
+
+.page-head + .projects .project:first-child {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+.project-side {
+  grid-column: 1 / 4;
+}
+
+.project-no {
+  display: block;
+  margin-left: -0.05em;
+  color: var(--blue);
+  font-size: clamp(4rem, 1.5rem + 7vw, 9rem);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.06em;
+  line-height: 0.8;
+}
+
+.project-side .facts {
+  margin-top: 2rem;
+}
+
+.project-main {
+  grid-column: 4 / 13;
+}
+
+.project-head h2 {
+  margin-left: -0.04em;
+  font-size: var(--t-5);
+  letter-spacing: -0.055em;
+  line-height: 0.9;
+}
+
 .project-head p {
-  margin-top: 0.35rem;
+  margin-top: 0.6rem;
   color: var(--ink);
-  font-size: var(--text-body);
+  font-size: var(--t-2);
+  letter-spacing: -0.015em;
+}
+
+.project-media {
+  margin-top: 2rem;
+}
+
+.project-text {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  row-gap: 1.5rem;
+  margin-top: 2rem;
 }
 
 .project-desc {
+  grid-column: 1 / 5;
   max-width: 60ch;
-  margin-top: 1rem;
-  color: var(--ink-2);
-  font-size: var(--text-body);
+  color: var(--ink);
+  font-size: var(--t-2);
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+}
+
+.project-text > div {
+  grid-column: 5 / 10;
 }
 
 .project-features {
-  margin-top: 1rem;
+  padding: 0;
+  list-style: none;
   counter-reset: feature;
 }
 
 .project-features li {
   display: grid;
-  grid-template-columns: 1.75rem minmax(0, 1fr);
-  padding: 0.35rem 0;
+  grid-template-columns: 2.25rem minmax(0, 1fr);
+  padding: 0.55rem 0;
   border-top: 1px solid var(--rule);
-  font-size: var(--text-small);
-  line-height: 1.45;
   counter-increment: feature;
+}
+
+.project-features li:first-child {
+  border-top-color: var(--ink);
 }
 
 .project-features li::before {
   content: counter(feature, decimal-leading-zero);
-  color: var(--soft);
+  color: var(--blue);
+  font-weight: 700;
 }
 
-.project-facts {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.6rem var(--gutter);
-  margin: 1rem 0 0;
-  padding-top: 0.75rem;
-  border-top: 1px solid var(--ink);
-  font-size: var(--text-small);
-}
-
-.project-facts-wide {
-  grid-column: 1 / -1;
-}
-
-.project-facts dt {
-  color: var(--soft);
-  font-size: var(--text-small);
-}
-
-.project-facts dd {
-  margin: 0.1rem 0 0;
-  color: var(--ink);
-}
-
-.project-facts .tags {
-  color: var(--ink);
-  font-size: inherit;
-}
+/* ---------- Gallery ---------- */
 
 .showcase .stage {
   display: block;
@@ -716,14 +723,15 @@ p {
 }
 
 .window {
+  position: relative;
   display: block;
   overflow: hidden;
   background: var(--paper-2);
-  position: relative;
 }
 
-/* A hairline over the image edge: light screenshots would otherwise dissolve into the paper. */
-.window::after {
+/* A hairline over the image edge, so light screenshots keep their outline. */
+.window::after,
+.showcase.is-tall .stage::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -749,30 +757,30 @@ p {
 
 .filmstrip {
   display: flex;
-  gap: var(--gutter);
+  gap: 0.75rem;
   margin-top: 0.75rem;
 }
 
 .filmstrip button {
-  width: 6rem;
+  width: 5.5rem;
   padding: 0;
   overflow: hidden;
   border: 0;
   outline: 1px solid var(--rule);
   outline-offset: -1px;
   background: var(--paper-2);
-  opacity: 0.6;
+  opacity: 0.55;
   cursor: pointer;
   transition: opacity 0.15s;
 }
 
 .filmstrip button:hover {
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 .filmstrip button[aria-pressed="true"] {
   opacity: 1;
-  box-shadow: 0 2px 0 var(--accent-text);
+  box-shadow: 0 3px 0 var(--blue);
 }
 
 .filmstrip img {
@@ -783,28 +791,16 @@ p {
   object-position: top left;
 }
 
-/*
- * Phone screenshots: every screen shown whole, side by side on a paper-2 stage. The stage is
- * as tall as a wide screenshot plus its filmstrip, so all three projects take the same space.
- */
+/* Phone screenshots: each screen whole, side by side on a paper-2 stage. */
 .showcase.is-tall .stage {
   position: relative;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  aspect-ratio: 4 / 3;
-  padding: 1.5rem 0;
+  aspect-ratio: 16 / 9;
+  padding: 1.75rem 0;
   background: var(--paper-2);
   cursor: default;
-}
-
-/* The same hairline edge as the wide screenshots. */
-.showcase.is-tall .stage::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border: 1px solid var(--rule);
-  pointer-events: none;
 }
 
 .device {
@@ -845,7 +841,7 @@ body:has(dialog[open]) {
 }
 
 .lightbox::backdrop {
-  background: rgb(15 15 14 / 0.88);
+  background: rgb(15 15 14 / 0.9);
 }
 
 .lightbox img {
@@ -862,7 +858,7 @@ body:has(dialog[open]) {
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 0.75rem;
-  font-size: var(--text-small);
+  font-size: var(--t-cap);
 }
 
 .lightbox-bar span {
@@ -879,23 +875,25 @@ body:has(dialog[open]) {
   border: 0;
   background: none;
   color: var(--ink);
-  font-size: var(--text-sub);
+  font-size: 1.1rem;
   cursor: pointer;
 }
 
 .lightbox-bar button:hover {
-  color: var(--accent-text);
+  color: var(--blue);
 }
 
 /* ---------- Blog ---------- */
 
 .post-list {
-  border-bottom: 1px solid var(--ink);
+  margin-top: 1.5rem;
+  padding: 0;
+  list-style: none;
 }
 
 .post-row {
   align-items: baseline;
-  padding: 0.9rem 0;
+  padding: 1.25rem 0;
   border-top: 1px solid var(--rule);
 }
 
@@ -906,7 +904,7 @@ body:has(dialog[open]) {
 .post-date,
 .post-minutes {
   color: var(--soft);
-  font-size: var(--text-small);
+  font-size: var(--t-cap);
 }
 
 .post-date {
@@ -922,54 +920,53 @@ body:has(dialog[open]) {
 
 .post-title strong {
   color: var(--ink);
-  font-size: var(--text-heading);
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
+  font-size: var(--t-3);
+  letter-spacing: -0.035em;
+  line-height: 1.1;
 }
 
 .post-row:hover strong {
-  color: var(--accent-text);
+  color: var(--blue);
 }
 
 .post-minutes {
   grid-column: 10 / 13;
-  justify-self: end;
 }
 
 .post-empty {
+  margin-top: 1.5rem;
   padding: 1.25rem 0;
-  border-block: 1px solid var(--ink);
+  border-top: 3px solid var(--ink);
   color: var(--soft);
 }
 
 .post-rss {
   margin-top: 1.25rem;
-  font-size: var(--text-small);
+  font-size: var(--t-cap);
 }
 
+/* A post starts at column 4, like every other block of content. */
 .post {
-  max-width: 60ch;
-  margin: clamp(1.5rem, 3vw, 2.5rem) 0 0 calc((100% + var(--gutter)) / 12 * 3);
+  max-width: 44rem;
+  margin: clamp(2rem, 4vw, 3rem) 0 0 calc((100% + var(--gutter)) / 12 * 3);
 }
 
 .post > p:first-child {
-  font-size: var(--text-small);
+  font-size: var(--t-cap);
 }
 
 .post > .title {
-  margin: 2rem 0 1rem;
-  font-size: var(--text-headline);
-  font-weight: 700;
-  letter-spacing: -0.045em;
-  line-height: 1;
+  margin: 2rem 0 1rem -0.04em;
+  font-size: var(--t-5);
+  letter-spacing: -0.055em;
+  line-height: 0.92;
 }
 
 .post-meta {
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--ink);
   color: var(--soft);
-  font-size: var(--text-small);
+  font-size: var(--t-cap);
 }
 
 .post-nav {
@@ -978,36 +975,35 @@ body:has(dialog[open]) {
   gap: var(--gutter);
   margin-top: 4rem;
   padding-top: 0.75rem;
-  border-top: 1px solid var(--ink);
+  border-top: 3px solid var(--ink);
 }
 
 .post-nav a {
   display: flex;
   flex-direction: column;
   color: var(--ink);
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .post-nav a:hover {
-  color: var(--accent-text);
+  color: var(--blue);
 }
 
 .post-nav small {
   color: var(--soft);
-  font-size: var(--text-small);
+  font-size: var(--t-cap);
   font-weight: 400;
 }
 
 .post-nav a[rel="next"] {
   grid-column: 2;
-  text-align: right;
 }
 
 .prose {
   margin-top: 2.5rem;
   color: var(--ink-2);
-  font-size: var(--text-sub);
-  line-height: 1.7;
+  font-size: 1.125rem;
+  line-height: 1.65;
 }
 
 .prose > * + * { margin-top: 1.25em; }
@@ -1017,21 +1013,20 @@ body:has(dialog[open]) {
 .prose h4 {
   margin-top: 2.25em;
   color: var(--ink);
-  font-weight: 600;
-  letter-spacing: -0.025em;
-  line-height: 1.2;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
 }
 .prose h1 { font-size: 2em; }
-.prose h2 { font-size: 1.6em; }
+.prose h2 { font-size: 1.5em; }
 .prose h3 { font-size: 1.25em; }
 .prose ul { list-style: disc; padding-left: 1.25rem; }
 .prose ol { list-style: decimal; padding-left: 1.25rem; }
 .prose li + li { margin-top: 0.35em; }
-.prose a { color: var(--accent-text); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+.prose a { color: var(--blue); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
 .prose a:hover { color: var(--ink); }
-.prose strong { color: var(--ink); font-weight: 600; }
-.prose blockquote { padding-left: 1.25rem; border-left: 2px solid var(--accent-text); color: var(--ink); font-size: 1.15em; }
-.prose pre { padding: 1rem 1.25rem; overflow-x: auto; font-size: var(--text-small); line-height: 1.6; }
+.prose strong { color: var(--ink); }
+.prose blockquote { padding-left: 1.25rem; border-left: 3px solid var(--blue); color: var(--ink); font-size: 1.15em; }
+.prose pre { padding: 1rem 1.25rem; overflow-x: auto; font-size: 0.875rem; line-height: 1.6; }
 .prose code { font-family: var(--mono); }
 .prose :not(pre) > code { padding: 0.1em 0.3em; background: var(--paper-2); font-size: 0.875em; }
 .prose table { display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse; font-size: 0.95em; }
@@ -1043,62 +1038,61 @@ body:has(dialog[open]) {
 .prose h3 a,
 .prose h4 a { color: inherit; text-decoration: none; }
 
-/* ---------- Footer: the blue contact block ---------- */
+/* ---------- Colophon: the black field that closes every page ---------- */
 
-.site-footer {
-  margin-top: clamp(4rem, 8vw, 5rem);
-  padding: 1.5rem var(--edge) 0;
-  background: var(--accent);
-  color: var(--on-accent);
+.colophon {
+  margin-top: clamp(5rem, 10vw, 9rem);
+  padding: 1rem var(--margin) 0;
+  background: var(--ink);
+  color: var(--paper);
 }
 
-.footer-top {
-  align-items: baseline;
-  font-size: var(--text-small);
+.colophon-main {
+  align-items: start;
 }
 
-.footer-label {
+.colophon-label {
   grid-column: 1 / 4;
-  font-size: var(--text-small);
-  font-weight: 500;
+  font-size: var(--t-cap);
+  opacity: 0.7;
 }
 
-.footer-email {
+.colophon-email {
+  grid-column: 4 / 13;
   display: flex;
-  align-items: baseline;
-  gap: 0.25em;
-  /* Only a one-word label sits above the address, so the gap above it stays short. */
-  margin: clamp(1.5rem, 3vw, 2rem) 0 clamp(2rem, 4vw, 3rem) -0.03em;
-  font-size: clamp(1.75rem, 1rem + 4vw, 4rem);
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+  margin: clamp(2.5rem, 6vw, 5rem) 0 clamp(2.5rem, 6vw, 5rem) -0.05em;
+  font-size: var(--t-5);
   font-weight: 700;
   letter-spacing: -0.05em;
   line-height: 1;
 }
 
-.footer-email a {
-  background: linear-gradient(currentColor, currentColor) 0 100% / 0 0.06em no-repeat;
+.colophon-email a {
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 0.07em no-repeat;
   transition: background-size 0.35s cubic-bezier(0.2, 0, 0, 1);
 }
 
-.footer-email a:hover {
-  background-size: 100% 0.06em;
+.colophon-email a:hover {
+  background-size: 100% 0.07em;
 }
 
 .copy-email-wrap {
   position: relative;
   display: inline-flex;
-  align-self: center;
 }
 
 .btn-copy {
   display: inline-grid;
   place-items: center;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.75rem;
+  height: 2.75rem;
   padding: 0;
-  border: 1px solid rgb(241 239 233 / 0.45);
+  border: 1px solid rgb(241 239 233 / 0.4);
   background: none;
-  color: var(--on-accent);
+  color: var(--paper);
   cursor: pointer;
   transition:
     background 0.15s,
@@ -1106,8 +1100,8 @@ body:has(dialog[open]) {
 }
 
 .btn-copy:hover {
-  background: var(--on-accent);
-  color: var(--accent);
+  background: var(--paper);
+  color: var(--ink);
 }
 
 .copy-email-tooltip {
@@ -1115,10 +1109,10 @@ body:has(dialog[open]) {
   left: 50%;
   bottom: calc(100% + 0.5rem);
   padding: 0.25rem 0.55rem;
-  background: var(--on-accent);
-  color: var(--accent);
-  font-size: var(--text-small);
-  font-weight: 500;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: var(--t-cap);
+  font-weight: 400;
   letter-spacing: 0;
   white-space: nowrap;
   pointer-events: none;
@@ -1131,30 +1125,31 @@ body:has(dialog[open]) {
   opacity: 1;
 }
 
-.footer-bottom {
+.colophon-foot {
   align-items: baseline;
-  padding: 1rem 0 1.5rem;
-  border-top: 1px solid rgb(241 239 233 / 0.4);
-  font-size: var(--text-small);
+  padding: 0.9rem 0 1.25rem;
+  border-top: 1px solid rgb(241 239 233 / 0.3);
+  font-size: var(--t-cap);
 }
 
-.footer-copy {
+.colophon-copy {
   grid-column: 1 / 4;
 }
 
-.footer-links {
-  grid-column: 4 / 8;
+.colophon-links {
+  grid-column: 4 / 10;
   display: flex;
   gap: 1.5rem;
+  padding: 0;
+  list-style: none;
 }
 
-.footer-top-link {
-  grid-column: 11 / 13;
-  justify-self: end;
+.colophon-top {
+  grid-column: 10 / 13;
 }
 
-.footer-links a:hover,
-.footer-top-link a:hover {
+.colophon-links a:hover,
+.colophon-top a:hover {
   text-decoration: underline;
   text-underline-offset: 0.2em;
 }
@@ -1163,164 +1158,160 @@ div[data-lang] {
   display: contents;
 }
 
-/* ---------- Narrow screens: collapse the grid ---------- */
+/* ---------- Narrow screens ---------- */
 
-@media (max-width: 900px) {
+@media (max-width: 800px) {
   .grid > * {
     grid-column: 1 / -1 !important;
-  }
-
-  /* On phones the header is one row, so the sticky bar stays short: name left, links right. */
-  .site-header {
-    display: flex;
-    align-items: center;
-    gap: 1.25rem;
-  }
-
-  .brand {
-    margin-right: auto;
-  }
-
-
-  .header-role {
-    display: none;
-  }
-
-  /* Every link a finger can hit: at least 44px tall. */
-  .nav-link,
-  .lang-switcher a,
-  .lang-switcher [aria-current],
-  .section-more,
-  .footer-links a,
-  .footer-top-link a {
-    display: inline-flex;
-    align-items: center;
-    min-height: 44px;
-  }
-
-  .site-header {
-    padding-block: 0.25rem;
   }
 
   html {
     scroll-padding-top: 4rem;
   }
 
-  .meta {
-    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
-    margin-bottom: 2rem;
+  /* One row: name, sections, language. */
+  .masthead {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding-block: 0.25rem;
+    font-size: 0.875rem;
   }
 
-  /* The number and the title stay on one line, like a numbered column head. */
-  .section-head {
-    row-gap: 0.75rem;
+  .masthead-name {
+    margin-right: auto;
   }
 
-  .section-head .section-no {
-    grid-column: 1 / 3 !important;
-  }
-
-  .section-head h2 {
-    grid-column: 3 / 13 !important;
-  }
-
-  .section-more {
-    justify-self: start;
-  }
-
-  .index-row {
-    row-gap: 0.35rem;
-  }
-
-  .index-no {
-    grid-column: 1 / 2 !important;
-    padding-left: 0;
-  }
-
-  .index-name {
-    grid-column: 2 / 7 !important;
-  }
-
-  .index-period {
-    grid-column: 7 / 13 !important;
-    padding-right: 0;
-    white-space: nowrap;
-  }
-
-  .index-desc {
-    grid-column: 2 / 13 !important;
-  }
-
-  .index-stack {
+  .masthead-name span,
+  .nav-no {
     display: none;
   }
 
-  .index-row:hover {
-    background: none;
-    color: var(--accent-text);
+  .masthead-nav {
+    gap: 1.25rem;
   }
 
-  /* On phones the figures become a sideways strip instead of a tall stack. */
-  .figures {
-    display: flex;
-    gap: var(--gutter);
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-padding-inline: var(--gutter);
-    margin-inline: calc(-1 * var(--gutter));
-    padding-inline: var(--gutter);
-    scrollbar-width: none;
+  .masthead-name,
+  .nav-link {
+    flex-direction: row;
   }
 
-  .figure {
-    flex: 0 0 72%;
-    scroll-snap-align: start;
+  /* Every link a finger can hit is at least 44px tall. */
+  .masthead-name,
+  .nav-link,
+  .lang-switcher a,
+  .lang-switcher [aria-current],
+  .sec-more,
+  .colophon-links a,
+  .colophon-top a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .cover {
+    min-height: auto;
+    padding-top: 1rem;
+  }
+
+  .cover-info {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 0.75rem;
+  }
+
+  .cover-info > div {
+    grid-column: auto !important;
+  }
+
+  .cover-main {
+    margin-top: 4rem;
+    row-gap: 1.5rem;
+  }
+
+  .cover-name {
+    font-size: 27vw;
+  }
+
+  .sec-head {
+    row-gap: 0.5rem;
+  }
+
+  .sec-head .sec-no {
+    grid-column: 1 / 3 !important;
+  }
+
+  .sec-head .sec-title {
+    grid-column: 3 / 13 !important;
+  }
+
+  .sec-more {
+    margin-top: 0.25rem;
+  }
+
+  .work {
+    row-gap: 2.5rem;
   }
 
   .row {
     row-gap: 0.5rem;
   }
 
-  .focus-item {
-    grid-column: span 12 !important;
+  .facts {
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 1.75rem;
   }
 
-  .focus-no {
-    margin-bottom: 1rem;
+  .focus-item h3 {
+    margin-top: 0.75rem;
   }
 
   .project {
-    row-gap: 1.25rem;
+    row-gap: 1.5rem;
   }
 
-  .post-row {
-    row-gap: 0.4rem;
+  .project-side {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--gutter);
+    align-items: start;
   }
 
-  .post-minutes {
-    justify-self: start;
+  .project-side .facts {
+    margin: 0;
   }
 
-  .post {
-    margin-left: 0;
+  .project-text {
+    grid-template-columns: 1fr;
   }
 
-  .footer-top,
-  .footer-bottom {
-    row-gap: 0.75rem;
+  .project-desc,
+  .project-text > div {
+    grid-column: 1 / -1;
   }
 
-  .footer-top-link {
-    justify-self: start;
-  }
-
-  /* Two screens on a phone, tall enough to read. */
   .showcase.is-tall .stage {
     aspect-ratio: 4 / 5;
   }
 
   .device:nth-child(n + 3) {
     display: none;
+  }
+
+  .post-row {
+    row-gap: 0.4rem;
+  }
+
+  .post {
+    margin-left: 0;
+  }
+
+  .colophon-email {
+    flex-wrap: nowrap;
+    font-size: 7vw;
+  }
+
+  .colophon-foot {
+    row-gap: 0.25rem;
   }
 }
 

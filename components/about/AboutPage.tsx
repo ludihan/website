@@ -1,12 +1,13 @@
 import { getDictionary, type Locale } from "@/lib/i18n";
 import { profileText } from "@/lib/profile";
 import { jsonLdGraph, personRef, webPageJsonLd } from "@/lib/seo";
+import { EducationList } from "../EducationList";
 import { JsonLd } from "../JsonLd";
+import { PageIntro } from "../PageIntro";
 import { RoleList } from "../RoleList";
 import { SectionHead } from "../SectionHead";
-import { Tags } from "../Tags";
-import { EducationList } from "../EducationList";
 import { SkillsList } from "../SkillsList";
+import { Tags } from "../Tags";
 
 export function AboutPage({ lang }: { lang: Locale }) {
   const t = profileText[lang];
@@ -26,27 +27,25 @@ export function AboutPage({ lang }: { lang: Locale }) {
           }),
         )}
       />
-      <header className="page-head">
-        <h1 className="display display-page">{a.title}</h1>
-        <div className="grid hero-body">
-          <dl className="meta">
-            {t.facts.map((f) => (
-              <div key={f.label}>
-                <dt>{f.label}</dt>
-                <dd>{f.value}</dd>
-              </div>
-            ))}
-          </dl>
-          <p className="statement">{a.summary}</p>
-        </div>
-      </header>
+      <PageIntro title={a.title}>
+        <dl className="facts">
+          {t.facts.map((f) => (
+            <div key={f.label}>
+              <dt>{f.label}</dt>
+              <dd>{f.value}</dd>
+            </div>
+          ))}
+        </dl>
+        <p className="statement">{a.summary}</p>
+      </PageIntro>
 
       <section className="section">
         <SectionHead n={1} title={a.focusTitle} />
-        <div className="grid focus">
+        {/* Four equal columns, each opened by a rule and lettered a–d. */}
+        <div className="focus grid">
           {a.focus.map((f, i) => (
             <article key={f.title} className="focus-item">
-              <span className="focus-no">{String.fromCharCode(97 + i)}.</span>
+              <span className="focus-no">{String.fromCharCode(97 + i)}</span>
               <h3>{f.title}</h3>
               <p>{f.text}</p>
               <Tags items={f.tags} />

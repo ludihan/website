@@ -43,6 +43,8 @@ export type Education = {
 
 type ProfileText = {
   role: string;
+  /** City and country, short, for the cover and masthead. */
+  place: string;
   lead: string;
   facts: { label: string; value: string }[];
   cta: { projects: string; email: string; about: string; copyEmail: string; emailCopied: string };
@@ -67,6 +69,7 @@ type ProfileText = {
 export const profileText: Record<Locale, ProfileText> = {
   en: {
     role: "Software Engineer",
+    place: "Manaus, Brazil",
     lead: "I build web applications end to end: React and Next.js front-ends, Go and Node.js back-ends, databases and the Linux/Docker tooling around them. Computer Science graduate based in Manaus, Brazil.",
     facts: [
       { label: "Based in", value: "Manaus, Amazonas, Brazil (UTC−4)" },
@@ -172,6 +175,7 @@ export const profileText: Record<Locale, ProfileText> = {
   },
   pt: {
     role: "Engenheiro de Software",
+    place: "Manaus, Brasil",
     lead: "Construo aplicações web de ponta a ponta: front-ends em React e Next.js, back-ends em Go e Node.js, bancos de dados e o ferramental de Linux/Docker ao redor. Bacharel em Ciência da Computação, baseado em Manaus.",
     facts: [
       { label: "Localização", value: "Manaus, Amazonas, Brasil (UTC−4)" },
