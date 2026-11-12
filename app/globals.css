@@ -243,6 +243,9 @@ p {
 }
 
 .display-page {
+  /* Room below the baseline for descenders (the j in "Projects", the g in "Blog"), so they
+     clear the rule under the title instead of crossing it. */
+  padding-bottom: 0.12em;
   margin-left: -0.04em;
   font-size: clamp(3rem, 11vw, 11rem);
   letter-spacing: -0.055em;
