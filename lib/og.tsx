@@ -22,14 +22,14 @@ function loadFont(family: string, weight: number) {
   return font;
 }
 
-// Shared Open Graph / Twitter card, set like the site's footer: ultramarine, paper-coloured
-// type, a hairline header row and the title set large and tight.
+// Shared Open Graph / Twitter card, set like the site's footer: cobalt, stone-50 type, a hairline
+// header row and the title set large and light.
 export type OgCard = { kicker: string; title: string; subtitle: string };
 
 export async function ogImage({ kicker, title, subtitle }: OgCard) {
   const host = new URL(site.url).host;
-  const [regular, bold] = await Promise.all([loadFont("Schibsted+Grotesk", 400), loadFont("Schibsted+Grotesk", 700)]);
-  const paper = "#f1efe9";
+  const [light, regular] = await Promise.all([loadFont("IBM+Plex+Sans", 300), loadFont("IBM+Plex+Sans", 400)]);
+  const paper = "#fafaf9";
   return new ImageResponse(
     (
       <div
@@ -40,9 +40,9 @@ export async function ogImage({ kicker, title, subtitle }: OgCard) {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "40px 56px 56px",
-          background: "#1c3fd1",
+          background: "#003b8e",
           color: paper,
-          fontFamily: "Schibsted Grotesk",
+          fontFamily: "IBM Plex Sans",
         }}
       >
         <div
@@ -50,21 +50,23 @@ export async function ogImage({ kicker, title, subtitle }: OgCard) {
             display: "flex",
             justifyContent: "space-between",
             paddingBottom: 18,
-            borderBottom: `2px solid ${paper}`,
+            borderBottom: `1px solid ${paper}`,
             fontSize: 26,
           }}
         >
-          <span style={{ fontWeight: 700 }}>{site.name}</span>
-          <span style={{ textTransform: "capitalize" }}>{kicker === "ludihan" ? host : kicker}</span>
+          <span>{site.name}</span>
+          <span style={{ textTransform: kicker === "ludihan" ? "none" : "capitalize" }}>
+            {kicker === "ludihan" ? host : kicker}
+          </span>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
           <div
             style={{
-              fontSize: title.length > 30 ? 92 : 168,
-              fontWeight: 700,
-              letterSpacing: title.length > 30 ? -4 : -10,
-              lineHeight: 0.88,
-              marginLeft: -6,
+              fontSize: title.length > 30 ? 80 : 136,
+              fontWeight: 300,
+              letterSpacing: title.length > 30 ? -2 : -4,
+              lineHeight: 1,
+              marginLeft: -4,
             }}
           >
             {title}
@@ -76,8 +78,8 @@ export async function ogImage({ kicker, title, subtitle }: OgCard) {
     {
       ...ogSize,
       fonts: [
-        { name: "Schibsted Grotesk", data: regular, weight: 400 },
-        { name: "Schibsted Grotesk", data: bold, weight: 700 },
+        { name: "IBM Plex Sans", data: light, weight: 300 },
+        { name: "IBM Plex Sans", data: regular, weight: 400 },
       ],
     },
   );
