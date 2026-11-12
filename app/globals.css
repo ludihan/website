@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /*
- * Swiss International Style: Schibsted Grotesk in strong weights, a 12-column grid on an 8px
+ * Swiss International Style: Inter, a Helvetica-line neo-grotesk, in strong weights, a 12-column grid on an 8px
  * base, warm paper and near-black ink with hierarchy by opacity, and one accent, ultramarine.
  * Light theme only.
  */
@@ -65,6 +65,7 @@ body {
   font-size: var(--text-body);
   line-height: 1.625;
   font-feature-settings: "kern";
+  font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -158,10 +159,13 @@ p {
   margin-top: clamp(4rem, 8vw, 5rem);
 }
 
-/* Figures line up in the number columns. (Dates keep proportional figures: Schibsted's tabular
-   ones open a gap after abbreviations like "Oct.") */
+/* Figures line up in columns of dates and numbers. */
 .index-no,
+.index-period,
 .section-no,
+.row-date,
+.post-date,
+.project-facts dd,
 .project-features li::before {
   font-variant-numeric: tabular-nums;
 }
@@ -241,11 +245,11 @@ p {
 
 /* ---------- Display type ---------- */
 
-/* The name: bold and tightly spaced. Weight, not sheer size, sets it apart. */
+/* The name: the one very large thing on the site, bold and tightly spaced, against small text. */
 .display {
   margin: clamp(2rem, 5vw, 3rem) 0 0 -0.05em;
   color: var(--ink);
-  font-size: clamp(3rem, 2rem + 6vw, 6rem);
+  font-size: clamp(3.5rem, 1.5rem + 9vw, 9rem);
   font-weight: 700;
   letter-spacing: -0.055em;
   line-height: 0.9;

@@ -1,5 +1,6 @@
-import { Geist_Mono, Schibsted_Grotesk } from "next/font/google";
+import { Geist_Mono, Inter } from "next/font/google";
 
-// One grotesk for everything, from captions to the display name; a mono only for code in posts.
-export const sans = Schibsted_Grotesk({ subsets: ["latin"], variable: "--font-sans" });
+// One neo-grotesk for everything, in the Helvetica line, from captions to the display name. The
+// optical-size axis gives the large type its tighter display cut. A mono only for code in posts.
+export const sans = Inter({ subsets: ["latin"], axes: ["opsz"], variable: "--font-sans" });
 export const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono" });

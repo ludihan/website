@@ -28,7 +28,7 @@ export type OgCard = { kicker: string; title: string; subtitle: string };
 
 export async function ogImage({ kicker, title, subtitle }: OgCard) {
   const host = new URL(site.url).host;
-  const [regular, bold] = await Promise.all([loadFont("Schibsted+Grotesk", 400), loadFont("Schibsted+Grotesk", 700)]);
+  const [regular, bold] = await Promise.all([loadFont("Inter", 400), loadFont("Inter", 700)]);
   const paper = "#f1efe9";
   return new ImageResponse(
     (
@@ -42,7 +42,7 @@ export async function ogImage({ kicker, title, subtitle }: OgCard) {
           padding: "40px 56px 56px",
           background: "#1c3fd1",
           color: paper,
-          fontFamily: "Schibsted Grotesk",
+          fontFamily: "Inter",
         }}
       >
         <div
@@ -78,8 +78,8 @@ export async function ogImage({ kicker, title, subtitle }: OgCard) {
     {
       ...ogSize,
       fonts: [
-        { name: "Schibsted Grotesk", data: regular, weight: 400 },
-        { name: "Schibsted Grotesk", data: bold, weight: 700 },
+        { name: "Inter", data: regular, weight: 400 },
+        { name: "Inter", data: bold, weight: 700 },
       ],
     },
   );

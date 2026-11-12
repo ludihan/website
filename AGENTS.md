@@ -14,15 +14,17 @@ The site follows the Swiss (International Typographic) Style of Müller-Brockman
 Hofmann: a strict grid running edge to edge, one grotesk in strong weights, hairline rules,
 flush-left text and a single accent colour. Keep to this when changing or adding UI.
 
-- **Typeface.** Schibsted Grotesk for everything, from captions to the display name, with Geist
-  Mono only for code in blog posts (`lib/fonts.ts`). Hierarchy comes from size, weight and
-  opacity, never a second family.
+- **Typeface.** Inter, a neo-grotesk in the Helvetica line, for everything from captions to the
+  display name, with its optical-size axis on (`lib/fonts.ts`). Geist Mono only for code in blog
+  posts. Hierarchy comes from size, weight and opacity, never a second family.
 - **Strong weights.** The name, page titles and project and post titles are bold (700) and
   tightly tracked; section titles 600; row and item titles 600; running text 400. Contrast comes
   from weight more than from sheer size.
-- **Not too big.** The owner asked that nothing be oversized. The name tops out at 6rem, page
-  titles at 4.5rem, section gaps at 5rem. Keep new elements within the type scale at the top of
-  `app/globals.css` (`--text-small` to `--text-headline`).
+- **One very large thing.** The name is the only oversized element (up to 9rem), set against
+  small text for Swiss scale contrast. Everything else stays moderate: the owner asked that
+  nothing else be oversized. Page titles top out at 4.5rem, section gaps at 5rem. Keep new
+  elements within the type scale at the top of `app/globals.css` (`--text-small` to
+  `--text-headline`).
 - **Palette: warm paper, ink and one blue, light only.** Paper `#f1efe9`, surfaces `#e6e3db`,
   ink `#0f0f0e`, and ultramarine `#1c3fd1` (from the owner's LinkedIn banner) as the one accent,
   used for links, section numbers, the current-page dot, the hover fill on index rows and the
@@ -42,8 +44,8 @@ flush-left text and a single accent colour. Keep to this when changing or adding
   skills are rows of label and detail; sections are numbered from 01, the numerals set in blue
   at the size and weight of the section title; screenshots are captioned
   figures ("Fig. 1"). Tech lists are plain comma-separated text, never chips.
-- **Typography details.** Curly quotes and apostrophes, `…` not `...`, tabular figures in number
-  columns (not dates: Schibsted's tabular figures gap after "Oct."), balanced headings.
+- **Typography details.** Curly quotes and apostrophes, `…` not `...`, tabular figures for dates
+  and numbers, balanced headings.
 - **Header.** The nav links and language codes are lower case. The nav bar sticks to the top of the screen, on paper with a 16% ink hairline
   under it; on phones it is a single row (name left, links right) to keep it short.
 - **Mobile.** Every layout must work from 320px. Links are at least 44px tall on phones.
