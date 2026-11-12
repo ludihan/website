@@ -1,10 +1,13 @@
-export function PageIntro({ title, description }: { title: string; description: string }) {
+// A page title, with an optional statement below it on the grid.
+export function PageIntro({ title, description }: { title: string; description?: string }) {
   return (
     <header className="page-head">
       <h1 className="display display-page">{title}</h1>
-      <div className="grid">
-        <p className="statement">{description}</p>
-      </div>
+      {description && (
+        <div className="grid">
+          <p className="statement">{description}</p>
+        </div>
+      )}
     </header>
   );
 }

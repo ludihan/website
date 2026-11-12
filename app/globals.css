@@ -599,6 +599,11 @@ p {
   border-top: 1px solid var(--ink);
 }
 
+/* With no intro, the first project's rule sits under the page title like any other page's. */
+.page-head + .project {
+  margin-top: clamp(1rem, 2vw, 1.5rem);
+}
+
 .project-media {
   grid-column: 1 / 7;
 }

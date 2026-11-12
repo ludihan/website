@@ -59,7 +59,7 @@ export default async function ProjectsPage({ params }: PageProps<"/[lang]/projec
   return (
     <>
       <JsonLd data={jsonLd} />
-      <PageIntro title={dict.sections.projects} description={dict.projects.intro} />
+      <PageIntro title={dict.sections.projects} />
       {projects.map((p, i) => (
         <ProjectCard key={p.id} project={p} n={i + 1} lang={lang} dict={dict.projects} priority={i === 0} />
       ))}
