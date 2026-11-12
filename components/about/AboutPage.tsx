@@ -4,6 +4,7 @@ import { jsonLdGraph, personRef, webPageJsonLd } from "@/lib/seo";
 import { EducationList } from "../EducationList";
 import { JsonLd } from "../JsonLd";
 import { PageIntro } from "../PageIntro";
+import { ProfileLinks } from "../ProfileLinks";
 import { RoleList } from "../RoleList";
 import { SectionHead } from "../SectionHead";
 import { SkillsList } from "../SkillsList";
@@ -35,6 +36,12 @@ export function AboutPage({ lang }: { lang: Locale }) {
               <dd>{f.value}</dd>
             </div>
           ))}
+          <div>
+            <dt>{dict.ui.contact}</dt>
+            <dd>
+              <ProfileLinks />
+            </dd>
+          </div>
         </dl>
         <p className="statement">{a.summary}</p>
       </PageIntro>

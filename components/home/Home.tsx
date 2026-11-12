@@ -7,6 +7,7 @@ import { projects } from "@/lib/projects";
 import { jsonLdGraph, personRef, webPageJsonLd } from "@/lib/seo";
 import { JsonLd } from "../JsonLd";
 import { LocalTime } from "../LocalTime";
+import { ProfileLinks } from "../ProfileLinks";
 import { RoleList } from "../RoleList";
 import { SectionHead } from "../SectionHead";
 
@@ -50,6 +51,12 @@ export function Home({ lang }: { lang: Locale }) {
           <div>
             <dt>{ui.currently}</dt>
             <dd>{t.facts[1].value}</dd>
+          </div>
+          <div>
+            <dt>{ui.contact}</dt>
+            <dd>
+              <ProfileLinks />
+            </dd>
           </div>
         </dl>
         <div className="cover-main grid">

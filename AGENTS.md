@@ -35,6 +35,9 @@ stylesheet is `app/globals.css`; its header comment summarises the rules below.
   numbered too. Focus areas are lettered a–d.
 - **Pages.**
   - Masthead: one sticky row (name and role, numbered nav, language), lower-case nav.
+  - Contact: email, GitHub and LinkedIn (`components/ProfileLinks.tsx`) are listed under
+    "Contact" in the home cover's information line and in the About page facts, besides the
+    large email in the colophon. Keep them easy to find.
   - Home: a full-height ultramarine cover with an information line at the top, the name
     stacked in two lines at the bottom left and the statement at the bottom right; then the
     projects as a modular field of three (figure, rule, number and date, name, tagline, stack);
