@@ -666,6 +666,14 @@ ul {
   margin-top: 2rem;
 }
 
+/*
+ * The screenshot is capped by the window's height, not just the column's width, so the image
+ * and its row of previews always fit on one screen together.
+ */
+.project-media .showcase {
+  max-width: min(100%, 88svh);
+}
+
 .project-text {
   display: grid;
   grid-template-columns: repeat(9, minmax(0, 1fr));
