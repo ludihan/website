@@ -10,7 +10,7 @@
   --paper-2: #e6e3db;
   --ink: #0f0f0e;
   --ink-2: #2b2a27;
-  --soft: #6f6b62;
+  --soft: #625e56;
   --rule: #cdc9bf;
   --blue: #1c3fd1;
   --gutter: clamp(1rem, 2.2vw, 2rem);
@@ -345,7 +345,9 @@ p {
   border-top-color: var(--ink);
 }
 
-.index-row:hover {
+.index-row:hover,
+.index-row:focus-visible {
+  outline: none;
   background: var(--blue);
   color: var(--paper);
 }
@@ -395,10 +397,20 @@ p {
 }
 
 .figure-frame {
+  position: relative;
   display: block;
   aspect-ratio: 16 / 10;
   overflow: hidden;
   background: var(--paper-2);
+}
+
+/* A hairline over the image edge, so light screenshots keep their outline. */
+.figure-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--rule);
+  pointer-events: none;
 }
 
 .figure-frame img {
@@ -661,6 +673,16 @@ p {
   display: block;
   overflow: hidden;
   background: var(--paper-2);
+  position: relative;
+}
+
+/* A hairline over the image edge: light screenshots would otherwise dissolve into the paper. */
+.window::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--rule);
+  pointer-events: none;
 }
 
 .window-view {
@@ -690,8 +712,10 @@ p {
   padding: 0;
   overflow: hidden;
   border: 0;
+  outline: 1px solid var(--rule);
+  outline-offset: -1px;
   background: var(--paper-2);
-  opacity: 0.45;
+  opacity: 0.6;
   cursor: pointer;
   transition: opacity 0.15s;
 }

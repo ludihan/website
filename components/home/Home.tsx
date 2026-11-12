@@ -38,7 +38,7 @@ export function Home({ lang }: { lang: Locale }) {
           <dl className="meta">
             <div>
               <dt>{t.facts[0].label}</dt>
-              <dd>Manaus, Brazil</dd>
+              <dd>{lang === "pt" ? "Manaus, Brasil" : "Manaus, Brazil"}</dd>
             </div>
             <div>
               <dt>{ui.localTime}</dt>
@@ -82,7 +82,7 @@ export function Home({ lang }: { lang: Locale }) {
                   <span>
                     {ui.fig} {i + 1}
                   </span>{" "}
-                  {p.name}, {shot.alt[lang].toLowerCase()}.
+                  {shot.alt[lang]}.
                 </figcaption>
               </figure>
             );
