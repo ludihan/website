@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { preconnect } from "react-dom";
 import { JsonLd } from "@/components/JsonLd";
 import { ProjectCard } from "@/components/ProjectCard";
-import { ProjectIndex } from "@/components/ProjectIndex";
 import { PageIntro } from "@/components/PageIntro";
 import { getDictionary, hasLocale } from "@/lib/i18n";
 import { projects } from "@/lib/projects";
@@ -61,9 +60,6 @@ export default async function ProjectsPage({ params }: PageProps<"/[lang]/projec
     <>
       <JsonLd data={jsonLd} />
       <PageIntro title={dict.sections.projects} description={dict.projects.intro} />
-      <nav aria-label={dict.projects.index} className="section">
-        <ProjectIndex lang={lang} hrefBase="" />
-      </nav>
       {projects.map((p, i) => (
         <ProjectCard key={p.id} project={p} n={i + 1} lang={lang} dict={dict.projects} priority={i === 0} />
       ))}
