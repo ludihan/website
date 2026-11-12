@@ -31,7 +31,7 @@ What that means here:
   `#1c3fd1` used only as a solid: links, the current-page dot, the hover fill on index rows, and
   the full-bleed contact footer. Light theme only. The tokens are at the top of `app/globals.css`.
 - **Content set as tables and indexes.** Projects are a numbered index; experience and education
-  are rows of date, title, detail; sections are numbered 01–04; screenshots are captioned figures
+  are rows of date, title, detail; sections are numbered from 01; screenshots are captioned figures
   ("Fig. 1"). Tech lists are plain comma-separated text, never chips.
 - **Compact.** The owner asked several times for less wasted space. Keep section gaps, row
   padding and image sizes tight; screenshots are thumbnails that open full size in the lightbox.

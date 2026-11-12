@@ -10,8 +10,6 @@ import { LocalTime } from "../LocalTime";
 import { ProjectIndex } from "../ProjectIndex";
 import { RoleList } from "../RoleList";
 import { SectionHead } from "../SectionHead";
-import { EducationList } from "../EducationList";
-import { SkillsList } from "../SkillsList";
 
 export function Home({ lang }: { lang: Locale }) {
   const t = profileText[lang];
@@ -94,16 +92,6 @@ export function Home({ lang }: { lang: Locale }) {
       <section className="section">
         <SectionHead n={2} title={t.workTitle} more={{ href: `/${lang}/about`, label: t.workAll }} />
         <RoleList roles={t.roles} />
-      </section>
-
-      <section className="section">
-        <SectionHead n={3} title={t.educationTitle} />
-        <EducationList entries={t.education} />
-      </section>
-
-      <section className="section">
-        <SectionHead n={4} title={t.skillsTitle} />
-        <SkillsList labels={t.skillLabels} />
       </section>
     </>
   );
