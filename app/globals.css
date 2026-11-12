@@ -14,6 +14,16 @@
   --rule: #cdc9bf;
   --blue: #1c3fd1;
   --gutter: clamp(1rem, 2.2vw, 2rem);
+  /*
+   * The type scale. Apart from the display sizes, which are fitted to their own text, every
+   * size on the site is one of these six.
+   */
+  --text-small: 0.875rem; /* labels, dates, captions, tech lists */
+  --text-body: 1rem;
+  --text-sub: 1.125rem; /* row and item titles */
+  --text-heading: clamp(1.25rem, 1rem + 0.6vw, 1.6rem); /* names in an index */
+  --text-title: clamp(1.375rem, 1rem + 1vw, 2rem); /* section titles and the lead statement */
+  --text-headline: clamp(2rem, 1.2rem + 1.8vw, 3rem); /* project and post titles */
   --sans: var(--font-sans), "Helvetica Neue", Arial, sans-serif;
   --mono: var(--font-mono), ui-monospace, monospace;
   color-scheme: light;
@@ -38,7 +48,7 @@ body {
   background: var(--paper);
   color: var(--ink-2);
   font-family: var(--sans);
-  font-size: 1rem;
+  font-size: var(--text-body);
   line-height: 1.5;
   font-feature-settings: "kern";
   -webkit-font-smoothing: antialiased;
@@ -145,7 +155,7 @@ p {
 .site-header {
   align-items: baseline;
   padding: 1.1rem var(--gutter);
-  font-size: 0.875rem;
+  font-size: var(--text-small);
 }
 
 .brand {
@@ -251,7 +261,7 @@ p {
   gap: 0.9rem;
   align-content: start;
   margin: 0;
-  font-size: 0.875rem;
+  font-size: var(--text-small);
 }
 
 .meta dt,
@@ -266,13 +276,13 @@ p {
 
 .meta-title {
   grid-column: 1 / 4;
-  font-size: 0.875rem;
+  font-size: var(--text-small);
 }
 
 .statement {
   grid-column: 4 / 12;
   color: var(--ink);
-  font-size: clamp(1.25rem, 0.9rem + 1vw, 1.85rem);
+  font-size: var(--text-title);
   font-weight: 400;
   letter-spacing: -0.025em;
   line-height: 1.16;
@@ -284,7 +294,7 @@ p {
   flex-wrap: wrap;
   gap: 0.25rem 1.5em;
   margin-top: 1.5rem;
-  font-size: 1rem;
+  font-size: var(--text-body);
   letter-spacing: 0;
 }
 
@@ -307,13 +317,13 @@ p {
 .section-no {
   grid-column: 1 / 4;
   color: var(--ink);
-  font-size: 0.875rem;
+  font-size: var(--text-small);
   font-weight: 500;
 }
 
 .section-head h2 {
   grid-column: 4 / 10;
-  font-size: clamp(1.5rem, 1.1rem + 1vw, 2.1rem);
+  font-size: var(--text-title);
   font-weight: 500;
   letter-spacing: -0.03em;
   line-height: 1.05;
@@ -323,7 +333,7 @@ p {
   grid-column: 10 / 13;
   justify-self: end;
   color: var(--blue);
-  font-size: 0.875rem;
+  font-size: var(--text-small);
 }
 
 .section-more:hover {
@@ -361,12 +371,12 @@ p {
 .index-no {
   grid-column: 1 / 2;
   padding-left: 0.5rem;
-  font-size: 0.875rem;
+  font-size: var(--text-small);
 }
 
 .index-name {
   grid-column: 2 / 4;
-  font-size: clamp(1.25rem, 1rem + 0.6vw, 1.6rem);
+  font-size: var(--text-heading);
   font-weight: 600;
   letter-spacing: -0.04em;
   line-height: 1;
@@ -374,12 +384,12 @@ p {
 
 .index-desc {
   grid-column: 4 / 8;
-  font-size: 1.0625rem;
+  font-size: var(--text-body);
 }
 
 .index-stack {
   grid-column: 8 / 11;
-  font-size: 0.875rem;
+  font-size: var(--text-small);
   opacity: 0.7;
 }
 
@@ -387,7 +397,7 @@ p {
   grid-column: 11 / 13;
   justify-self: end;
   padding-right: 0.5rem;
-  font-size: 0.875rem;
+  font-size: var(--text-small);
 }
 
 /* ---------- Figures ---------- */
@@ -448,7 +458,7 @@ p {
 .figure figcaption {
   margin-top: 0.6rem;
   color: var(--soft);
-  font-size: 0.8125rem;
+  font-size: var(--text-small);
 }
 
 .figure figcaption span {
@@ -474,7 +484,7 @@ p {
 .row-date {
   grid-column: 1 / 4;
   color: var(--soft);
-  font-size: 0.875rem;
+  font-size: var(--text-small);
 }
 
 .row-title {
@@ -482,7 +492,7 @@ p {
 }
 
 .row-title h3 {
-  font-size: 1.125rem;
+  font-size: var(--text-sub);
   font-weight: 500;
   letter-spacing: -0.015em;
   line-height: 1.25;
@@ -504,7 +514,7 @@ p {
 
 .row-label {
   color: var(--ink);
-  font-size: 0.8125rem;
+  font-size: var(--text-small);
   font-weight: 600;
 }
 
@@ -518,7 +528,7 @@ p {
   flex-wrap: wrap;
   margin: 0;
   color: var(--soft);
-  font-size: 0.875rem;
+  font-size: var(--text-small);
 }
 
 .tags li:not(:last-child)::after {
@@ -540,13 +550,13 @@ p {
 
 .skill-col h3 {
   margin-bottom: 0.4rem;
-  font-size: 0.875rem;
+  font-size: var(--text-small);
   font-weight: 600;
 }
 
 .skill-col .tags {
   color: var(--ink);
-  font-size: 0.9375rem;
+  font-size: var(--text-body);
 }
 
 /* ---------- About: focus areas ---------- */
@@ -566,11 +576,11 @@ p {
   display: block;
   margin-bottom: 0.5rem;
   color: var(--soft);
-  font-size: 0.875rem;
+  font-size: var(--text-small);
 }
 
 .focus-item h3 {
-  font-size: 1.15rem;
+  font-size: var(--text-sub);
   letter-spacing: -0.025em;
 }
 
@@ -597,7 +607,7 @@ p {
 
 .project-head h2 {
   margin-top: 0.4rem;
-  font-size: clamp(2rem, 1.2rem + 1.8vw, 3rem);
+  font-size: var(--text-headline);
   font-weight: 700;
   letter-spacing: -0.05em;
   line-height: 0.95;
@@ -606,13 +616,13 @@ p {
 .project-head p {
   margin-top: 0.35rem;
   color: var(--ink);
-  font-size: 1.0625rem;
+  font-size: var(--text-body);
 }
 
 .project-desc {
   margin-top: 1rem;
   color: var(--ink-2);
-  font-size: 0.9375rem;
+  font-size: var(--text-body);
   line-height: 1.5;
 }
 
@@ -626,7 +636,7 @@ p {
   grid-template-columns: 1.75rem minmax(0, 1fr);
   padding: 0.35rem 0;
   border-top: 1px solid var(--rule);
-  font-size: 0.875rem;
+  font-size: var(--text-small);
   line-height: 1.45;
   counter-increment: feature;
 }
@@ -634,8 +644,6 @@ p {
 .project-features li::before {
   content: counter(feature, decimal-leading-zero);
   color: var(--soft);
-  font-size: 0.75rem;
-  line-height: 1.75;
 }
 
 .project-facts {
@@ -645,7 +653,7 @@ p {
   margin: 1rem 0 0;
   padding-top: 0.75rem;
   border-top: 1px solid var(--ink);
-  font-size: 0.8125rem;
+  font-size: var(--text-small);
 }
 
 .project-facts-wide {
@@ -805,7 +813,7 @@ body:has(dialog[open]) {
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 0.75rem;
-  font-size: 0.875rem;
+  font-size: var(--text-small);
 }
 
 .lightbox-bar span {
@@ -822,7 +830,7 @@ body:has(dialog[open]) {
   border: 0;
   background: none;
   color: var(--ink);
-  font-size: 1.1rem;
+  font-size: var(--text-sub);
   cursor: pointer;
 }
 
@@ -849,7 +857,7 @@ body:has(dialog[open]) {
 .post-date,
 .post-minutes {
   color: var(--soft);
-  font-size: 0.875rem;
+  font-size: var(--text-small);
 }
 
 .post-date {
@@ -865,7 +873,7 @@ body:has(dialog[open]) {
 
 .post-title strong {
   color: var(--ink);
-  font-size: clamp(1.2rem, 1rem + 0.5vw, 1.5rem);
+  font-size: var(--text-heading);
   font-weight: 500;
   letter-spacing: -0.03em;
   line-height: 1.15;
@@ -888,7 +896,7 @@ body:has(dialog[open]) {
 
 .post-rss {
   margin-top: 1.25rem;
-  font-size: 0.875rem;
+  font-size: var(--text-small);
 }
 
 .post {
@@ -897,12 +905,12 @@ body:has(dialog[open]) {
 }
 
 .post > p:first-child {
-  font-size: 0.875rem;
+  font-size: var(--text-small);
 }
 
 .post > .title {
   margin: 2rem 0 1rem;
-  font-size: clamp(2.25rem, 1.5rem + 2vw, 3.5rem);
+  font-size: var(--text-headline);
   font-weight: 700;
   letter-spacing: -0.05em;
   line-height: 0.95;
@@ -912,7 +920,7 @@ body:has(dialog[open]) {
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--ink);
   color: var(--soft);
-  font-size: 0.875rem;
+  font-size: var(--text-small);
 }
 
 .post-nav {
@@ -937,7 +945,7 @@ body:has(dialog[open]) {
 
 .post-nav small {
   color: var(--soft);
-  font-size: 0.8125rem;
+  font-size: var(--text-small);
   font-weight: 400;
 }
 
@@ -949,7 +957,7 @@ body:has(dialog[open]) {
 .prose {
   margin-top: 2.5rem;
   color: var(--ink-2);
-  font-size: 1.125rem;
+  font-size: var(--text-sub);
   line-height: 1.7;
 }
 
@@ -974,7 +982,7 @@ body:has(dialog[open]) {
 .prose a:hover { color: var(--ink); }
 .prose strong { color: var(--ink); }
 .prose blockquote { padding-left: 1.25rem; border-left: 3px solid var(--blue); color: var(--ink); font-size: 1.15em; }
-.prose pre { padding: 1rem 1.25rem; overflow-x: auto; font-size: 0.875rem; line-height: 1.6; }
+.prose pre { padding: 1rem 1.25rem; overflow-x: auto; font-size: var(--text-small); line-height: 1.6; }
 .prose code { font-family: var(--mono); }
 .prose :not(pre) > code { padding: 0.1em 0.3em; background: var(--paper-2); font-size: 0.875em; }
 .prose table { display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse; font-size: 0.95em; }
@@ -997,7 +1005,7 @@ body:has(dialog[open]) {
 
 .footer-top {
   align-items: baseline;
-  font-size: 0.875rem;
+  font-size: var(--text-small);
 }
 
 .footer-label {
@@ -1059,7 +1067,7 @@ body:has(dialog[open]) {
   padding: 0.25rem 0.55rem;
   background: var(--paper);
   color: var(--blue);
-  font-size: 0.8125rem;
+  font-size: var(--text-small);
   font-weight: 500;
   letter-spacing: 0;
   white-space: nowrap;
@@ -1077,7 +1085,7 @@ body:has(dialog[open]) {
   align-items: baseline;
   padding: 0.85rem 0 1.25rem;
   border-top: 1px solid rgb(241 239 233 / 0.4);
-  font-size: 0.875rem;
+  font-size: var(--text-small);
 }
 
 .footer-copy {
