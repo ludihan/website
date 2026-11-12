@@ -44,7 +44,13 @@ stylesheet is `app/globals.css`; its header comment summarises the rules below.
     projects as a modular field of three (figure, rule, number and date, name, tagline, stack);
     then experience as a table.
   - Projects: numeral and facts in the first field; name, screenshots, description and
-    numbered features from column 4.
+    numbered features from column 4. The screenshot is capped by the window height
+    (`max-width: min(100%, 88svh)`) so it and its row of previews always fit on one screen;
+    phone screenshots stand whole, side by side.
+  - About: a very large title, facts (with Contact) beside a large statement, then focus areas
+    lettered a–d, experience, education and skills as numbered sections.
+  - Blog: the nav link, the colophon RSS link and the 404 blog link stay hidden until there is
+    at least one published post (`getSlugs(lang).length > 0`).
   - Colophon: a black field closing every page. The three contact channels are an index:
     one row each, number and name in the first field, the address set large from column 4, an
     arrow or the copy button at the end. The whole row is the link and fills blue on hover.
@@ -55,5 +61,20 @@ stylesheet is `app/globals.css`; its header comment summarises the rules below.
 - **Mobile.** Every layout works from 320px; the grid collapses to one column, except section
   heads (numeral and title stay on one line). The masthead is one row. Links are at least 44px
   tall.
-- **Motion.** Only responses to the pointer: name colour on project hover, the email underline,
-  the screenshot cross-fade. No entrance or scroll animations; reduced motion is respected.
+- **Motion.** Only responses to the pointer: name colour on project hover, the blue fill on
+  colophon rows, the screenshot cross-fade. No entrance or scroll animations; reduced motion is
+  respected.
+
+## Owner preferences
+
+Decisions the owner has made along the way; follow them unless they say otherwise.
+
+- Real Swiss International Style, as in the print work of the 1950s–60s, not a generic
+  "minimal" look. Don't use or install the `swiss-design` skill (`zeke/swiss-design-skill`):
+  the owner tried it and rejected its IBM Plex, stone palette, light headings, uppercase labels,
+  centred container and dark mode.
+- Keep the warm paper and ultramarine palette, light only. Don't add a dark mode.
+- Contact links are always email, LinkedIn, GitHub, and must stay easy to find.
+- Show a change visually before calling it done: check desktop (about 1440px) and phone
+  (about 390px) widths.
+- Commit each change separately with a plain message; push only when asked.
