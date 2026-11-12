@@ -237,6 +237,11 @@ p {
   white-space: nowrap;
 }
 
+/* The 404's figures have almost no side bearing, so they need only a small pull. */
+.not-found .display {
+  margin-left: -0.02em;
+}
+
 .display-page {
   margin-left: -0.04em;
   font-size: clamp(3rem, 11vw, 11rem);
