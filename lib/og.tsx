@@ -22,14 +22,14 @@ function loadFont(family: string, weight: number) {
   return font;
 }
 
-// Shared Open Graph / Twitter card, set like the site's footer: cobalt, stone-50 type, a hairline
+// Shared Open Graph / Twitter card, set like the site's footer: ultramarine, paper-coloured type, a hairline
 // header row and the title set large and light.
 export type OgCard = { kicker: string; title: string; subtitle: string };
 
 export async function ogImage({ kicker, title, subtitle }: OgCard) {
   const host = new URL(site.url).host;
   const [light, regular] = await Promise.all([loadFont("IBM+Plex+Sans", 300), loadFont("IBM+Plex+Sans", 400)]);
-  const paper = "#fafaf9";
+  const paper = "#f1efe9";
   return new ImageResponse(
     (
       <div
@@ -40,7 +40,7 @@ export async function ogImage({ kicker, title, subtitle }: OgCard) {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "40px 56px 56px",
-          background: "#003b8e",
+          background: "#1c3fd1",
           color: paper,
           fontFamily: "IBM Plex Sans",
         }}

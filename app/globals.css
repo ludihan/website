@@ -2,20 +2,21 @@
 
 /*
  * Swiss International Style (the swiss-design skill): IBM Plex Sans, a 12-column grid on an 8px
- * base, the stone palette with hierarchy by opacity, and one accent, cobalt. Light theme only.
+ * base, warm paper and near-black ink with hierarchy by opacity, and one accent, ultramarine.
+ * Light theme only.
  */
 :root {
-  --paper: #fafaf9; /* stone-50 */
-  --paper-2: #f5f5f4; /* stone-100 */
-  --ink: #1c1917; /* stone-900 */
+  --paper: #f1efe9; /* warm paper */
+  --paper-2: #e6e3db;
+  --ink: #0f0f0e;
   /* Hierarchy is the ink at lower opacity, never another hue. */
-  --ink-2: rgb(28 25 23 / 0.85); /* running text */
-  --soft: rgb(28 25 23 / 0.7); /* labels, dates, captions */
-  --faint: rgb(28 25 23 / 0.4); /* separators */
-  --rule: #e7e5e4; /* stone-200: hairlines between rows */
-  --accent: #003b8e; /* cobalt */
+  --ink-2: rgb(15 15 14 / 0.85); /* running text */
+  --soft: rgb(15 15 14 / 0.7); /* labels, dates, captions */
+  --faint: rgb(15 15 14 / 0.4); /* separators */
+  --rule: rgb(15 15 14 / 0.16); /* hairlines between rows */
+  --accent: #1c3fd1; /* ultramarine, from the LinkedIn banner */
   --accent-text: var(--accent);
-  --on-accent: #fafaf9;
+  --on-accent: #f1efe9;
   /* 8px base. The gutter is 16px on phones, 32px from tablets up. */
   --gutter: 1rem;
   --container: 72rem; /* max-w-6xl */
@@ -835,7 +836,7 @@ body:has(dialog[open]) {
 }
 
 .lightbox::backdrop {
-  background: rgb(12 10 9 / 0.9);
+  background: rgb(15 15 14 / 0.88);
 }
 
 .lightbox img {
@@ -1088,7 +1089,7 @@ body:has(dialog[open]) {
   width: 2.5rem;
   height: 2.5rem;
   padding: 0;
-  border: 1px solid rgb(250 250 249 / 0.4);
+  border: 1px solid rgb(241 239 233 / 0.45);
   background: none;
   color: var(--on-accent);
   cursor: pointer;
@@ -1126,7 +1127,7 @@ body:has(dialog[open]) {
 .footer-bottom {
   align-items: baseline;
   padding: 1rem 0 1.5rem;
-  border-top: 1px solid rgb(250 250 249 / 0.4);
+  border-top: 1px solid rgb(241 239 233 / 0.4);
   font-size: var(--text-small);
 }
 

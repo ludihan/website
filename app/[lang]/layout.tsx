@@ -11,8 +11,8 @@ import "../globals.css";
 
 export const dynamicParams = false;
 
-// The browser chrome matches the page: stone-50. The site is light only.
-export const viewport: Viewport = { colorScheme: "light", themeColor: "#fafaf9" };
+// The browser chrome matches the warm paper. The site is light only.
+export const viewport: Viewport = { colorScheme: "light", themeColor: "#f1efe9" };
 
 export const generateStaticParams = () => locales.map((lang) => ({ lang }));
 
