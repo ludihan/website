@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getSlugs } from "@/lib/content";
 import { getDictionary, type Locale } from "@/lib/i18n";
 import { profileText } from "@/lib/profile";
 import { LanguageSwitcher } from "./LanguageSwitcher";
@@ -24,7 +25,8 @@ export function SiteHeader({ lang, unknownPath = false }: { lang: Locale; unknow
           <NavLinks
             links={[
               { href: `/${lang}/projects`, label: dict.nav.projects },
-              { href: `/${lang}/blog`, label: dict.nav.blog },
+              // The blog stays out of the menu until it has a post to show.
+              ...(getSlugs(lang).length > 0 ? [{ href: `/${lang}/blog`, label: dict.nav.blog }] : []),
               { href: `/${lang}/about`, label: dict.nav.about },
             ]}
             highlight={!unknownPath}

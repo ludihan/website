@@ -1,3 +1,4 @@
+import { getSlugs } from "@/lib/content";
 import { getDictionary, type Locale } from "@/lib/i18n";
 import { profileText, site } from "@/lib/profile";
 import { CopyEmailButton } from "./CopyEmailButton";
@@ -30,9 +31,11 @@ export function SiteFooter({ lang }: { lang: Locale }) {
               GitHub
             </a>
           </li>
-          <li>
-            <a href={`/${lang}/blog/rss.xml`}>RSS</a>
-          </li>
+          {getSlugs(lang).length > 0 && (
+            <li>
+              <a href={`/${lang}/blog/rss.xml`}>RSS</a>
+            </li>
+          )}
         </ul>
         <p className="footer-top-link">
           <a href="#content">{ui.top} ↑</a>

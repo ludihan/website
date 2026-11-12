@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { getSlugs } from "@/lib/content";
 import { mono, sans } from "@/lib/fonts";
 import { defaultLocale, getDictionary, locales } from "@/lib/i18n";
 import { site } from "@/lib/profile";
@@ -48,9 +49,11 @@ export default function GlobalNotFound() {
                       <li>
                         <Link href={`/${l}/projects`}>{t.projects} →</Link>
                       </li>
-                      <li>
-                        <Link href={`/${l}/blog`}>{t.blog} →</Link>
-                      </li>
+                      {getSlugs(l).length > 0 && (
+                        <li>
+                          <Link href={`/${l}/blog`}>{t.blog} →</Link>
+                        </li>
+                      )}
                     </ul>
                   </div>
                 </div>
