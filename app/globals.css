@@ -429,26 +429,21 @@ p {
   pointer-events: none;
 }
 
+/*
+ * Every figure is the same kind of crop: the top-left corner of the screenshot, enlarged until
+ * the interface is legible at thumbnail size. The whole screenshot is on the projects page.
+ */
 .figure-frame img {
   display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top left;
+  width: 170%;
+  max-width: none;
+  transform-origin: top left;
   transition: transform 0.5s cubic-bezier(0.2, 0, 0, 1);
 }
 
-.figure-frame.is-tall {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-}
-
+/* A phone screenshot is already narrow: its top fills the frame at full width. */
 .figure-frame.is-tall img {
-  width: auto;
-  height: 88%;
-  object-fit: contain;
-  object-position: bottom;
+  width: 100%;
 }
 
 .figure-frame:hover img {
