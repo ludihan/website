@@ -9,9 +9,10 @@
   --paper: #f1efe9;
   --paper-2: #e6e3db;
   --ink: #0f0f0e;
-  --ink-2: #2b2a27;
-  --soft: #625e56;
-  --rule: #cdc9bf;
+  /* Quieter text and the grey rules are the ink at lower opacity, never a second grey. */
+  --ink-2: rgb(15 15 14 / 0.88); /* running text */
+  --soft: rgb(15 15 14 / 0.7); /* labels, dates, captions */
+  --rule: rgb(15 15 14 / 0.16); /* hairlines between rows */
   --blue: #1c3fd1;
   --gutter: clamp(1rem, 2.2vw, 2rem);
   /*
