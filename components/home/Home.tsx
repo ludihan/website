@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { preconnect } from "react-dom";
 import { dateLocales, getDictionary, type Locale } from "@/lib/i18n";
-import { profileText, skills, type SkillGroup } from "@/lib/profile";
+import { profileText } from "@/lib/profile";
 import { projects } from "@/lib/projects";
 import { jsonLdGraph, personRef, webPageJsonLd } from "@/lib/seo";
 import { JsonLd } from "../JsonLd";
@@ -10,7 +10,8 @@ import { LocalTime } from "../LocalTime";
 import { ProjectIndex } from "../ProjectIndex";
 import { RoleList } from "../RoleList";
 import { SectionHead } from "../SectionHead";
-import { Tags } from "../Tags";
+import { EducationList } from "../EducationList";
+import { SkillsList } from "../SkillsList";
 
 export function Home({ lang }: { lang: Locale }) {
   const t = profileText[lang];
@@ -97,31 +98,12 @@ export function Home({ lang }: { lang: Locale }) {
 
       <section className="section">
         <SectionHead n={3} title={t.educationTitle} />
-        <div className="rows">
-          {t.education.map((e) => (
-            <article key={e.title} className="row grid">
-              <p className="row-date">{e.period}</p>
-              <div className="row-title">
-                <h3>{e.title}</h3>
-                <p>
-                  {e.school}, {e.place}
-                </p>
-              </div>
-            </article>
-          ))}
-        </div>
+        <EducationList entries={t.education} />
       </section>
 
       <section className="section">
         <SectionHead n={4} title={t.skillsTitle} />
-        <div className="grid skills">
-          {(Object.keys(skills) as SkillGroup[]).map((g) => (
-            <div key={g} className="skill-col">
-              <h3>{t.skillLabels[g]}</h3>
-              <Tags items={skills[g]} />
-            </div>
-          ))}
-        </div>
+        <SkillsList labels={t.skillLabels} />
       </section>
     </>
   );

@@ -30,6 +30,15 @@ export type Role = {
   stack: string[];
 };
 
+export type Education = {
+  school: string;
+  title: string;
+  period: string;
+  place: string;
+  summary?: string;
+  coursework?: string[];
+};
+
 type ProfileText = {
   role: string;
   lead: string;
@@ -39,14 +48,7 @@ type ProfileText = {
   workAll: string;
   roles: Role[];
   educationTitle: string;
-  education: {
-    school: string;
-    title: string;
-    period: string;
-    place: string;
-    summary?: string;
-    coursework?: string[];
-  }[];
+  education: Education[];
   skillsTitle: string;
   skillLabels: Record<SkillGroup, string>;
   contactTitle: string;

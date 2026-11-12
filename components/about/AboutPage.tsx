@@ -1,10 +1,12 @@
 import { getDictionary, type Locale } from "@/lib/i18n";
-import { profileText, skills, type SkillGroup } from "@/lib/profile";
+import { profileText } from "@/lib/profile";
 import { jsonLdGraph, personRef, webPageJsonLd } from "@/lib/seo";
 import { JsonLd } from "../JsonLd";
 import { RoleList } from "../RoleList";
 import { SectionHead } from "../SectionHead";
 import { Tags } from "../Tags";
+import { EducationList } from "../EducationList";
+import { SkillsList } from "../SkillsList";
 
 export function AboutPage({ lang }: { lang: Locale }) {
   const t = profileText[lang];
@@ -60,44 +62,12 @@ export function AboutPage({ lang }: { lang: Locale }) {
 
       <section className="section">
         <SectionHead n={3} title={t.educationTitle} />
-        <div className="rows">
-          {t.education.map((e) => (
-            <article key={e.title} className="row grid">
-              <p className="row-date">{e.period}</p>
-              <div className="row-title">
-                <h3>{e.title}</h3>
-                <p>
-                  {e.school}, {e.place}
-                </p>
-              </div>
-              <div className="row-body">
-                {e.summary && <p>{e.summary}</p>}
-                {e.coursework && (
-                  <>
-                    <p className="row-label">{a.courseworkLabel}</p>
-                    <Tags items={e.coursework} />
-                  </>
-                )}
-              </div>
-            </article>
-          ))}
-        </div>
+        <EducationList entries={t.education} courseworkLabel={a.courseworkLabel} />
       </section>
 
       <section className="section">
         <SectionHead n={4} title={t.skillsTitle} />
-        <div className="grid skills">
-          {(Object.keys(skills) as SkillGroup[]).map((g) => (
-            <div key={g} className="skill-col">
-              <h3>{t.skillLabels[g]}</h3>
-              <Tags items={skills[g]} />
-            </div>
-          ))}
-          <div className="skill-col">
-            <h3>{a.languagesTitle}</h3>
-            <Tags items={a.languages} />
-          </div>
-        </div>
+        <SkillsList labels={t.skillLabels} languages={{ title: a.languagesTitle, items: a.languages }} />
       </section>
     </>
   );
