@@ -210,12 +210,17 @@ p {
 
 /* ---------- Display type ---------- */
 
-/* The name, set as large as the page allows. */
+/* The name runs the full width of the grid, edge to edge, at every screen size. */
+.hero {
+  container-type: inline-size;
+}
+
 .display {
-  margin: clamp(1.25rem, 3vw, 2.25rem) 0 0 -0.04em;
+  /* Pulled left by the L's side bearing, so the stem sits on the grid edge. */
+  margin: clamp(1.25rem, 3vw, 2.25rem) 0 0 -0.07em;
   color: var(--ink);
-  /* "Lucca Han" is about 4.5em wide: fill the grid on small screens, capped on large ones. */
-  font-size: min(calc((100vw - 2 * var(--gutter)) / 4.5), 11rem);
+  /* "Lucca Han" is 4.46em wide at this tracking. */
+  font-size: calc(100cqw / 4.46);
   font-weight: 700;
   letter-spacing: -0.065em;
   line-height: 0.8;
@@ -223,7 +228,8 @@ p {
 }
 
 .display-page {
-  font-size: clamp(3rem, 7vw, 7rem);
+  margin-left: -0.04em;
+  font-size: clamp(3rem, 11vw, 11rem);
   letter-spacing: -0.055em;
 }
 
