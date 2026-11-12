@@ -20,8 +20,15 @@
   --rule: rgb(15 15 14 / 0.18);
   --blue: #1c3fd1;
 
-  --margin: clamp(1rem, 2.2vw, 2rem);
-  --gutter: clamp(1rem, 2.2vw, 2rem);
+  /*
+   * The unit of the baseline grid: a quarter of the body line (24px). Every line height is
+   * rounded up to a multiple of it, and every margin, padding and gap is rounded to one, so text
+   * keeps one vertical rhythm down the page and lines up across columns.
+   */
+  --u: 0.375rem;
+  --lh: 1.5;
+  --margin: round(clamp(1rem, 2.2vw, 2rem), var(--u));
+  --gutter: round(clamp(1rem, 2.2vw, 2rem), var(--u));
 
   /* Type scale, ratio 1.5: 13 · 16 · 24 · 36 · 54 · 81. */
   --t-cap: 0.8125rem;
@@ -38,6 +45,12 @@
 
 /* ---------- Base ---------- */
 
+/* Each element's line height is its ratio (--lh) times its own size, rounded up to the unit. */
+* {
+  line-height: var(--lh);
+  line-height: round(up, calc(var(--lh) * 1em), var(--u));
+}
+
 html {
   background: var(--paper);
   -webkit-text-size-adjust: 100%;
@@ -52,6 +65,8 @@ html {
 }
 
 body {
+  /* Quotes and stops at the edge of a line hang into the margin (where the browser supports it). */
+  hanging-punctuation: first allow-end last;
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
@@ -60,7 +75,7 @@ body {
   color: var(--ink-2);
   font-family: var(--sans);
   font-size: var(--t-1);
-  line-height: 1.5;
+  --lh: 1.5;
   font-optical-sizing: auto;
   font-feature-settings: "kern";
   -webkit-font-smoothing: antialiased;
@@ -121,7 +136,7 @@ ul {
   top: 0.5rem;
   left: 0.5rem;
   z-index: 20;
-  padding: 0.4rem 0.8rem;
+  padding: round(0.4rem, var(--u)) round(0.8rem, var(--u));
   background: var(--blue);
   color: var(--paper);
   transform: translateY(-200%);
@@ -151,6 +166,19 @@ ul {
   font-variant-numeric: tabular-nums;
 }
 
+/*
+ * Optical alignment: at large sizes the side bearing of the first letter shows as a gap, so large
+ * type is pulled left until its stem meets the column edge, as a typesetter would.
+ */
+.sec-no,
+.sec-title,
+.work-name,
+.channel-link,
+.statement,
+.post-title strong {
+  margin-left: -0.035em;
+}
+
 /* ---------- Grid ---------- */
 
 .grid {
@@ -166,7 +194,7 @@ ul {
 }
 
 .section {
-  margin-top: clamp(4.5rem, 9vw, 8rem);
+  margin-top: round(clamp(4.5rem, 9vw, 8rem), var(--u));
 }
 
 /* ---------- Masthead ---------- */
@@ -176,11 +204,11 @@ ul {
   top: 0;
   z-index: 10;
   align-items: start;
-  padding: 0.9rem var(--margin);
+  padding: calc(var(--u) * 2) var(--margin) calc(var(--u) * 2 - 1px);
   border-bottom: 1px solid var(--ink);
   background: var(--paper);
   font-size: var(--t-cap);
-  line-height: 1.35;
+  --lh: 1.35;
 }
 
 .masthead-name {
@@ -197,7 +225,7 @@ ul {
 .masthead-nav {
   grid-column: 4 / 10;
   display: flex;
-  gap: 2.5rem;
+  gap: round(2.5rem, var(--u));
 }
 
 .nav-link {
@@ -247,14 +275,14 @@ ul {
   justify-content: space-between;
   min-height: max(34rem, calc(100svh - 3.6rem));
   margin-inline: calc(-1 * var(--margin));
-  padding: 1rem var(--margin) clamp(1.5rem, 3vw, 2.5rem);
+  padding: round(1rem, var(--u)) var(--margin) round(clamp(1.5rem, 3vw, 2.5rem), var(--u));
   background: var(--blue);
   color: var(--paper);
 }
 
 .cover-info {
   font-size: var(--t-cap);
-  line-height: 1.35;
+  --lh: 1.35;
 }
 
 .cover-info > div {
@@ -291,9 +319,10 @@ ul {
   color: var(--ink);
 }
 
+/* The name's last line and the statement's last line share a baseline. */
 .cover-main {
-  align-items: end;
-  margin-top: 3rem;
+  align-items: last baseline;
+  margin-top: round(3rem, var(--u));
 }
 
 .cover-name {
@@ -302,7 +331,7 @@ ul {
   color: var(--paper);
   font-size: clamp(5rem, 1rem + 14.5vw, 15rem);
   letter-spacing: -0.065em;
-  line-height: 0.8;
+  --lh: 0.8;
 }
 
 .cover-name span {
@@ -314,7 +343,7 @@ ul {
   max-width: 30em;
   font-size: var(--t-2);
   letter-spacing: -0.015em;
-  line-height: 1.3;
+  --lh: 1.25;
   text-wrap: pretty;
 }
 
@@ -323,25 +352,27 @@ ul {
 .page-title {
   /* Room below the baseline so descenders (the j in "Projects") clear the rule beneath. */
   padding-bottom: 0.12em;
-  margin: clamp(2rem, 5vw, 4rem) 0 0 -0.055em;
+  margin: round(clamp(2rem, 5vw, 4rem), var(--u)) 0 0 -0.055em;
   font-size: clamp(4rem, 1rem + 11vw, 12rem);
   letter-spacing: -0.06em;
-  line-height: 0.85;
+  --lh: 0.85;
 }
 
+/* The first fact and the statement's first line sit on one baseline. */
 .page-lead {
-  margin-top: clamp(1.5rem, 3vw, 2.5rem);
-  padding-top: 1rem;
+  align-items: baseline;
+  margin-top: round(clamp(1.5rem, 3vw, 2.5rem), var(--u));
+  padding-top: calc(var(--u) * 3 - 1px);
   border-top: 1px solid var(--ink);
 }
 
 .facts {
   grid-column: 1 / 4;
   display: grid;
-  gap: 1rem;
+  gap: round(1rem, var(--u));
   align-content: start;
   font-size: var(--t-cap);
-  line-height: 1.4;
+  --lh: 1.35;
 }
 
 .facts dt,
@@ -356,6 +387,7 @@ ul {
 .facts-title {
   grid-column: 1 / 4;
   font-size: var(--t-cap);
+  --lh: 1.35;
 }
 
 .statement {
@@ -364,15 +396,15 @@ ul {
   color: var(--ink);
   font-size: var(--t-3);
   letter-spacing: -0.025em;
-  line-height: 1.15;
+  --lh: 1.15;
   text-wrap: pretty;
 }
 
 .inline-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.25rem 1.5em;
-  margin-top: 1.5rem;
+  gap: round(0.25rem, var(--u)) 1.5em;
+  margin-top: round(1.5rem, var(--u));
   padding: 0;
   font-size: var(--t-1);
   letter-spacing: 0;
@@ -391,7 +423,7 @@ ul {
 
 .sec-head {
   align-items: baseline;
-  padding-top: 0.6rem;
+  padding-top: calc(var(--u) * 2 - 3px);
   border-top: 3px solid var(--ink);
 }
 
@@ -400,7 +432,7 @@ ul {
   font-size: var(--t-4);
   font-weight: 700;
   letter-spacing: -0.045em;
-  line-height: 1;
+  --lh: 1;
 }
 
 .sec-no {
@@ -427,8 +459,8 @@ ul {
 /* ---------- Work: the modular field on the home page ---------- */
 
 .work {
-  row-gap: 3rem;
-  margin-top: 2rem;
+  row-gap: round(3rem, var(--u));
+  margin-top: round(2rem, var(--u));
   padding: 0;
   list-style: none;
 }
@@ -481,29 +513,31 @@ ul {
 .work-meta {
   display: flex;
   justify-content: space-between;
-  margin-top: 0.75rem;
-  padding-top: 0.5rem;
+  margin-top: round(0.75rem, var(--u));
+  padding-top: calc(var(--u) * 2 - 1px);
   border-top: 1px solid var(--ink);
   font-size: var(--t-cap);
+  --lh: 1.35;
 }
 
 .work-name {
-  margin-top: 1.25rem;
+  margin-top: round(1.25rem, var(--u));
   font-size: var(--t-3);
   font-weight: 700;
   letter-spacing: -0.04em;
-  line-height: 1;
+  --lh: 1;
 }
 
 .work-tagline {
-  margin-top: 0.4rem;
+  margin-top: round(0.4rem, var(--u));
   color: var(--ink-2);
 }
 
 .work-stack {
-  margin-top: 0.25rem;
+  margin-top: round(0.25rem, var(--u));
   color: var(--soft);
   font-size: var(--t-cap);
+  --lh: 1.35;
 }
 
 .work-link:hover .work-name {
@@ -513,11 +547,13 @@ ul {
 /* ---------- Rows: experience, education, skills ---------- */
 
 .rows {
-  margin-top: 1.5rem;
+  margin-top: round(1.5rem, var(--u));
 }
 
+/* The columns of a row share their first baseline, whatever their size. */
 .row {
-  padding: 1.25rem 0;
+  align-items: baseline;
+  padding: calc(var(--u) * 3 - 1px) 0 calc(var(--u) * 3);
   border-top: 1px solid var(--rule);
 }
 
@@ -537,11 +573,11 @@ ul {
 .row-title h3 {
   font-size: var(--t-2);
   letter-spacing: -0.025em;
-  line-height: 1.2;
+  --lh: 1.2;
 }
 
 .row-title p {
-  margin-top: 0.25rem;
+  margin-top: round(0.25rem, var(--u));
   color: var(--soft);
 }
 
@@ -552,22 +588,24 @@ ul {
 }
 
 .row-detail > * + * {
-  margin-top: 0.6rem;
+  margin-top: round(0.6rem, var(--u));
 }
 
 .row-detail .tags {
   color: var(--soft);
   font-size: var(--t-cap);
+  --lh: 1.35;
 }
 
 .row-label {
   color: var(--ink);
   font-size: var(--t-cap);
+  --lh: 1.35;
   font-weight: 700;
 }
 
 .row-label + .tags {
-  margin-top: 0.25rem;
+  margin-top: round(0.25rem, var(--u));
 }
 
 .row-strong {
@@ -576,8 +614,7 @@ ul {
 }
 
 .skill-row {
-  align-items: baseline;
-  padding: 0.9rem 0;
+  padding: calc(var(--u) * 2 - 1px) 0 calc(var(--u) * 2);
 }
 
 .skill-row h3 {
@@ -605,13 +642,13 @@ ul {
 /* ---------- About: focus areas ---------- */
 
 .focus {
-  row-gap: 2rem;
-  margin-top: 2rem;
+  row-gap: round(2rem, var(--u));
+  margin-top: round(2rem, var(--u));
 }
 
 .focus-item {
   grid-column: span 3;
-  padding-top: 0.75rem;
+  padding-top: calc(var(--u) * 2 - 1px);
   border-top: 1px solid var(--ink);
 }
 
@@ -620,35 +657,38 @@ ul {
   color: var(--blue);
   font-size: var(--t-2);
   font-weight: 700;
-  line-height: 1;
+  --lh: 1;
 }
 
 .focus-item h3 {
-  margin-top: 1.5rem;
+  margin-top: round(1.5rem, var(--u));
   font-size: var(--t-2);
   letter-spacing: -0.025em;
-  line-height: 1.2;
+  --lh: 1.2;
 }
 
 .focus-item p {
-  margin: 0.6rem 0 1rem;
+  margin: round(0.6rem, var(--u)) 0 round(1rem, var(--u));
 }
 
 .focus-item .tags {
   color: var(--soft);
   font-size: var(--t-cap);
+  --lh: 1.35;
 }
 
 /* ---------- Projects ---------- */
 
+/* The numeral and the project name stand on one baseline. */
 .project {
-  margin-top: clamp(4.5rem, 9vw, 8rem);
-  padding-top: 0.75rem;
+  align-items: first baseline;
+  margin-top: round(clamp(4.5rem, 9vw, 8rem), var(--u));
+  padding-top: calc(var(--u) * 2 - 3px);
   border-top: 3px solid var(--ink);
 }
 
 .page-head + .projects .project:first-child {
-  margin-top: clamp(2.5rem, 5vw, 4rem);
+  margin-top: round(clamp(2.5rem, 5vw, 4rem), var(--u));
 }
 
 .project-side {
@@ -663,11 +703,11 @@ ul {
   font-weight: 700;
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.06em;
-  line-height: 0.8;
+  --lh: 0.8;
 }
 
 .project-side .facts {
-  margin-top: 2rem;
+  margin-top: round(2rem, var(--u));
 }
 
 .project-main {
@@ -678,18 +718,18 @@ ul {
   margin-left: -0.04em;
   font-size: var(--t-5);
   letter-spacing: -0.055em;
-  line-height: 0.9;
+  --lh: 0.9;
 }
 
 .project-head p {
-  margin-top: 0.6rem;
+  margin-top: round(0.6rem, var(--u));
   color: var(--ink);
   font-size: var(--t-2);
   letter-spacing: -0.015em;
 }
 
 .project-media {
-  margin-top: 2rem;
+  margin-top: round(2rem, var(--u));
 }
 
 /*
@@ -702,10 +742,11 @@ ul {
 
 .project-text {
   display: grid;
+  align-items: baseline;
   grid-template-columns: repeat(9, minmax(0, 1fr));
   column-gap: var(--gutter);
-  row-gap: 1.5rem;
-  margin-top: 2rem;
+  row-gap: round(1.5rem, var(--u));
+  margin-top: round(2rem, var(--u));
 }
 
 .project-desc {
@@ -714,7 +755,7 @@ ul {
   color: var(--ink);
   font-size: var(--t-2);
   letter-spacing: -0.015em;
-  line-height: 1.35;
+  --lh: 1.25;
 }
 
 .project-text > div {
@@ -730,7 +771,7 @@ ul {
 .project-features li {
   display: grid;
   grid-template-columns: 2.25rem minmax(0, 1fr);
-  padding: 0.55rem 0;
+  padding: calc(var(--u) * 1.5 - 1px) 0 calc(var(--u) * 1.5);
   border-top: 1px solid var(--rule);
   counter-increment: feature;
 }
@@ -791,8 +832,8 @@ ul {
 
 .filmstrip {
   display: flex;
-  gap: 0.75rem;
-  margin-top: 0.75rem;
+  gap: round(0.75rem, var(--u));
+  margin-top: round(0.75rem, var(--u));
 }
 
 .filmstrip button {
@@ -832,7 +873,7 @@ ul {
   justify-content: space-evenly;
   align-items: center;
   aspect-ratio: 16 / 9;
-  padding: 1.75rem 0;
+  padding: round(1.75rem, var(--u)) 0;
   background: var(--paper-2);
   cursor: default;
 }
@@ -890,9 +931,10 @@ body:has(dialog[open]) {
 .lightbox-bar {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 0.75rem;
+  gap: round(0.5rem, var(--u));
+  padding: round(0.5rem, var(--u)) round(0.75rem, var(--u));
   font-size: var(--t-cap);
+  --lh: 1.35;
 }
 
 .lightbox-bar span {
@@ -920,14 +962,14 @@ body:has(dialog[open]) {
 /* ---------- Blog ---------- */
 
 .post-list {
-  margin-top: 1.5rem;
+  margin-top: round(1.5rem, var(--u));
   padding: 0;
   list-style: none;
 }
 
 .post-row {
   align-items: baseline;
-  padding: 1.25rem 0;
+  padding: calc(var(--u) * 3 - 1px) 0 calc(var(--u) * 3);
   border-top: 1px solid var(--rule);
 }
 
@@ -939,6 +981,7 @@ body:has(dialog[open]) {
 .post-minutes {
   color: var(--soft);
   font-size: var(--t-cap);
+  --lh: 1.35;
 }
 
 .post-date {
@@ -949,14 +992,14 @@ body:has(dialog[open]) {
   grid-column: 4 / 10;
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: round(0.35rem, var(--u));
 }
 
 .post-title strong {
   color: var(--ink);
   font-size: var(--t-3);
   letter-spacing: -0.035em;
-  line-height: 1.1;
+  --lh: 1.1;
 }
 
 .post-row:hover strong {
@@ -968,47 +1011,50 @@ body:has(dialog[open]) {
 }
 
 .post-empty {
-  margin-top: 1.5rem;
-  padding: 1.25rem 0;
+  margin-top: round(1.5rem, var(--u));
+  padding: calc(var(--u) * 3 - 3px) 0 calc(var(--u) * 3);
   border-top: 3px solid var(--ink);
   color: var(--soft);
 }
 
 .post-rss {
-  margin-top: 1.25rem;
+  margin-top: round(1.25rem, var(--u));
   font-size: var(--t-cap);
+  --lh: 1.35;
 }
 
 /* A post starts at column 4, like every other block of content. */
 .post {
   max-width: 44rem;
-  margin: clamp(2rem, 4vw, 3rem) 0 0 calc((100% + var(--gutter)) / 12 * 3);
+  margin: round(clamp(2rem, 4vw, 3rem), var(--u)) 0 0 calc((100% + var(--gutter)) / 12 * 3);
 }
 
 .post > p:first-child {
   font-size: var(--t-cap);
+  --lh: 1.35;
 }
 
 .post > .title {
-  margin: 2rem 0 1rem -0.04em;
+  margin: round(2rem, var(--u)) 0 round(1rem, var(--u)) -0.04em;
   font-size: var(--t-5);
   letter-spacing: -0.055em;
-  line-height: 0.92;
+  --lh: 0.92;
 }
 
 .post-meta {
-  padding-bottom: 1rem;
+  padding-bottom: calc(var(--u) * 3 - 1px);
   border-bottom: 1px solid var(--ink);
   color: var(--soft);
   font-size: var(--t-cap);
+  --lh: 1.35;
 }
 
 .post-nav {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--gutter);
-  margin-top: 4rem;
-  padding-top: 0.75rem;
+  margin-top: round(4rem, var(--u));
+  padding-top: calc(var(--u) * 2 - 3px);
   border-top: 3px solid var(--ink);
 }
 
@@ -1026,6 +1072,7 @@ body:has(dialog[open]) {
 .post-nav small {
   color: var(--soft);
   font-size: var(--t-cap);
+  --lh: 1.35;
   font-weight: 400;
 }
 
@@ -1034,10 +1081,10 @@ body:has(dialog[open]) {
 }
 
 .prose {
-  margin-top: 2.5rem;
+  margin-top: round(2.5rem, var(--u));
   color: var(--ink-2);
   font-size: 1.125rem;
-  line-height: 1.65;
+  --lh: 1.65;
 }
 
 .prose > * + * { margin-top: 1.25em; }
@@ -1048,7 +1095,7 @@ body:has(dialog[open]) {
   margin-top: 2.25em;
   color: var(--ink);
   letter-spacing: -0.03em;
-  line-height: 1.15;
+  --lh: 1.15;
 }
 .prose h1 { font-size: 2em; }
 .prose h2 { font-size: 1.5em; }
@@ -1075,29 +1122,30 @@ body:has(dialog[open]) {
 /* ---------- Colophon: the black field that closes every page ---------- */
 
 .colophon {
-  margin-top: clamp(5rem, 10vw, 9rem);
-  padding: 1rem var(--margin) 0;
+  margin-top: round(clamp(5rem, 10vw, 9rem), var(--u));
+  padding: round(1rem, var(--u)) var(--margin) 0;
   background: var(--ink);
   color: var(--paper);
 }
 
 .colophon-label {
   font-size: var(--t-cap);
+  --lh: 1.35;
   opacity: 0.7;
 }
 
 /* The three channels as an index: rows on the page grid, divided by hairlines. */
 .channels {
-  margin: clamp(2rem, 5vw, 4rem) 0 clamp(2.5rem, 6vw, 5rem);
+  margin: round(clamp(2rem, 5vw, 4rem), var(--u)) 0 round(clamp(2.5rem, 6vw, 5rem), var(--u));
   padding: 0;
   list-style: none;
 }
 
 .channel {
   position: relative;
-  align-items: center;
+  align-items: baseline;
   margin-inline: calc(-1 * var(--margin));
-  padding: clamp(0.9rem, 1.8vw, 1.4rem) var(--margin);
+  padding: round(clamp(0.9rem, 1.8vw, 1.4rem), var(--u)) var(--margin);
   transition: background 0.12s;
 }
 
@@ -1127,6 +1175,7 @@ body:has(dialog[open]) {
   display: flex;
   gap: 1.5em;
   font-size: var(--t-cap);
+  --lh: 1.35;
 }
 
 .channel-label span {
@@ -1139,7 +1188,7 @@ body:has(dialog[open]) {
   font-size: var(--t-4);
   font-weight: 700;
   letter-spacing: -0.045em;
-  line-height: 1.05;
+  --lh: 1;
   overflow-wrap: anywhere;
 }
 
@@ -1159,7 +1208,7 @@ body:has(dialog[open]) {
   justify-self: end;
   font-size: var(--t-3);
   font-weight: 700;
-  line-height: 1;
+  --lh: 1;
 }
 
 /* The copy button sits above the row's link, so it stays clickable. */
@@ -1196,10 +1245,11 @@ body:has(dialog[open]) {
   position: absolute;
   left: 50%;
   bottom: calc(100% + 0.5rem);
-  padding: 0.25rem 0.55rem;
+  padding: round(0.25rem, var(--u)) round(0.55rem, var(--u));
   background: var(--paper);
   color: var(--ink);
   font-size: var(--t-cap);
+  --lh: 1.35;
   font-weight: 400;
   letter-spacing: 0;
   white-space: nowrap;
@@ -1215,9 +1265,10 @@ body:has(dialog[open]) {
 
 .colophon-foot {
   align-items: baseline;
-  padding: 0.9rem 0 1.25rem;
+  padding: calc(var(--u) * 2 - 1px) 0 calc(var(--u) * 3);
   border-top: 1px solid rgb(241 239 233 / 0.3);
   font-size: var(--t-cap);
+  --lh: 1.35;
 }
 
 .colophon-copy {
@@ -1257,8 +1308,8 @@ div[data-lang] {
   .masthead {
     display: flex;
     align-items: center;
-    gap: 1.25rem;
-    padding-block: 0.25rem;
+    gap: round(1.25rem, var(--u));
+    padding-block: round(0.25rem, var(--u));
     font-size: 0.875rem;
   }
 
@@ -1272,7 +1323,7 @@ div[data-lang] {
   }
 
   .masthead-nav {
-    gap: 1.25rem;
+    gap: round(1.25rem, var(--u));
   }
 
   .masthead-name,
@@ -1295,12 +1346,12 @@ div[data-lang] {
 
   .cover {
     min-height: auto;
-    padding-top: 1rem;
+    padding-top: round(1rem, var(--u));
   }
 
   .cover-info {
     grid-template-columns: 1fr 1fr;
-    row-gap: 0.75rem;
+    row-gap: round(0.75rem, var(--u));
   }
 
   .cover-info > div {
@@ -1308,8 +1359,8 @@ div[data-lang] {
   }
 
   .cover-main {
-    margin-top: 4rem;
-    row-gap: 1.5rem;
+    margin-top: round(4rem, var(--u));
+    row-gap: round(1.5rem, var(--u));
   }
 
   .cover-name {
@@ -1317,7 +1368,7 @@ div[data-lang] {
   }
 
   .sec-head {
-    row-gap: 0.5rem;
+    row-gap: round(0.5rem, var(--u));
   }
 
   .sec-head .sec-no {
@@ -1329,28 +1380,28 @@ div[data-lang] {
   }
 
   .sec-more {
-    margin-top: 0.25rem;
+    margin-top: round(0.25rem, var(--u));
   }
 
   .work {
-    row-gap: 2.5rem;
+    row-gap: round(2.5rem, var(--u));
   }
 
   .row {
-    row-gap: 0.5rem;
+    row-gap: round(0.5rem, var(--u));
   }
 
   .facts {
     grid-template-columns: 1fr 1fr;
-    margin-bottom: 1.75rem;
+    margin-bottom: round(1.75rem, var(--u));
   }
 
   .focus-item h3 {
-    margin-top: 0.75rem;
+    margin-top: round(0.75rem, var(--u));
   }
 
   .project {
-    row-gap: 1.5rem;
+    row-gap: round(1.5rem, var(--u));
   }
 
   .project-side {
@@ -1382,7 +1433,7 @@ div[data-lang] {
   }
 
   .post-row {
-    row-gap: 0.4rem;
+    row-gap: round(0.4rem, var(--u));
   }
 
   .post {
@@ -1390,7 +1441,7 @@ div[data-lang] {
   }
 
   .channel {
-    row-gap: 0.4rem;
+    row-gap: round(0.4rem, var(--u));
   }
 
   .channel-link {
@@ -1405,7 +1456,7 @@ div[data-lang] {
   }
 
   .colophon-foot {
-    row-gap: 0.25rem;
+    row-gap: round(0.25rem, var(--u));
   }
 }
 

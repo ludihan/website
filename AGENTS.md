@@ -32,6 +32,14 @@ comment summarises the rules below.
   content starts at column 4; a link or action closing a row sits in the last field (10–12).
   Nothing is centred; text is flush left, ragged right. Measures: body text 60ch, statements
   26em, the cover statement 30em, blog posts 44rem.
+- **Baseline grid.** The unit `--u` is 6px, a quarter of the 24px body line. A universal rule
+  sets every element's line height to its ratio `--lh` times its size, rounded up to the unit
+  (`round(up, …, var(--u))`), so set `--lh`, never `line-height`. Every margin, padding and gap is
+  a multiple of the unit (`round(…, var(--u))` or `calc(var(--u) * n)`), and borders are taken out
+  of the padding beside them (`calc(var(--u) * 3 - 1px)`) so they don't push text off the grid.
+  Small text (`--t-cap`) uses `--lh: 1.35` (18px). Columns that sit side by side share a
+  baseline: rows, page leads and project text use `align-items: baseline`, the project numeral
+  and name `first baseline`, the cover name and statement `last baseline`.
 - **Colour.** Warm paper `--paper #f1efe9` (with `--paper-2 #e4e1d8` behind screenshots), ink
   `--ink #0f0f0e`, ultramarine `--blue #1c3fd1`. Quieter text and rules are the ink at lower
   opacity, never another grey: `--ink-2` 86% (running text), `--soft` 62% (labels), `--faint` 35%
@@ -48,7 +56,10 @@ comment summarises the rules below.
   in blue; the masthead nav is numbered 01, 02; the colophon's contact rows are 01–03; focus
   areas are lettered a–d in blue.
 - **Typography details.** Curly quotes and apostrophes, `…` not `...`, tabular figures for dates
-  and numbers, balanced headings, pretty-wrapped statements. Tech lists are plain comma-separated
+  and numbers, balanced headings, pretty-wrapped statements. Optical alignment: large type is
+  pulled left by its side bearing (`margin-left: -0.035em` up to `-0.065em`) so the stem meets
+  the column edge, and punctuation hangs into the margin where the browser supports
+  `hanging-punctuation`. Tech lists are plain comma-separated
   text (`components/Tags.tsx`), never chips.
 
 ## Components
