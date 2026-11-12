@@ -4,8 +4,9 @@ export const site = {
   url: "https://ludihan.com",
   name: "Lucca Han",
   email: "luccad.han@gmail.com",
-  github: "https://github.com/ludihan",
+  // Contact links are always listed email, LinkedIn, GitHub: employers look for LinkedIn first.
   linkedin: "https://linkedin.com/in/lucca-han/",
+  github: "https://github.com/ludihan",
   // The line under the role on the banner.
   headline: ["Full Stack", "TypeScript", "React", "Go"],
 };

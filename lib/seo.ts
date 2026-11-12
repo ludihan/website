@@ -92,7 +92,7 @@ export function personJsonLd(lang: Locale) {
     jobTitle: t.role,
     description: getDictionary(lang).meta.homeDescription,
     email: `mailto:${site.email}`,
-    sameAs: [site.github, site.linkedin],
+    sameAs: [site.linkedin, site.github],
     address: {
       "@type": "PostalAddress",
       addressLocality: "Manaus",

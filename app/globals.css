@@ -1081,43 +1081,90 @@ body:has(dialog[open]) {
   color: var(--paper);
 }
 
-.colophon-main {
-  align-items: start;
-}
-
 .colophon-label {
-  grid-column: 1 / 4;
   font-size: var(--t-cap);
   opacity: 0.7;
 }
 
-.colophon-contact {
-  grid-column: 4 / 13;
-  display: grid;
-  gap: clamp(0.5rem, 1.5vw, 1rem);
-  margin: clamp(2.5rem, 6vw, 5rem) 0 clamp(2.5rem, 6vw, 5rem) -0.05em;
+/* The three channels as an index: rows on the page grid, divided by hairlines. */
+.channels {
+  margin: clamp(2rem, 5vw, 4rem) 0 clamp(2.5rem, 6vw, 5rem);
   padding: 0;
   list-style: none;
 }
 
-.colophon-email {
-  display: flex;
-  flex-wrap: wrap;
+.channel {
+  position: relative;
   align-items: center;
-  gap: 0.75rem 1rem;
-  font-size: var(--t-5);
+  margin-inline: calc(-1 * var(--margin));
+  padding: clamp(0.9rem, 1.8vw, 1.4rem) var(--margin);
+  transition: background 0.12s;
+}
+
+/* The hairline sits inside the page margins, like every other rule; the hover fill runs edge to
+   edge. */
+.channel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: var(--margin);
+  left: var(--margin);
+  border-top: 1px solid rgb(241 239 233 / 0.3);
+}
+
+.channel:hover::before,
+.channel:hover + .channel::before {
+  border-color: transparent;
+}
+
+.channel:hover,
+.channel:focus-within {
+  background: var(--blue);
+}
+
+.channel-label {
+  grid-column: 1 / 4;
+  display: flex;
+  gap: 1.5em;
+  font-size: var(--t-cap);
+}
+
+.channel-label span {
+  opacity: 0.6;
+  font-variant-numeric: tabular-nums;
+}
+
+.channel-link {
+  grid-column: 4 / 12;
+  font-size: var(--t-4);
   font-weight: 700;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+  overflow-wrap: anywhere;
+}
+
+/* The link covers its whole row, so the row is the target. */
+.channel-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.channel-link:focus-visible {
+  outline: none;
+}
+
+.channel-end {
+  grid-column: 12 / 13;
+  justify-self: end;
+  font-size: var(--t-3);
+  font-weight: 700;
   line-height: 1;
 }
 
-.colophon-email a {
-  background: linear-gradient(currentColor, currentColor) 0 100% / 0 0.07em no-repeat;
-  transition: background-size 0.35s cubic-bezier(0.2, 0, 0, 1);
-}
-
-.colophon-email a:hover {
-  background-size: 100% 0.07em;
+/* The copy button sits above the row's link, so it stays clickable. */
+.channel-end .copy-email-wrap {
+  z-index: 1;
 }
 
 .copy-email-wrap {
@@ -1177,19 +1224,15 @@ body:has(dialog[open]) {
   grid-column: 1 / 4;
 }
 
-.colophon-links {
+.colophon-rss {
   grid-column: 4 / 10;
-  display: flex;
-  gap: 1.5rem;
-  padding: 0;
-  list-style: none;
 }
 
 .colophon-top {
   grid-column: 10 / 13;
 }
 
-.colophon-links a:hover,
+.colophon-rss a:hover,
 .colophon-top a:hover {
   text-decoration: underline;
   text-underline-offset: 0.2em;
@@ -1243,7 +1286,7 @@ div[data-lang] {
   .lang-switcher a,
   .lang-switcher [aria-current],
   .sec-more,
-  .colophon-links a,
+  .colophon-rss a,
   .colophon-top a {
     display: inline-flex;
     align-items: center;
@@ -1346,9 +1389,19 @@ div[data-lang] {
     margin-left: 0;
   }
 
-  .colophon-email {
-    flex-wrap: nowrap;
+  .channel {
+    row-gap: 0.4rem;
+  }
+
+  .channel-link {
     font-size: 7vw;
+  }
+
+  .channel-end {
+    position: absolute;
+    top: 0.6rem;
+    right: var(--margin);
+    font-size: var(--t-2);
   }
 
   .colophon-foot {
