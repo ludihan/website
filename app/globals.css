@@ -257,12 +257,6 @@ p {
   border-top: 1px solid var(--ink);
 }
 
-.page-head .grid:not(.hero-body) {
-  margin-top: clamp(1rem, 2vw, 1.5rem);
-  padding-top: 0.85rem;
-  border-top: 1px solid var(--ink);
-}
-
 .meta {
   grid-column: 1 / 4;
   display: grid;
@@ -275,6 +269,23 @@ p {
 .meta dt,
 .meta-title {
   color: var(--soft);
+}
+
+.meta-label {
+  color: var(--soft);
+}
+
+.meta-links span {
+  color: var(--soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.meta-links a {
+  color: var(--ink);
+}
+
+.meta-links a:hover {
+  color: var(--blue);
 }
 
 .meta dd {
