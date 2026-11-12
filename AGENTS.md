@@ -12,8 +12,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 The site follows the Swiss (International Typographic) Style of Müller-Brockmann, Ruder and
 Hofmann: a strict grid running edge to edge, one grotesk in strong weights, hairline rules,
-flush-left text and a single accent colour. Keep to this when
-changing or adding UI.
+flush-left text and a single accent colour. Keep to this when changing or adding UI.
 
 - **Typeface.** Schibsted Grotesk for everything, from captions to the display name, with Geist
   Mono only for code in blog posts (`lib/fonts.ts`). Hierarchy comes from size, weight and
@@ -23,7 +22,7 @@ changing or adding UI.
   from weight more than from sheer size.
 - **Not too big.** The owner asked that nothing be oversized. The name tops out at 6rem, page
   titles at 4.5rem, section gaps at 5rem. Keep new elements within the type scale at the top of
-  `app/globals.css` (`--text-caption` to `--text-headline`).
+  `app/globals.css` (`--text-small` to `--text-headline`).
 - **Palette: warm paper, ink and one blue, light only.** Paper `#f1efe9`, surfaces `#e6e3db`,
   ink `#0f0f0e`, and ultramarine `#1c3fd1` (from the owner's LinkedIn banner) as the one accent,
   used for links, section numbers, the current-page dot, the hover fill on index rows and the
