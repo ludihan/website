@@ -28,8 +28,8 @@ What that means here:
 - **Hairlines, not boxes.** Black 1px rules open sections; grey ones separate table rows. No
   cards, shadows, gradients, glows or rounded corners (the round copy button is the exception).
 - **Paper, ink and one blue.** Warm paper `#f1efe9`, near-black ink `#0f0f0e`, and ultramarine
-  `#1c3fd1` used only as a solid: links, the current-page dot, the hover fill on index rows, and
-  the full-bleed contact footer. Light theme only. The tokens are at the top of `app/globals.css`.
+  `#1c3fd1` used only as a solid: links, section numbers, the current-page dot, the hover fill on
+  index rows, and the full-bleed contact footer. Light theme only. The tokens are at the top of `app/globals.css`.
 - **Content set as tables and indexes.** Projects are a numbered index; experience and education
   are rows of date, title, detail; sections are numbered from 01; screenshots are captioned figures
   ("Fig. 1"). Tech lists are plain comma-separated text, never chips.

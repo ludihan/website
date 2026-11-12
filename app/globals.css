@@ -316,7 +316,7 @@ p {
 
 .section-no {
   grid-column: 1 / 4;
-  color: var(--ink);
+  color: var(--blue);
   font-size: var(--text-small);
   font-weight: 500;
 }
