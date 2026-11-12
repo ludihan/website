@@ -502,11 +502,14 @@ ul {
 .work-fig.is-tall {
   display: flex;
   justify-content: center;
+  /* Without this the flex row stretches the image to the frame's height and distorts it. */
+  align-items: flex-start;
   padding-top: 7%;
 }
 
 .work-fig.is-tall img {
   width: 44%;
+  height: auto;
   outline: 1px solid var(--rule);
 }
 
