@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /*
- * Swiss International Style (the swiss-design skill): IBM Plex Sans, a 12-column grid on an 8px
+ * Swiss International Style: Schibsted Grotesk in strong weights, a 12-column grid on an 8px
  * base, warm paper and near-black ink with hierarchy by opacity, and one accent, ultramarine.
  * Light theme only.
  */
@@ -31,7 +31,7 @@
   --text-heading: 1.5rem; /* names in an index */
   --text-title: clamp(1.5rem, 1.1rem + 1.2vw, 1.875rem); /* section titles and the lead statement */
   --text-headline: clamp(1.875rem, 1.4rem + 1.5vw, 2.5rem); /* project and post titles */
-  --sans: var(--font-sans), "Hanken Grotesk", "Barlow", "Host Grotesk", "DM Sans", system-ui, sans-serif;
+  --sans: var(--font-sans), "Helvetica Neue", Arial, sans-serif;
   --mono: var(--font-mono), ui-monospace, monospace;
   color-scheme: light;
 }
@@ -159,13 +159,10 @@ p {
   margin-top: clamp(4rem, 8vw, 5rem);
 }
 
-/* Figures line up in columns of dates and numbers. */
+/* Figures line up in the number columns. (Dates keep proportional figures: Schibsted's tabular
+   ones open a gap after abbreviations like "Oct.") */
 .index-no,
-.index-period,
 .section-no,
-.row-date,
-.post-date,
-.project-facts dd,
 .project-features li::before {
   font-variant-numeric: tabular-nums;
 }
@@ -187,7 +184,7 @@ p {
 .brand {
   grid-column: 1 / 4;
   color: var(--ink);
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .header-role {
@@ -246,14 +243,14 @@ p {
 
 /* ---------- Display type ---------- */
 
-/* The name: large, light and tight, but not wider than the page needs. */
+/* The name: bold and tightly spaced. Weight, not sheer size, sets it apart. */
 .display {
-  margin: clamp(2rem, 5vw, 3rem) 0 0 -0.04em;
+  margin: clamp(2rem, 5vw, 3rem) 0 0 -0.05em;
   color: var(--ink);
   font-size: clamp(3rem, 2rem + 6vw, 6rem);
-  font-weight: 300;
-  letter-spacing: -0.03em;
-  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  line-height: 0.9;
 }
 
 .display-page {
@@ -303,9 +300,9 @@ p {
   color: var(--ink);
   max-width: 32em;
   font-size: var(--text-title);
-  font-weight: 300;
-  letter-spacing: -0.02em;
-  line-height: 1.3;
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
   text-wrap: pretty;
 }
 
@@ -345,9 +342,9 @@ p {
 .section-head h2 {
   grid-column: 4 / 10;
   font-size: var(--text-title);
-  font-weight: 300;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
 }
 
 .section-more {
@@ -398,8 +395,8 @@ p {
 .index-name {
   grid-column: 2 / 4;
   font-size: var(--text-heading);
-  font-weight: 400;
-  letter-spacing: -0.02em;
+  font-weight: 700;
+  letter-spacing: -0.04em;
   line-height: 1;
 }
 
@@ -479,7 +476,7 @@ p {
 
 .figure figcaption span {
   color: var(--ink);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 /* ---------- Rows: experience & education ---------- */
@@ -509,9 +506,9 @@ p {
 
 .row-title h3 {
   font-size: var(--text-sub);
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
 }
 
 .row-title p {
@@ -602,8 +599,8 @@ p {
 
 .focus-item h3 {
   font-size: var(--text-sub);
-  font-weight: 400;
-  letter-spacing: -0.01em;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
 .focus-item p {
@@ -636,9 +633,9 @@ p {
 .project-head h2 {
   margin-top: 0.5rem;
   font-size: var(--text-headline);
-  font-weight: 300;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 1;
 }
 
 .project-head p {
@@ -922,9 +919,9 @@ body:has(dialog[open]) {
 .post-title strong {
   color: var(--ink);
   font-size: var(--text-heading);
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
 }
 
 .post-row:hover strong {
@@ -959,9 +956,9 @@ body:has(dialog[open]) {
 .post > .title {
   margin: 2rem 0 1rem;
   font-size: var(--text-headline);
-  font-weight: 300;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 1;
 }
 
 .post-meta {
@@ -1016,9 +1013,9 @@ body:has(dialog[open]) {
 .prose h4 {
   margin-top: 2.25em;
   color: var(--ink);
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
 }
 .prose h1 { font-size: 2em; }
 .prose h2 { font-size: 1.6em; }
@@ -1028,7 +1025,7 @@ body:has(dialog[open]) {
 .prose li + li { margin-top: 0.35em; }
 .prose a { color: var(--accent-text); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
 .prose a:hover { color: var(--ink); }
-.prose strong { color: var(--ink); font-weight: 500; }
+.prose strong { color: var(--ink); font-weight: 600; }
 .prose blockquote { padding-left: 1.25rem; border-left: 2px solid var(--accent-text); color: var(--ink); font-size: 1.15em; }
 .prose pre { padding: 1rem 1.25rem; overflow-x: auto; font-size: var(--text-small); line-height: 1.6; }
 .prose code { font-family: var(--mono); }
@@ -1071,9 +1068,9 @@ body:has(dialog[open]) {
   /* Only a one-word label sits above the address, so the gap above it stays short. */
   margin: clamp(1.5rem, 3vw, 2rem) 0 clamp(2rem, 4vw, 3rem) -0.03em;
   font-size: clamp(1.75rem, 1rem + 4vw, 4rem);
-  font-weight: 300;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1;
 }
 
 .footer-email a {
