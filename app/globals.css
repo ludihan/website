@@ -24,7 +24,6 @@
   /*
    * The type scale. Apart from the display sizes, every size on the site is one of these.
    */
-  --text-caption: 0.75rem; /* uppercase labels */
   --text-small: 0.875rem; /* dates, captions, tech lists */
   --text-body: 1rem;
   --text-sub: 1.25rem; /* row and item titles */
@@ -281,9 +280,7 @@ p {
 .meta dt,
 .meta-title {
   color: var(--soft);
-  font-size: var(--text-caption);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  font-size: var(--text-small);
 }
 
 .meta dd {
@@ -334,9 +331,8 @@ p {
 .section-no {
   grid-column: 1 / 4;
   color: var(--accent-text);
-  font-size: var(--text-caption);
+  font-size: var(--text-small);
   font-weight: 500;
-  letter-spacing: 0.05em;
 }
 
 .section-head h2 {
@@ -532,10 +528,8 @@ p {
 
 .row-label {
   color: var(--soft);
-  font-size: var(--text-caption);
+  font-size: var(--text-small);
   font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
 }
 
 .row-label + .tags {
@@ -564,11 +558,9 @@ p {
 
 .skill-row h3 {
   grid-column: 1 / 4;
-  color: var(--soft);
-  font-size: var(--text-caption);
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  color: var(--ink);
+  font-size: var(--text-small);
+  font-weight: 600;
 }
 
 .skill-row .tags {
@@ -687,9 +679,7 @@ p {
 
 .project-facts dt {
   color: var(--soft);
-  font-size: var(--text-caption);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  font-size: var(--text-small);
 }
 
 .project-facts dd {
@@ -1055,10 +1045,8 @@ body:has(dialog[open]) {
 
 .footer-label {
   grid-column: 1 / 4;
-  font-size: var(--text-caption);
+  font-size: var(--text-small);
   font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
 }
 
 .footer-email {

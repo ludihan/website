@@ -10,15 +10,17 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 # Design language
 
-The site follows the Swiss (International Typographic) Style: a strict grid, one grotesk set in
-light weights, hairline rules, flush-left text and a single accent colour. Keep to this when
+The site follows the Swiss (International Typographic) Style of Müller-Brockmann, Ruder and
+Hofmann: a strict grid running edge to edge, one grotesk in strong weights, hairline rules,
+flush-left text and a single accent colour. Keep to this when
 changing or adding UI.
 
-- **Typeface.** IBM Plex Sans for everything (weights 300, 400, 500), IBM Plex Mono only for code
-  in blog posts (`lib/fonts.ts`). Hierarchy comes from size, weight and opacity, never a second
-  family.
-- **Headings are light.** Display, page titles, section titles and project names are weight 300
-  with slight negative tracking; row and item titles are 400. Never bold. Emphasis is 500.
+- **Typeface.** Schibsted Grotesk for everything, from captions to the display name, with Geist
+  Mono only for code in blog posts (`lib/fonts.ts`). Hierarchy comes from size, weight and
+  opacity, never a second family.
+- **Strong weights.** The name, page titles and project and post titles are bold (700) and
+  tightly tracked; section titles 600; row and item titles 600; running text 400. Contrast comes
+  from weight more than from sheer size.
 - **Not too big.** The owner asked that nothing be oversized. The name tops out at 6rem, page
   titles at 4.5rem, section gaps at 5rem. Keep new elements within the type scale at the top of
   `app/globals.css` (`--text-caption` to `--text-headline`).
@@ -32,15 +34,15 @@ changing or adding UI.
 - **Grid.** A 12-column grid on an 8px base running edge to edge (no centred container), with a
   16px gutter and page margin on phones and 32px from 768px. Labels and dates start at column 1, content at
   column 4. Text is flush left, ragged right; nothing is centred. Body text stays within 60ch.
-- **Captions.** Labels (meta, facts, skill groups, the footer label) are 12px uppercase with
-  wide tracking, at 70% ink.
+- **Labels.** Labels (meta, facts, dates, the footer label) are small, normal case, at 70% ink.
+  No uppercase or letter-spaced captions.
 - **Hairlines, not boxes.** Ink rules open sections; 16% ink rules separate rows. No cards,
   shadows, gradients or rounded corners (the current-page dot is the only round shape).
 - **Content as tables and indexes.** Projects are a numbered index; experience, education and
   skills are rows of label and detail; sections are numbered from 01; screenshots are captioned
   figures ("Fig. 1"). Tech lists are plain comma-separated text, never chips.
-- **Typography details.** Curly quotes and apostrophes, `…` not `...`, tabular figures for dates
-  and numbers, balanced headings.
+- **Typography details.** Curly quotes and apostrophes, `…` not `...`, tabular figures in number
+  columns (not dates: Schibsted's tabular figures gap after "Oct."), balanced headings.
 - **Header.** The nav bar sticks to the top of the screen, on paper with a 16% ink hairline
   under it; on phones it is a single row (name left, links right) to keep it short.
 - **Mobile.** Every layout must work from 320px. Links are at least 44px tall on phones.
