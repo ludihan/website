@@ -750,31 +750,48 @@ p {
   object-position: top left;
 }
 
+/*
+ * Phone screenshots: every screen shown whole, side by side on a paper-2 stage. The stage is
+ * as tall as a wide screenshot plus its filmstrip, so all three projects take the same space.
+ */
 .showcase.is-tall .stage {
+  position: relative;
   display: flex;
-  justify-content: center;
-  gap: clamp(1rem, 4vw, 4rem);
-  max-height: 22rem;
-  padding: 1.5rem 1rem 0;
-  overflow: hidden;
+  justify-content: space-evenly;
+  align-items: center;
+  aspect-ratio: 4 / 3;
+  padding: 1.5rem 0;
   background: var(--paper-2);
   cursor: default;
 }
 
+/* The same hairline edge as the wide screenshots. */
+.showcase.is-tall .stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--rule);
+  pointer-events: none;
+}
+
 .device {
-  flex: 0 1 9rem;
+  height: 100%;
   padding: 0;
-  overflow: hidden;
   border: 0;
-  border-radius: 1.25rem 1.25rem 0 0;
+  outline: 1px solid var(--rule);
   background: var(--paper);
-  box-shadow: 0 0 0 6px var(--ink);
   cursor: zoom-in;
+  transition: outline-color 0.15s;
+}
+
+.device:hover {
+  outline-color: var(--ink);
 }
 
 .device img {
   display: block;
-  width: 100%;
+  width: auto;
+  height: 100%;
 }
 
 /* ---------- Lightbox ---------- */
@@ -1234,6 +1251,11 @@ div[data-lang] {
 
   .footer-top-link {
     justify-self: start;
+  }
+
+  /* Two screens on a phone, tall enough to read. */
+  .showcase.is-tall .stage {
+    aspect-ratio: 4 / 5;
   }
 
   .device:nth-child(n + 3) {
