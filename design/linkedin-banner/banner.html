@@ -1,0 +1,88 @@
+<!doctype html>
+<!--
+  LinkedIn banner, 1584 × 396 (LinkedIn's recommended size), set like the site's home cover:
+  the ultramarine field, Inter, a 12-column grid with a 48px margin and 24px gutter.
+
+  The profile photo covers the bottom left of the banner, so nothing important sits in columns
+  1–3 below the information line. The name is the largest type, the title the second largest.
+
+  Render with:
+    chromium --headless=new --hide-scrollbars --window-size=1584,396 \
+      --screenshot=linkedin-banner.png file://$PWD/banner.html
+  (add --force-device-scale-factor=2 for the @2x file)
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,700&display=block" rel="stylesheet">
+<style>
+  html, body { margin: 0; }
+  body {
+    width: 1584px;
+    height: 396px;
+    overflow: hidden;
+    background: #1c3fd1;
+    color: #f1efe9;
+    font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+    font-optical-sizing: auto;
+    -webkit-font-smoothing: antialiased;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 24px;
+    padding: 0 48px;
+  }
+
+  /* The information line across the top, as on the site's cover. */
+  .info {
+    padding-top: 36px;
+    font-size: 17px;
+    line-height: 24px;
+  }
+  .info div { grid-column: span 3; }
+  .info dt { opacity: 0.7; }
+  .info dd { margin: 0; }
+  .info dl, .info { margin: 0; }
+
+  /* Name and title, from column 4 to clear the profile photo, on the bottom baseline. */
+  .main {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 34px;
+    align-items: end;
+  }
+  .title {
+    grid-column: 4 / 13;
+    margin: 0 0 14px -0.04em;
+    font-size: 60px;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+  .name {
+    grid-column: 4 / 13;
+    margin: 0 0 0 -0.06em;
+    font-size: 176px;
+    font-weight: 700;
+    letter-spacing: -0.065em;
+    line-height: 0.8;
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+  <dl class="info grid">
+    <div style="grid-column: 4 / 7"><dt>Based in</dt><dd>Manaus, Brazil (UTC−4)</dd></div>
+    <div style="grid-column: 7 / 10"><dt>Works with</dt><dd>TypeScript, React, Next.js, Go</dd></div>
+    <div style="grid-column: 10 / 13"><dt>Portfolio</dt><dd>ludihan.com</dd></div>
+  </dl>
+  <div class="main grid">
+    <p class="title">Software Engineer</p>
+    <h1 class="name">Lucca Han</h1>
+  </div>
+</body>
+</html>
