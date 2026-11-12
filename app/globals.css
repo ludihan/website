@@ -82,6 +82,7 @@ h4 {
   margin: 0;
   color: var(--ink);
   font-weight: 500;
+  text-wrap: balance;
 }
 
 p {
@@ -146,7 +147,11 @@ p {
 
 /* Figures line up in columns of dates and numbers. */
 .index-no,
+.index-period,
 .section-no,
+.row-date,
+.post-date,
+.project-facts dd,
 .project-features li::before {
   font-variant-numeric: tabular-nums;
 }

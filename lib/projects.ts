@@ -55,7 +55,7 @@ export const projects: Project[] = [
         tagline: "A music tracker with modular synths",
         period: "Oct. 2026 – present",
         description:
-          "A music tracker with modular synths, written in Rust. Notes in the pattern go straight to synth modules, and each instrument's sound goes through a chain of effect modules.",
+          "A music tracker with modular synths, written in Rust. Notes in the pattern go straight to synth modules, and each instrument’s sound goes through a chain of effect modules.",
         features: [
           "Pattern editor with multiple note and effect columns, block edits, MIDI input and effect commands",
           "Over 40 synth and effect modules, plus track effects, a master chain and a mixer",

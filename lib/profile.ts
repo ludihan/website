@@ -53,7 +53,6 @@ type ProfileText = {
   education: Education[];
   skillsTitle: string;
   skillLabels: Record<SkillGroup, string>;
-  contactTitle: string;
   about: {
     title: string;
     summary: string;
@@ -115,7 +114,7 @@ export const profileText: Record<Locale, ProfileText> = {
       },
       {
         school: "University of Fortaleza (UNIFOR)",
-        title: "Bachelor's Degree in Computer Science",
+        title: "Bachelor’s Degree in Computer Science",
         grade: "GPA 8.37/10.0",
         period: "Feb. 2022 – Dec. 2025",
         place: "Fortaleza, Brazil",
@@ -139,7 +138,6 @@ export const profileText: Record<Locale, ProfileText> = {
       devops: "DevOps & tooling",
       ai: "AI-assisted development",
     },
-    contactTitle: "Let's talk",
     about: {
       title: "About me",
       summary:
@@ -245,7 +243,6 @@ export const profileText: Record<Locale, ProfileText> = {
       devops: "DevOps e ferramentas",
       ai: "Desenvolvimento com IA",
     },
-    contactTitle: "Vamos conversar",
     about: {
       title: "Sobre mim",
       summary:
