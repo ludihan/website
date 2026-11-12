@@ -19,8 +19,8 @@
   --on-accent: #f1efe9;
   /* 8px base. The gutter is 16px on phones, 32px from tablets up. */
   --gutter: 1rem;
-  --container: 72rem; /* max-w-6xl */
-  --edge: max(var(--gutter), (100% - var(--container)) / 2);
+  /* The grid runs edge to edge: the page margin is one gutter, at every width. */
+  --edge: var(--gutter);
   /*
    * The type scale. Apart from the display sizes, every size on the site is one of these.
    */

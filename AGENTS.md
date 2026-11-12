@@ -29,8 +29,8 @@ changing or adding UI.
   There is no dark mode: the owner prefers this light palette, so don't add one.
 - **Hierarchy by opacity.** Quieter text and the grey rules are the ink at lower opacity
   (`--ink-2` 85%, `--soft` 70%, `--faint` 40%, `--rule` 16%), never another grey or hue.
-- **Grid.** A 12-column grid on an 8px base inside a centred `max-w-6xl` (72rem) container, with
-  a 16px gutter on phones and 32px from 768px. Labels and dates start at column 1, content at
+- **Grid.** A 12-column grid on an 8px base running edge to edge (no centred container), with a
+  16px gutter and page margin on phones and 32px from 768px. Labels and dates start at column 1, content at
   column 4. Text is flush left, ragged right; nothing is centred. Body text stays within 60ch.
 - **Captions.** Labels (meta, facts, skill groups, the footer label) are 12px uppercase with
   wide tracking, at 70% ink.
