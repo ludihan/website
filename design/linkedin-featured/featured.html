@@ -1,0 +1,87 @@
+<!doctype html>
+<!--
+  LinkedIn Featured image, 1200 × 644 (LinkedIn's recommended size for a featured media card),
+  set like the site's home cover: ultramarine field, Inter, a 12-column grid with a 48px margin
+  and 24px gutter. Three projects in the first three numbered rows, the name at the bottom.
+
+  Render with:
+    chromium --headless=new --hide-scrollbars --window-size=1200,644 \
+      --virtual-time-budget=5000 --screenshot=featured.png file://$PWD/featured.html
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,700&display=block" rel="stylesheet">
+<style>
+  html, body { margin: 0; }
+  body {
+    width: 1200px;
+    height: 644px;
+    overflow: hidden;
+    background: #1c3fd1;
+    color: #f1efe9;
+    font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+    font-optical-sizing: auto;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 24px;
+    padding: 0 48px;
+  }
+  .top { padding-top: 40px; font-size: 22px; line-height: 30px; }
+  .top .label { opacity: 0.7; }
+  .rule { border-top: 2px solid #f1efe9; margin-top: 32px; }
+
+  .work { padding-top: 22px; }
+  .work li { list-style: none; padding: 16px 48px 0; }
+  .work .no { grid-column: 1 / 3; font-size: 22px; font-weight: 700; }
+  .work .name { grid-column: 3 / 6; font-size: 40px; font-weight: 700; letter-spacing: -0.035em; line-height: 1; }
+  .work .tag { grid-column: 6 / 13; font-size: 22px; line-height: 30px; opacity: 0.86; }
+  .work ol { margin: 0; padding: 0; }
+
+  .foot {
+    position: absolute;
+    left: 0; right: 0; bottom: 40px;
+    align-items: end;
+  }
+  .name-big {
+    grid-column: 1 / 13;
+    margin: 0 0 0 -0.06em;
+    font-size: 150px;
+    font-weight: 700;
+    letter-spacing: -0.065em;
+    line-height: 0.8;
+    white-space: nowrap;
+  }
+  .role {
+    grid-column: 1 / 13;
+    margin: 18px 0 0;
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+</style>
+</head>
+<body>
+  <div class="top grid">
+    <span class="label" style="grid-column: 1 / 4">Selected work</span>
+    <span style="grid-column: 9 / 13; text-align: right">ludihan.com</span>
+  </div>
+  <div class="rule" style="margin-left:48px;margin-right:48px"></div>
+
+  <ol class="work" style="margin:0;padding:0">
+    <li class="grid"><span class="no">01</span><span class="name">noise</span><span class="tag">A music tracker with modular synths</span></li>
+    <li class="grid"><span class="no">02</span><span class="name">atrium</span><span class="tag">A small IRC-style chat server</span></li>
+    <li class="grid"><span class="no">03</span><span class="name">inv</span><span class="tag">Local-first inventory management</span></li>
+  </ol>
+
+  <div class="foot grid">
+    <p class="name-big">Lucca Han</p>
+    <p class="role">Software Engineer</p>
+  </div>
+</body>
+</html>
