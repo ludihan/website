@@ -48,5 +48,17 @@
     "home": "Voltar ao início",
     "projects": "Ver projetos",
     "blog": "Ler o blog"
+  },
+  "ui": {
+    "localTime": "Hora local",
+    "contact": "Contato",
+    "index": "Trabalhos selecionados",
+    "period": "Período",
+    "stack": "Stack",
+    "viewAll": "Todos os projetos",
+    "currently": "Atualmente",
+    "fig": "Fig.",
+    "source": "Código",
+    "top": "Voltar ao topo"
   }
 }

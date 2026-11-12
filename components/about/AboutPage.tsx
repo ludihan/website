@@ -1,11 +1,9 @@
-import Link from "next/link";
 import { getDictionary, type Locale } from "@/lib/i18n";
-import { profileText, site, skills, type SkillGroup } from "@/lib/profile";
+import { profileText, skills, type SkillGroup } from "@/lib/profile";
 import { jsonLdGraph, personRef, webPageJsonLd } from "@/lib/seo";
-import { CopyEmailButton } from "../CopyEmailButton";
 import { JsonLd } from "../JsonLd";
 import { RoleList } from "../RoleList";
-import { SplitTitle } from "../SplitTitle";
+import { SectionHead } from "../SectionHead";
 import { Tags } from "../Tags";
 
 export function AboutPage({ lang }: { lang: Locale }) {
@@ -26,98 +24,80 @@ export function AboutPage({ lang }: { lang: Locale }) {
           }),
         )}
       />
-      <section className="hero">
-        <SplitTitle text={a.title} />
-        <p className="role">{t.role}</p>
-        <p className="lead">{a.summary}</p>
-        <dl className="facts">
-          {t.facts.map((f) => (
-            <div key={f.label}>
-              <dt>{f.label}</dt>
-              <dd>{f.value}</dd>
+      <header className="page-head">
+        <h1 className="display display-page">{a.title}</h1>
+        <div className="grid hero-body">
+          <dl className="meta">
+            {t.facts.map((f) => (
+              <div key={f.label}>
+                <dt>{f.label}</dt>
+                <dd>{f.value}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="statement">{a.summary}</p>
+        </div>
+      </header>
+
+      <section className="section">
+        <SectionHead n={1} title={a.focusTitle} />
+        <div className="grid focus">
+          {a.focus.map((f, i) => (
+            <article key={f.title} className="focus-item">
+              <span className="focus-no">{String.fromCharCode(97 + i)}.</span>
+              <h3>{f.title}</h3>
+              <p>{f.text}</p>
+              <Tags items={f.tags} />
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section">
+        <SectionHead n={2} title={t.workTitle} />
+        <RoleList roles={t.roles} />
+      </section>
+
+      <section className="section">
+        <SectionHead n={3} title={t.educationTitle} />
+        <div className="rows">
+          {t.education.map((e) => (
+            <article key={e.title} className="row grid">
+              <p className="row-date">{e.period}</p>
+              <div className="row-title">
+                <h3>{e.title}</h3>
+                <p>
+                  {e.school}, {e.place}
+                </p>
+              </div>
+              <div className="row-body">
+                {e.summary && <p>{e.summary}</p>}
+                {e.coursework && (
+                  <>
+                    <p className="row-label">{a.courseworkLabel}</p>
+                    <Tags items={e.coursework} />
+                  </>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section">
+        <SectionHead n={4} title={t.skillsTitle} />
+        <div className="grid skills">
+          {(Object.keys(skills) as SkillGroup[]).map((g) => (
+            <div key={g} className="skill-col">
+              <h3>{t.skillLabels[g]}</h3>
+              <Tags items={skills[g]} />
             </div>
           ))}
-        </dl>
-      </section>
-
-      <section>
-        <h2>{a.focusTitle}</h2>
-        <div className="cards cards-two">
-          {a.focus.map((f) => (
-            <article key={f.title} className="card card-static" data-spotlight>
-              <strong>{f.title}</strong>
-              <span>{f.text}</span>
-              <small>{f.tags.join(" · ")}</small>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section>
-        <h2>{t.workTitle}</h2>
-        <RoleList roles={t.roles} timeline />
-      </section>
-
-      <section>
-        <h2>{t.educationTitle}</h2>
-        <div className="timeline">
-          {t.education.map((e) => (
-            <article key={e.title} className="role-item">
-              <header>
-                <h3>
-                  {e.title} <span>· {e.school}</span>
-                </h3>
-                <p>
-                  {e.period} · {e.place}
-                </p>
-              </header>
-              {e.summary && <p>{e.summary}</p>}
-              {e.coursework && (
-                <>
-                  <p className="muted">{a.courseworkLabel}</p>
-                  <Tags items={e.coursework} />
-                </>
-              )}
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section>
-        <h2>{t.skillsTitle}</h2>
-        {(Object.keys(skills) as SkillGroup[]).map((g) => (
-          <div key={g} className="skill-group">
-            <h3>{t.skillLabels[g]}</h3>
-            <Tags items={skills[g]} />
+          <div className="skill-col">
+            <h3>{a.languagesTitle}</h3>
+            <Tags items={a.languages} />
           </div>
-        ))}
-      </section>
-
-      <section>
-        <h2>{a.languagesTitle}</h2>
-        <Tags items={a.languages} />
-      </section>
-
-      <section className="contact" data-spotlight>
-        <h2>{t.contactTitle}</h2>
-        <p>{t.contactText}</p>
-        <p className="cta">
-          <span className="email-group">
-            <a href={`mailto:${site.email}`} className="btn-link btn-primary">
-              {site.email}
-            </a>
-            <CopyEmailButton email={site.email} label={t.cta.copyEmail} copiedLabel={t.cta.emailCopied} />
-          </span>
-          <a href={site.linkedin} className="btn-link" target="_blank" rel="me noopener noreferrer">
-            LinkedIn
-          </a>
-          <a href={site.github} className="btn-link" target="_blank" rel="me noopener noreferrer">
-            GitHub
-          </a>
-          <Link href={`/${lang}/projects`} className="btn-link">
-            {dict.sections.projects}
-          </Link>
-        </p>
+        </div>
       </section>
     </>
   );

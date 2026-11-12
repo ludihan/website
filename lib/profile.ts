@@ -6,6 +6,8 @@ export const site = {
   email: "luccad.han@gmail.com",
   github: "https://github.com/ludihan",
   linkedin: "https://linkedin.com/in/lucca-han/",
+  // The line under the role on the banner.
+  headline: ["Full Stack", "TypeScript", "React", "Go"],
 };
 
 export const skills = {
@@ -49,7 +51,6 @@ type ProfileText = {
   skillLabels: Record<SkillGroup, string>;
   contactTitle: string;
   contactText: string;
-  osJoke: string;
   about: {
     title: string;
     summary: string;
@@ -137,7 +138,6 @@ export const profileText: Record<Locale, ProfileText> = {
     contactTitle: "Let's talk",
     contactText:
       "I'm always happy to chat about new roles, projects or anything web, systems or gamedev related.",
-    osJoke: "I use openSUSE, btw.",
     about: {
       title: "About me",
       summary:
@@ -151,7 +151,7 @@ export const profileText: Record<Locale, ProfileText> = {
         },
         {
           title: "Linux & DevOps",
-          text: "Linux user (openSUSE), working with Docker, Nix and the shell, CI/CD with GitHub Actions and Jenkins, and deploys to VPS, AWS, GCP and Vercel.",
+          text: "Linux user, working with Docker, Nix and the shell, CI/CD with GitHub Actions and Jenkins, and deploys to VPS, AWS, GCP and Vercel.",
           tags: ["Linux", "Docker", "NixOS", "Shell", "GitHub Actions", "AWS"],
         },
         {
@@ -245,7 +245,6 @@ export const profileText: Record<Locale, ProfileText> = {
     contactTitle: "Vamos conversar",
     contactText:
       "Vou adorar conversar sobre novas oportunidades, projetos ou qualquer coisa de web, sistemas ou gamedev.",
-    osJoke: "Eu uso openSUSE, btw.",
     about: {
       title: "Sobre mim",
       summary:
@@ -259,7 +258,7 @@ export const profileText: Record<Locale, ProfileText> = {
         },
         {
           title: "Linux e DevOps",
-          text: "Usuário de Linux (openSUSE), trabalhando com Docker, Nix e o shell, CI/CD com GitHub Actions e Jenkins, e deploys em VPS, AWS, GCP e Vercel.",
+          text: "Usuário de Linux, trabalhando com Docker, Nix e o shell, CI/CD com GitHub Actions e Jenkins, e deploys em VPS, AWS, GCP e Vercel.",
           tags: ["Linux", "Docker", "NixOS", "Shell", "GitHub Actions", "AWS"],
         },
         {

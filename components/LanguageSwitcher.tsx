@@ -14,12 +14,11 @@ export function LanguageSwitcher({ lang, label, home = false }: { lang: Locale; 
       {locales.map((l) =>
         l === lang ? (
           <span key={l} aria-current="true" title={localeNames[l]}>
-            <span className="lang-pill" aria-hidden="true" />
-            <span className="lang-label">{l}</span>
+            {l}
           </span>
         ) : (
           <Link key={l} href={`/${l}${rest ? `/${rest}` : ""}`} hrefLang={l} title={localeNames[l]}>
-            <span className="lang-label">{l}</span>
+            {l}
           </Link>
         ),
       )}

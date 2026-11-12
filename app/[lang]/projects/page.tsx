@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { preconnect } from "react-dom";
 import { JsonLd } from "@/components/JsonLd";
 import { ProjectCard } from "@/components/ProjectCard";
-import { SplitTitle } from "@/components/SplitTitle";
+import { ProjectIndex } from "@/components/ProjectIndex";
 import { getDictionary, hasLocale } from "@/lib/i18n";
 import { projects } from "@/lib/projects";
 import { site } from "@/lib/profile";
@@ -59,26 +59,17 @@ export default async function ProjectsPage({ params }: PageProps<"/[lang]/projec
   return (
     <>
       <JsonLd data={jsonLd} />
-      <SplitTitle text={dict.sections.projects} />
-      <p className="intro">{dict.projects.intro}</p>
-      <nav className="project-index" aria-label={dict.projects.index}>
-        <ul>
-          {projects.map((p) => (
-            <li key={p.id}>
-              <a href={`#${p.id}`}>
-                <strong>
-                  {p.name}
-                  <span aria-hidden="true">↓</span>
-                </strong>
-                <span>{p.text[lang].tagline}</span>
-                <small>{p.stack[0]}</small>
-              </a>
-            </li>
-          ))}
-        </ul>
+      <header className="page-head">
+        <h1 className="display display-page">{dict.sections.projects}</h1>
+        <div className="grid">
+          <p className="statement">{dict.projects.intro}</p>
+        </div>
+      </header>
+      <nav aria-label={dict.projects.index} className="section">
+        <ProjectIndex lang={lang} hrefBase="" />
       </nav>
       {projects.map((p, i) => (
-        <ProjectCard key={p.id} project={p} lang={lang} dict={dict.projects} priority={i === 0} />
+        <ProjectCard key={p.id} project={p} n={i + 1} lang={lang} dict={dict.projects} priority={i === 0} />
       ))}
     </>
   );

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/JsonLd";
-import { SplitTitle } from "@/components/SplitTitle";
 import { formatDate, getPosts } from "@/lib/content";
 import { getDictionary, hasLocale } from "@/lib/i18n";
 import { site } from "@/lib/profile";
@@ -44,32 +43,41 @@ export default async function BlogPage({ params }: PageProps<"/[lang]/blog">) {
   return (
     <>
       <JsonLd data={jsonLd} />
-      <SplitTitle text={dict.sections.blog} />
-      <p className="intro">{dict.meta.blogDescription}</p>
-      {posts.length === 0 ? (
-        <p className="post-empty">{dict.blog.empty}</p>
-      ) : (
-        <ul className="post-list">
-          {posts.map(({ slug, frontmatter: { title, date, description }, minutes }) => (
-            <li key={slug} data-spotlight>
-              <h2>
-                <Link href={`/${lang}/blog/${slug}`}>{title}</Link>
-              </h2>
-              <p className="post-meta">
-                {date && <time dateTime={new Date(date).toISOString()}>{formatDate(lang, date, "long")}</time>}
-                {date && " · "}
-                {minutes} {dict.blog.minRead}
-              </p>
-              {description && <p>{description}</p>}
-            </li>
-          ))}
-        </ul>
-      )}
-      <p className="muted">
-        <a href={`/${lang}/blog/rss.xml`} className="text-link">
-          {dict.blog.rss}
-        </a>
-      </p>
+      <header className="page-head">
+        <h1 className="display display-page">{dict.sections.blog}</h1>
+        <div className="grid">
+          <p className="statement">{dict.meta.blogDescription}</p>
+        </div>
+      </header>
+      <div className="section">
+        {posts.length === 0 ? (
+          <p className="post-empty">{dict.blog.empty}</p>
+        ) : (
+          <ol className="post-list">
+            {posts.map(({ slug, frontmatter: { title, date, description }, minutes }) => (
+              <li key={slug}>
+                <Link href={`/${lang}/blog/${slug}`} className="post-row grid">
+                  <span className="post-date">
+                    {date && <time dateTime={new Date(date).toISOString()}>{formatDate(lang, date, "long")}</time>}
+                  </span>
+                  <span className="post-title">
+                    <strong>{title}</strong>
+                    {description && <span>{description}</span>}
+                  </span>
+                  <span className="post-minutes">
+                    {minutes} {dict.blog.minRead}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ol>
+        )}
+        <p className="post-rss">
+          <a href={`/${lang}/blog/rss.xml`} className="text-link">
+            {dict.blog.rss}
+          </a>
+        </p>
+      </div>
     </>
   );
 }

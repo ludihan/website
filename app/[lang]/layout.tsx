@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/JsonLd";
-import { Motion } from "@/components/Motion";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { mono, sans } from "@/lib/fonts";
@@ -12,7 +11,7 @@ import "../globals.css";
 
 export const dynamicParams = false;
 
-export const viewport: Viewport = { themeColor: "#12110f" };
+export const viewport: Viewport = { themeColor: "#f1efe9" };
 
 export const generateStaticParams = () => locales.map((lang) => ({ lang }));
 
@@ -58,11 +57,10 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
       <body>
         <SiteHeader lang={lang} />
         <JsonLd data={jsonLdGraph(websiteJsonLd(lang), personJsonLd(lang))} />
-        <main id="content" className="container">
+        <main id="content" className="page">
           {children}
         </main>
         <SiteFooter lang={lang} />
-        <Motion />
       </body>
     </html>
   );

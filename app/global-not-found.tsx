@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
-import { SplitTitle } from "@/components/SplitTitle";
 import { mono, sans } from "@/lib/fonts";
 import { defaultLocale, getDictionary, locales } from "@/lib/i18n";
 import { site } from "@/lib/profile";
@@ -32,28 +31,29 @@ export default function GlobalNotFound() {
             <SiteHeader lang={l} unknownPath />
           </div>
         ))}
-        <main id="content" className="container">
+        <main id="content" className="page">
           {locales.map((l) => {
             const t = getDictionary(l).notFound;
             return (
-              <section key={l} data-lang={l} lang={l} className="hero not-found">
-                <p className="kicker" aria-hidden="true">
-                  <span>~/ludihan</span> $ <span className="typed">cd ..</span>
-                </p>
-                <SplitTitle text="404" />
-                <p className="role">{t.title}</p>
-                <p className="lead">{t.lead}</p>
-                <p className="cta">
-                  <Link href={`/${l}`} className="btn-link btn-primary">
-                    {t.home}
-                  </Link>
-                  <Link href={`/${l}/projects`} className="btn-link">
-                    {t.projects}
-                  </Link>
-                  <Link href={`/${l}/blog`} className="btn-link">
-                    {t.blog}
-                  </Link>
-                </p>
+              <section key={l} data-lang={l} lang={l} className="page-head not-found">
+                <h1 className="display">404</h1>
+                <div className="grid hero-body">
+                  <p className="meta-title">{t.title}</p>
+                  <div className="statement">
+                    <p>{t.lead}</p>
+                    <ul className="inline-links">
+                      <li>
+                        <Link href={`/${l}`}>{t.home} →</Link>
+                      </li>
+                      <li>
+                        <Link href={`/${l}/projects`}>{t.projects} →</Link>
+                      </li>
+                      <li>
+                        <Link href={`/${l}/blog`}>{t.blog} →</Link>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </section>
             );
           })}

@@ -1,5 +1,5 @@
-import { Bricolage_Grotesque, Geist_Mono } from "next/font/google";
+import { Geist_Mono, Schibsted_Grotesk } from "next/font/google";
 
-// The optical size and width axes let the display type tighten up at large sizes.
-export const sans = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-sans", axes: ["opsz", "wdth"] });
+// One grotesk for everything, from captions to the display name; a mono only for code in posts.
+export const sans = Schibsted_Grotesk({ subsets: ["latin"], variable: "--font-sans" });
 export const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono" });

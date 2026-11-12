@@ -22,17 +22,14 @@ function loadFont(family: string, weight: number) {
   return font;
 }
 
-// Shared Open Graph / Twitter card: the site's colors, a page kicker, a title and a subtitle.
+// Shared Open Graph / Twitter card, set like the site's footer: ultramarine, paper-coloured
+// type, a hairline header row and the title set large and tight.
 export type OgCard = { kicker: string; title: string; subtitle: string };
 
 export async function ogImage({ kicker, title, subtitle }: OgCard) {
   const host = new URL(site.url).host;
-  const footer = `${site.name} · ${host}`;
-  const [regular, bold, mono] = await Promise.all([
-    loadFont("Geist", 400),
-    loadFont("Geist", 700),
-    loadFont("Geist+Mono", 500),
-  ]);
+  const [regular, bold] = await Promise.all([loadFont("Schibsted+Grotesk", 400), loadFont("Schibsted+Grotesk", 700)]);
+  const paper = "#f1efe9";
   return new ImageResponse(
     (
       <div
@@ -42,38 +39,45 @@ export async function ogImage({ kicker, title, subtitle }: OgCard) {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          padding: "72px 88px",
-          background: "#141312",
-          backgroundImage:
-            "radial-gradient(circle at 12% 0%, rgba(209,161,89,0.22), transparent 55%), linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px)",
-          backgroundSize: "100% 100%, 48px 48px, 48px 48px",
-          borderLeft: "16px solid #d1a159",
-          color: "#ece8e1",
-          fontFamily: "Geist",
+          padding: "40px 56px 56px",
+          background: "#1c3fd1",
+          color: paper,
+          fontFamily: "Schibsted Grotesk",
         }}
       >
-        <div style={{ display: "flex", fontFamily: "Geist Mono", fontSize: 30, color: "#a8a197" }}>
-          <span style={{ color: "#d1a159" }}>~/{kicker}</span>
-          <span>&nbsp;$</span>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            paddingBottom: 18,
+            borderBottom: `2px solid ${paper}`,
+            fontSize: 26,
+          }}
+        >
+          <span style={{ fontWeight: 700 }}>{site.name}</span>
+          <span style={{ textTransform: "capitalize" }}>{kicker === "ludihan" ? host : kicker}</span>
         </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-          <div style={{ fontSize: title.length > 40 ? 68 : 88, fontWeight: 700, letterSpacing: -3, lineHeight: 1.05 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
+          <div
+            style={{
+              fontSize: title.length > 30 ? 92 : 168,
+              fontWeight: 700,
+              letterSpacing: title.length > 30 ? -4 : -10,
+              lineHeight: 0.88,
+              marginLeft: -6,
+            }}
+          >
             {title}
           </div>
-          <div style={{ fontSize: 36, color: "#d1a159", lineHeight: 1.3 }}>{subtitle}</div>
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 16, fontSize: 26, color: "#a8a197" }}>
-          <div style={{ width: 18, height: 18, borderRadius: 4, background: "#d1a159" }} />
-          {footer}
+          <div style={{ fontSize: 34, lineHeight: 1.25, opacity: 0.85 }}>{subtitle}</div>
         </div>
       </div>
     ),
     {
       ...ogSize,
       fonts: [
-        { name: "Geist", data: regular, weight: 400 },
-        { name: "Geist", data: bold, weight: 700 },
-        { name: "Geist Mono", data: mono, weight: 500 },
+        { name: "Schibsted Grotesk", data: regular, weight: 400 },
+        { name: "Schibsted Grotesk", data: bold, weight: 700 },
       ],
     },
   );

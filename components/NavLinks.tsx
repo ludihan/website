@@ -11,8 +11,7 @@ export function NavLinks({ links, highlight = true }: { links: { href: string; l
     const active = highlight && (pathname === href || pathname.startsWith(`${href}/`));
     return (
       <Link key={href} href={href} className="nav-link" aria-current={active ? "page" : undefined}>
-        {active && <span className="nav-pill" aria-hidden="true" />}
-        <span className="nav-label">{label}</span>
+        {label}
       </Link>
     );
   });
