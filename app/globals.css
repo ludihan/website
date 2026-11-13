@@ -1392,6 +1392,15 @@ div[data-lang] {
     grid-column: auto !important;
   }
 
+  /* Currently and Contact take the full width, so the email and its copy button share a line. */
+  .cover-info > div:nth-child(n + 3) {
+    grid-column: 1 / -1 !important;
+  }
+
+  .profile-email {
+    flex-wrap: nowrap;
+  }
+
   .cover-main {
     margin-top: round(4rem, var(--u));
     row-gap: round(1.5rem, var(--u));

@@ -115,7 +115,8 @@ comment summarises the rules below.
 
 - **Mobile (800px and below).** The grid collapses to one column, except section heads, where
   the numeral and title stay on one line. The masthead is one row (name, nav, language; the role
-  and nav numbers are hidden). The cover's information line becomes two columns. Every layout
+  and nav numbers are hidden). The cover's information line becomes two columns, with Currently and Contact full width so the
+  email and its copy button share a line. Every layout
   works from 320px, and links are at least 44px tall. Anchor jumps land below the sticky
   masthead (`scroll-padding-top`).
 - **Motion.** Only responses to the pointer: project names turning blue, the colophon row fill,
