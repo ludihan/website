@@ -69,7 +69,12 @@ export function Home({ lang }: { lang: Locale }) {
       </section>
 
       <section className="section">
-        <SectionHead n={1} title={ui.index} more={{ href: `/${lang}/projects`, label: ui.viewAll }} />
+        <SectionHead n={1} title={t.workTitle} more={{ href: `/${lang}/about`, label: t.workAll }} />
+        <RoleList roles={t.roles} />
+      </section>
+
+      <section className="section">
+        <SectionHead n={2} title={ui.index} more={{ href: `/${lang}/projects`, label: ui.viewAll }} />
         {/* A modular field: one project per four columns, figure above, caption below. */}
         <ol className="work grid">
           {projects.map((p, i) => {
@@ -101,11 +106,6 @@ export function Home({ lang }: { lang: Locale }) {
             );
           })}
         </ol>
-      </section>
-
-      <section className="section">
-        <SectionHead n={2} title={t.workTitle} more={{ href: `/${lang}/about`, label: t.workAll }} />
-        <RoleList roles={t.roles} />
       </section>
     </>
   );
