@@ -1413,6 +1413,27 @@ div[data-lang] {
     font-size: min(27vw, 13svh);
   }
 
+  /* Short phones: a smaller statement and tighter gaps keep the cover on one screen. */
+  @media (max-height: 700px) {
+    .cover {
+      padding-block: calc(var(--u) * 2);
+    }
+
+    .cover-info,
+    .cover-main {
+      row-gap: calc(var(--u) * 2);
+    }
+
+    .cover-main {
+      margin-top: calc(var(--u) * 2);
+    }
+
+    .cover-lead {
+      font-size: var(--t-1);
+      --lh: 1.5;
+    }
+  }
+
   .sec-head {
     row-gap: round(0.5rem, var(--u));
   }
