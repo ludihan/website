@@ -1378,8 +1378,10 @@ div[data-lang] {
     min-height: 44px;
   }
 
+  /* The cover fills the screen below the one-row masthead (44px link plus its padding and
+     rule) and no further. */
   .cover {
-    min-height: auto;
+    min-height: calc(100svh - 44px - var(--u) * 2 - 1px);
     padding-top: round(1rem, var(--u));
   }
 
@@ -1402,12 +1404,13 @@ div[data-lang] {
   }
 
   .cover-main {
-    margin-top: round(4rem, var(--u));
+    margin-top: round(1.5rem, var(--u));
     row-gap: round(1.5rem, var(--u));
   }
 
+  /* Shrinks on short screens so the whole cover stays in view. */
   .cover-name {
-    font-size: 27vw;
+    font-size: min(27vw, 13svh);
   }
 
   .sec-head {
