@@ -29,8 +29,8 @@ export function SiteHeader({ lang, unknownPath = false }: { lang: Locale; unknow
         <nav className="masthead-nav" aria-label={dict.nav.label}>
           <NavLinks
             links={[
-              { href: `/${lang}/projects`, label: dict.nav.projects },
               { href: `/${lang}/about`, label: dict.nav.about },
+              { href: `/${lang}/projects`, label: dict.nav.projects },
               // The blog stays out of the menu until it has a post to show.
               ...(getSlugs(lang).length > 0 ? [{ href: `/${lang}/blog`, label: dict.nav.blog }] : []),
             ]}

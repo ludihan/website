@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-// The sections as a numbered list: 01 projects, 02 about. Marks the current one, including its
+// The sections as a numbered list: 01 about, 02 projects. Marks the current one, including its
 // sub-pages (a blog post marks "blog"). With `highlight` off, marks none, for pages built without
 // knowing their path (the 404).
 export function NavLinks({ links, highlight = true }: { links: { href: string; label: string }[]; highlight?: boolean }) {

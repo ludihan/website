@@ -65,7 +65,7 @@ comment summarises the rules below.
 ## Components
 
 - **Masthead** (`components/SiteHeader.tsx`). One sticky row on paper with a 1px ink rule
-  below: name and role in the first field, the numbered nav (lower case) from column 4, the
+  below: name and role in the first field, the numbered nav (lower case: about, projects) from column 4, the
   language switch (`en / pt`) in the last field. The current section's number turns blue.
 - **Section head** (`components/SectionHead.tsx`). 3px rule, blue numeral in the first field and
   the title from column 4, both at `--t-4` bold, an optional "→" link in the last field.
