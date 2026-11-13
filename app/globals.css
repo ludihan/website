@@ -319,6 +319,37 @@ ul {
   color: var(--ink);
 }
 
+/* On the cover the email carries the colophon's copy button, shrunk to one line of the
+   information line (18px) so it stays on the baseline grid; an invisible margin keeps the
+   tap target 44px. */
+.profile-email {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: calc(var(--u) * 2);
+}
+
+.profile-email .btn-copy {
+  position: relative;
+  width: calc(var(--u) * 3);
+  height: calc(var(--u) * 3);
+}
+
+.profile-email .btn-copy::after {
+  content: "";
+  position: absolute;
+  inset: -13px;
+}
+
+.profile-email .btn-copy svg {
+  width: 12px;
+  height: 12px;
+}
+
+.cover .btn-copy:hover {
+  color: var(--blue);
+}
+
 /* The name's last line and the statement's last line share a baseline. */
 .cover-main {
   align-items: last baseline;

@@ -92,7 +92,8 @@ comment summarises the rules below.
 ## Pages
 
 - **Home** (`components/home/Home.tsx`). A full-height ultramarine cover: an information line
-  across the top (Based in, Local time, Currently, Contact), the name stacked in two lines at the
+  across the top (Based in, Local time, Currently, Contact, with the colophon's copy button
+  shrunk to one line beside the email), the name stacked in two lines at the
   bottom left and the statement at the bottom right. Then 01 Experience as rows. Then 02 Selected
   work as a modular field of three projects, each a 4:3 figure (the top-left of the screenshot
   enlarged to 175%, or an upright phone screen with its foot running off the frame), a rule with

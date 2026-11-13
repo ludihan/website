@@ -55,7 +55,7 @@ export function Home({ lang }: { lang: Locale }) {
           <div>
             <dt>{ui.contact}</dt>
             <dd>
-              <ProfileLinks />
+              <ProfileLinks copy={{ label: t.cta.copyEmail, copiedLabel: t.cta.emailCopied }} />
             </dd>
           </div>
         </dl>
