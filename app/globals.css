@@ -273,7 +273,9 @@ ul {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: max(34rem, calc(100svh - var(--u) * 10));
+  /* The screen less the masthead, rounded up and 1px over: phone screens are often a fraction of
+     a pixel tall, and rounding must never leave a line of paper below the cover. */
+  min-height: max(34rem, round(up, calc(100svh - var(--u) * 10 + 1px), 1px));
   margin-inline: calc(-1 * var(--margin));
   padding: round(1rem, var(--u)) var(--margin) round(clamp(1.5rem, 3vw, 2.5rem), var(--u));
   background: var(--blue);
@@ -1378,10 +1380,10 @@ div[data-lang] {
     min-height: 44px;
   }
 
-  /* The cover fills the screen below the one-row masthead (44px link plus its padding and
-     rule) and no further. */
+  /* The cover fills the screen below the one-row masthead (44px link plus its padding; its
+     1px rule is overlapped, as on desktop) and no further. */
   .cover {
-    min-height: calc(100svh - 44px - var(--u) * 2 - 1px);
+    min-height: round(up, calc(100svh - 44px - var(--u) * 2), 1px);
     padding-top: round(1rem, var(--u));
   }
 
