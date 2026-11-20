@@ -85,16 +85,16 @@ export const projects: Project[] = [
     stack: ["Odin", "SDL3", "libretro", "Emscripten"],
     screenshots: [
       {
-        src: "https://raw.githubusercontent.com/ludihan/zemu/main/docs/screenshots/desktop-menu.png",
-        width: 768,
-        height: 672,
-        alt: { en: "zemu’s GAME menu open over a paused game", pt: "Menu GAME do zemu aberto sobre um jogo pausado" },
-      },
-      {
         src: "https://raw.githubusercontent.com/ludihan/zemu/main/docs/screenshots/desktop-cores.png",
         width: 768,
         height: 672,
         alt: { en: "zemu’s CORES window listing cores to download", pt: "Janela CORES do zemu listando cores para baixar" },
+      },
+      {
+        src: "https://raw.githubusercontent.com/ludihan/zemu/main/docs/screenshots/desktop-menu.png",
+        width: 768,
+        height: 672,
+        alt: { en: "zemu’s GAME menu open over a paused game", pt: "Menu GAME do zemu aberto sobre um jogo pausado" },
       },
       {
         src: "https://raw.githubusercontent.com/ludihan/zemu/main/docs/screenshots/desktop-game.png",
