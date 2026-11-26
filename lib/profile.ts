@@ -71,7 +71,7 @@ export const profileText: Record<Locale, ProfileText> = {
   en: {
     role: "Software Engineer",
     place: "Manaus, Brazil",
-    lead: "I build web applications end to end: React and Next.js front-ends, Go and Node.js back-ends, databases and the Linux/Docker tooling around them. Computer Science graduate based in Manaus, Brazil.",
+    lead: "I build web applications end to end: React and Next.js front-ends, Node.js, Go and Python back-ends, databases and the Linux/Docker tooling around them. Computer Science graduate based in Manaus, Brazil.",
     facts: [
       { label: "Based in", value: "Manaus, Amazonas, Brazil (UTC−4)" },
       { label: "Now", value: "IT assistant at Masf Refeições" },
@@ -150,8 +150,8 @@ export const profileText: Record<Locale, ProfileText> = {
       focus: [
         {
           title: "Web development",
-          text: "Front-end and back-end, from React and Next.js interfaces to Go and Node.js services.",
-          tags: ["React", "Next.js", "Go", "Node.js", "PostgreSQL"],
+          text: "Front-end and back-end, from React and Next.js interfaces to Node.js, Go and Python services.",
+          tags: ["React", "Next.js", "Node.js", "Go", "Python", "PostgreSQL"],
         },
         {
           title: "Linux & DevOps",
@@ -177,7 +177,7 @@ export const profileText: Record<Locale, ProfileText> = {
   pt: {
     role: "Engenheiro de Software",
     place: "Manaus, Brasil",
-    lead: "Construo aplicações web de ponta a ponta: front-ends em React e Next.js, back-ends em Go e Node.js, bancos de dados e o ferramental de Linux/Docker ao redor. Bacharel em Ciência da Computação, baseado em Manaus.",
+    lead: "Construo aplicações web de ponta a ponta: front-ends em React e Next.js, back-ends em Node.js, Go e Python, bancos de dados e o ferramental de Linux/Docker ao redor. Bacharel em Ciência da Computação, baseado em Manaus.",
     facts: [
       { label: "Localização", value: "Manaus, Amazonas, Brasil (UTC−4)" },
       { label: "Atualmente", value: "Assistente de TI na Masf Refeições" },
@@ -256,8 +256,8 @@ export const profileText: Record<Locale, ProfileText> = {
       focus: [
         {
           title: "Desenvolvimento web",
-          text: "Front-end e back-end, de interfaces em React e Next.js a serviços em Go e Node.js.",
-          tags: ["React", "Next.js", "Go", "Node.js", "PostgreSQL"],
+          text: "Front-end e back-end, de interfaces em React e Next.js a serviços em Node.js, Go e Python.",
+          tags: ["React", "Next.js", "Node.js", "Go", "Python", "PostgreSQL"],
         },
         {
           title: "Linux e DevOps",
