@@ -25,8 +25,8 @@
     "screenshots": "Capturas de tela"
   },
   "meta": {
-    "homeTitle": "Lucca Han | Engenheiro de Software (React, Next.js, TypeScript, Go)",
-    "homeDescription": "Engenheiro de software em Manaus, Brasil (UTC−4). React, Next.js, TypeScript, Go e Node.js. Bacharel em Ciência da Computação.",
+    "homeTitle": "Lucca Han | Engenheiro de Software (TypeScript, React, Next.js, Node.js, Go, Python)",
+    "homeDescription": "Engenheiro de software em Manaus, Brasil (UTC−4). TypeScript, React, Next.js, Node.js, Go e Python. Bacharel em Ciência da Computação.",
     "aboutDescription": "Bacharel em Ciência da Computação e engenheiro de software com experiência em desenvolvimento web, DevOps e automação. Experiência, formação e habilidades.",
     "projectsDescription": "Projetos selecionados de Lucca Han: um tracker musical com sintetizadores modulares em Rust, um chat em tempo real com Elixir e Phoenix LiveView e um app de inventário local-first em React Native.",
     "blogDescription": "Artigos de Lucca Han sobre desenvolvimento web, Linux e programação de sistemas.",
