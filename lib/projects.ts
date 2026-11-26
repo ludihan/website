@@ -138,10 +138,10 @@ export const projects: Project[] = [
     stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "SQLite"],
     screenshots: [
       {
-        src: "https://raw.githubusercontent.com/ludihan/inci/main/docs/screenshots/home.png",
+        src: "https://raw.githubusercontent.com/ludihan/inci/main/docs/screenshots/admin-tickets.png",
         width: 1440,
         height: 900,
-        alt: { en: "inci home page", pt: "Página inicial do inci" },
+        alt: { en: "inci ticket list", pt: "Lista de chamados do inci" },
       },
       {
         src: "https://raw.githubusercontent.com/ludihan/inci/main/docs/screenshots/admin-dashboard.png",
@@ -150,16 +150,16 @@ export const projects: Project[] = [
         alt: { en: "inci admin dashboard", pt: "Painel administrativo do inci" },
       },
       {
-        src: "https://raw.githubusercontent.com/ludihan/inci/main/docs/screenshots/admin-tickets.png",
-        width: 1440,
-        height: 900,
-        alt: { en: "inci ticket list", pt: "Lista de chamados do inci" },
-      },
-      {
         src: "https://raw.githubusercontent.com/ludihan/inci/main/docs/screenshots/admin-ticket-detail.png",
         width: 1440,
         height: 900,
         alt: { en: "inci ticket detail", pt: "Detalhe de um chamado no inci" },
+      },
+      {
+        src: "https://raw.githubusercontent.com/ludihan/inci/main/docs/screenshots/home.png",
+        width: 1440,
+        height: 900,
+        alt: { en: "inci home page", pt: "Página inicial do inci" },
       },
     ],
     text: {
